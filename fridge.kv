@@ -1,0 +1,729 @@
+#:kivy 2.0.0
+#: import get_color_from_hex kivy.utils.get_color_from_hex
+#:import MDFloatingActionButtonSpeedDial kivymd.uix.button.MDFloatingActionButtonSpeedDial
+#: import get_color_from_hex kivy.utils.get_color_from_hex
+#:import MDScreen kivymd.uix.screen.MDScreen
+#:import MDProgressBar kivymd.uix.progressbar.MDProgressBar
+
+
+<SplashScreen>:
+    name: 'splash_screen'
+    canvas.before:
+        
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source:'images/splash.png'
+    MDScreen:
+        MDFloatLayout:
+            MDLabel:
+                text: 'Fridgi'
+                halign: 'center'
+                pos_hint: {'center_x': .5, 'center_y': .7}
+                font_style: 'H3'
+                theme_text_color: 'Secondary'
+            MDSpinner:
+                size_hint: None, None
+                size: dp(48), dp(48)
+                pos_hint: {'center_x': .5, 'center_y': .5}
+            MDLabel:
+                text: 'Loading...'
+                halign: 'center'
+                pos_hint: {'center_x': .5, 'center_y': .4}
+                font_style: 'H6'
+                theme_text_color: 'Secondary'
+            MDProgressBar:
+                id: progress_bar
+                value: 0
+                max: 100
+                size_hint: 0.8, None
+                height: dp(4)
+                pos_hint: {'center_x': .5, 'center_y': .3}
+
+
+
+
+<LoginScreen>:
+    MDTopAppBar:
+        id: toolbar
+        title: "User Login"
+        pos_hint: {'top':1.0}
+        md_bg_color: 0, 0.7, 1, 1
+      
+    FloatLayout:
+        size_hint: 1, 1
+        pos_hint: {'top':0.9}
+
+        MDTextField:
+            id: email_field
+            hint_text: "Email"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width: 300
+            pos_hint: {'center_x': 0.5, 'top': 0.85}
+
+        MDTextField:
+            id: password_field
+            hint_text: "Password"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width: 300
+            height:100
+            pos_hint: {'center_x': 0.5, 'top': 0.72}
+            password: True
+        
+        MDTextButton:
+            text: "Forget Password"
+            font_size: "18sp"
+            theme_text_color: 'Custom'
+            text_color:  0, 0.7, 1, 1 
+            pos_hint: {'center_x': 0.6, 'top': 0.55}
+            on_press: root.manager.current = 'forget_password'
+            
+        
+        MDRoundFlatButton:
+            text: "Login"
+            font_size: "18sp"
+            size_hint_x: 0.3
+            pos_hint: {'center_x': 0.5, 'top': 0.45}
+            on_press: root.manager.current = 'home'
+       
+        MDRoundFlatButton:
+            text: "Create An Account"
+            font_size: "18sp"
+            size_hint_x: 0.3
+            pos_hint: {'center_x': 0.5, 'top': 0.35}
+            on_press: root.manager.current = 'register'
+
+<ForgetPasswordScreen>:
+    MDTopAppBar:
+        id: toolbar
+        title: "Forget Password"
+        pos_hint: {'top':1.0}
+        md_bg_color: 0, 0.7, 1, 1 
+    FloatLayout:
+        size_hint: 1, 1
+        pos_hint: {'top':0.9}
+
+        MDTextField:
+            id: email_field
+            hint_text: "Enter your email here"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            height: "48dp"
+            width: 450
+            pos_hint: {'center_x': 0.5, 'top': 0.80}
+
+        
+        MDRoundFlatButton:
+            text: "Send Email"
+            font_size: "18sp"
+            size_hint_x: 0.3
+            pos_hint: {'center_x': 0.5, 'top': 0.65}
+            on_press: root.manager.current ='reset_password'
+
+
+<ResetPasswordScreen>:
+    MDTopAppBar:
+        id: toolbar
+        title: "Reset Password"
+        pos_hint: {'top':1.0}
+        md_bg_color: 0, 0.7, 1, 1    
+    FloatLayout:
+        size_hint: 1, 1
+        pos_hint: {'top':0.9}
+
+        MDTextField:
+            id: password_field
+            hint_text: "New Password"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width: 300
+            pos_hint: {'center_x': 0.5, 'top': 0.85}
+
+        MDTextField:
+            id: confirm_password_field
+            hint_text: "Confirm Password"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width: 300
+            height:100
+            pos_hint: {'center_x': 0.5, 'top': 0.72}
+            password: True
+
+        MDRoundFlatButton:
+            text: "Reset Password"
+            font_size: "20sp"
+            size_hint_x: 0.3
+            pos_hint: {'center_x': 0.5, 'top': 0.55}
+            on_press: root.manager.current = 'home'        
+
+<RegisterScreen>:
+    MDTopAppBar:
+        id: toolbar
+        title: "User Registration"
+        anchor_title:"center"
+        pos_hint: {'top':1.0}
+        md_bg_color: 0, 0.7, 1, 1
+        
+    
+    FloatLayout:
+        size_hint: 1, 1
+        pos_hint: {'top':0.9}
+
+        MDTextField:
+            id: first_name_field
+            hint_text: "Firstname"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width: 500
+            height: 90
+            pos_hint: {'center_x': 0.5, 'top': 0.98}
+
+        MDTextField:
+            id: last_name_field
+            hint_text: "Lastname"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width:500
+            height:90
+            pos_hint: {'center_x': 0.5, 'top': 0.90}
+            password: True
+        
+        MDTextField:
+            id: email_field
+            hint_text: "Email"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width: 500
+            height:90
+            pos_hint: {'center_x': 0.5, 'top': 0.82}
+            password: True
+
+        MDTextField:
+            id: password_field
+            hint_text: "Password"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width: 500
+            height:90
+            pos_hint: {'center_x': 0.5, 'top': 0.74}
+            password: True
+
+        MDTextField:
+            id: confirm_password_field
+            hint_text: "Confirm Password"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width: 500
+            height:90
+            pos_hint: {'center_x': 0.5, 'top': 0.66}
+            password: True
+        
+        MDTextField:
+            id: dob_field
+            hint_text: "Date of birth"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width: 500
+            height:90
+            pos_hint: {'center_x': 0.5, 'top': 0.58}
+            password: True
+
+        MDTextField:
+            id: phone_field
+            hint_text: "Phone Number"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width: 500
+            height:90
+            pos_hint: {'center_x': 0.5, 'top': 0.50}
+            password: True
+        
+        MDTextField:
+            id: clubcard_field
+            hint_text: "Clubcard Number"
+            helper_text_mode:"on_focus"
+            size_hint_x: None
+            width: 500
+            height:90
+            pos_hint: {'center_x': 0.5, 'top': 0.41}
+            password: True
+        
+        MDRoundFlatButton:
+            text: "Register "
+            size_hint_x: None
+            width: root.width*0.4
+            pos_hint: {'center_x': 0.5, 'top': 0.30}
+            on_press: root.manager.current = 'home'
+       
+        MDRoundFlatButton:
+            text: " Login here"
+            size_hint_x: None
+            width: root.width*0.4
+            size_hint_y: None
+            pos_hint: {'center_x': 0.5, 'top': 0.20}
+            on_press: root.manager.current = 'login'
+            
+
+
+# Food Hygiene!
+
+<BoxLayoutExample6>:
+    orientation: "vertical"
+    spacing: "20dp"
+    Button:
+        text: "Food Hygiene!"
+        size: "300dp", "100dp"
+        size_hint: None, None
+        # x, center_x, right
+        # y, center_y, top
+        pos_hint: { "center_x": .50 }
+    Button:
+        orientation: "vertical"
+        text: "Allergies Advice!"
+        size: "300dp", "100dp"
+        size_hint: None, None
+        # x, center_x, right
+        # y, center_y, top
+        pos_hint: { "center_x": .5 }
+    Button:
+        orientation: "vertical"
+        text: "Freezer Advice!"
+        size: "300dp", "100dp"
+        size_hint: None, None
+        # x, center_x, right
+        # y, center_y, top
+        pos_hint: { "center_x": .5 }
+    Button:
+        orientation: "vertical"
+        text: "Recycling Advice!"
+        size: "300dp", "100dp"
+        size_hint: None, None
+        # x, center_x, right
+        # y, center_y, top
+        pos_hint: { "center_x": .5 }
+
+
+ # Wakeup Screen
+
+<BoxLayoutExample1>:
+    orientation: "vertical"
+    spacing: "20dp"
+    Label:
+        text: "Logo"
+        size: "200dp", "300dp"
+        size_hint: None, None
+        # x, center_x, right
+        # y, center_y, top
+        pos_hint: { "center_x": .5 }
+    Button:
+        text: "Sign In"
+        size: "200dp", "80dp"
+        size_hint: None, None
+        # x, center_x, right
+        # y, center_y, top
+        pos_hint: { "center_x": .5 }
+        color: 0, 0, 1, 1
+    Button:
+        text: "New User, Sign Up"
+        size: "200dp", "80dp"
+        size_hint: None, None
+        # x, center_x, right
+        # y, center_y, top
+        pos_hint: { "center_x": .5 }
+        color: 0, 0, 1, 1           
+
+
+<SettingsScreen>:
+    
+    MDScreen:
+
+        MDNavigationLayout:
+           
+            MDScreenManager:
+                id: screen_manager
+                MDScreen:
+
+                    MDTopAppBar:
+                        id: toolbar
+                        title: "About App"
+                        elevation: 4
+                        pos_hint: {"top": 1}
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                    BoxLayout:
+                        orientation: "vertical"
+                        MDBoxLayout:
+                            orientation: "vertical"
+                            padding: "16dp"
+                            spacing: "16dp"
+                            MDLabel:
+                                text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim."
+                                halign: "center"
+                            
+
+            MDNavigationDrawer:
+                id: nav_drawer
+                radius: (0, 10, 10, 0)
+
+                MDNavigationDrawerMenu:
+
+                    MDNavigationDrawerHeader:
+                        title: ""
+                        title_color: "#87CEEB"
+                        text: "Settings"
+                        spacing: "4dp"
+                        padding: "12dp", 0, 0, "56dp"
+                    
+                    MDTextButton:
+                        text: "Home"
+                        on_press: root.manager.current = 'home'
+                       
+                    MDNavigationDrawerDivider:
+
+                    MDTextButton:
+                        text: "Edit Profile"
+                        on_press: root.manager.current = 'edit_profile'
+
+                    MDNavigationDrawerDivider:
+
+                    MDTextButton:
+                        text: "Notifications"
+                        on_press: root.manager.current = 'notifications'
+                    
+                    MDNavigationDrawerDivider:
+
+                    MDTextButton:
+                        text: "Food Hygiene"
+                        on_press: root.manager.current = 'fridge_hygiene'
+
+                    
+<EditProfileScreen>: 
+    
+    MDTopAppBar:
+        id: toolbar
+        title: "Edit Customer Profile"
+        pos_hint: {'top':1.0}
+        left_action_items: [["arrow-left", lambda *args : setattr(root.manager, "current", "settings")]]
+
+    FloatLayout:
+        size_hint: 1, 1
+        pos_hint: {'top':0.9}
+
+        MDTextField:
+            id: first_name_field
+            hint_text: "FirstName"
+            helper_text: "Enter your firstname"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width: 500
+            height: 90
+            pos_hint: {'center_x': 0.5, 'top': 0.95}
+
+        MDTextField:
+            id: last_name_field
+            hint_text: "Lastname"
+            helper_text: "Enter your Lastname"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width:500
+            height:90
+            pos_hint: {'center_x': 0.5, 'top': 0.86}
+            password: True
+        
+        MDTextField:
+            id: email_field
+            hint_text: "Email"
+            helper_text: "Enter your Email Address"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width: 500
+            height:90
+            pos_hint: {'center_x': 0.5, 'top': 0.77}
+            password: True
+        
+        MDTextField:
+            id: dob_field
+            hint_text: "date of birth"
+            helper_text: "Enter your  date your birth"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width: 500
+            height:90
+            pos_hint: {'center_x': 0.5, 'top': 0.68}
+            password: True
+
+        MDTextField:
+            id: phone_field
+            hint_text: "phone Number"
+            helper_text: "Enter your phone Number"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width: 500
+            height:90
+            pos_hint: {'center_x': 0.5, 'top': 0.59}
+            password: True
+        
+        MDTextField:
+            id: clubcard_field
+            hint_text: "clubcard Number"
+            helper_text: "Enter your clubcard number"
+            helper_text_mode: "on_focus"
+            size_hint_x: None
+            width: 500
+            height:90
+            pos_hint: {'center_x': 0.5, 'top': 0.50}
+            password: True
+        
+        MDRoundFlatButton:
+            text: "Edit Profile"
+            font_size: "20sp"
+            size_hint_x: 0.4
+            pos_hint: {'center_x': 0.5, 'top': 0.35}
+            on_press: root.manager.current = 'edit_profile'
+       
+        
+<NotificationScreen>:
+    name: 'notifications'
+
+    BoxLayout:
+        orientation: 'vertical'
+    
+        MDTopAppBar:
+            title: 'Notifications'
+            md_bg_color: app.theme_cls.primary_color
+            background_palette: 'Primary'
+            elevation: 10
+            left_action_items: [["arrow-left", lambda *args : setattr(root.manager, "current", "settings")]]
+        
+        ScrollView:
+            MDList:
+                id: notification_list
+                spacing: '12dp'
+    
+        MDRaisedButton:
+            text: 'Clear Notifications'
+            md_bg_color: app.theme_cls.primary_color
+            pos_hint: {'center_x': 0.5}
+            on_release: app.clear_notifications()
+
+    
+<NotificationDetails>:
+    size_hint: 0.9, 0.5
+    orientation: "vertical"
+    padding: "12dp"
+    spacing: "12dp"
+    MDLabel:
+        id: notification_title
+        text: ""
+        halign: "center"
+        font_style: "Subtitle1"
+    MDLabel:
+        id: notification_text
+        text: ""
+        halign: "center"
+        font_style: "Body1"
+
+<FoodHygiene>
+    name: 'food_hygiene'
+    MDTopAppBar:
+        id: toolbar
+        title: 'Food Hygiene'
+        pos_hint: {'top':1.0}
+        left_action_items: [["arrow-left", lambda *args : setattr(root.manager, "current", "settings")]]
+    
+    FloatLayout:
+        size_hint: 1, 1
+        pos_hint: {'top':0.9}
+
+        MDLabel:
+            text: 'Welcome to the Food Hygiene section of the app!'
+            font_size: '20sp'
+            halign: 'center'
+            pos_hint: {'center_x': 0.3, 'center_y': 0.95}
+        
+        MDLabel:
+            text: 'Here you can find information about food safety, storage and more.'
+            font_size: '16sp'
+            halign: 'center'
+            pos_hint: {'center_x': 0.3, 'center_y': 0.85}
+            
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, 0.1
+            pos_hint: {'bottom': 0}
+            spacing: 10
+            canvas.before:
+                Color:
+                    rgba:0.1176, 0.5647, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                
+            
+            MDIconButton
+                size_hint: 0.3, 1
+                icon: "images/red.jpeg"
+               
+            
+            MDIconButton
+                size_hint: 0.3, 1
+                icon: "images/green.png"
+                
+            
+            MDIconButton
+                size_hint: 0.3, 1
+                icon: "images/amber.png"
+                
+     
+          
+<HomeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        size: (400, 200)
+
+        # Top Bar
+        BoxLayout:
+            size_hint_y: 0.1
+            padding: 10
+            spacing: 10
+
+            # Add Food Button
+            Button:
+                text: 'Add Food'
+                background_color:0, 0.7, 1, 1
+                on_press: root.add_food()
+
+            # Remove Food Button
+            Button:
+                text: 'Remove Food'
+                background_color:0, 0.7, 1, 1
+                on_press: root.remove_food()
+
+            # Clear Fridge Button
+            Button:
+                text: 'Clear Fridge'
+                background_color:0, 0.7, 1, 1
+                on_press: root.clear_fridge()
+       
+       
+
+        # Middle Section
+        BoxLayout:
+            size_hint_y: 0.8
+            padding: 10
+            spacing: 10
+           
+
+            # Food Options 1
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 10
+                pos_hint: {'x': 0.1, 'y': 0.1}
+
+                Label:
+                    text: 'Food Options 1'
+
+                # Food Option 1
+                Button:
+                    text: 'Milk'
+                    on_press: root.select_food('Milk')
+                    background_color: 1, 0.5, 0, 1
+
+                # Food Option 2
+                Button:
+                    text: 'Cheese'
+                    on_press: root.select_food('Cheese')
+                    background_color: 1, 0.5, 0, 1
+
+                # Food Option 3
+                Button:
+                    text: 'Vegetables'
+                    on_press: root.select_food('Yogurt')
+                    background_color: 1, 0.5, 0, 1
+                # Food Option 4
+
+                Button:
+                    text: 'Fruits'
+                    on_press: root.select_food('Yogurt')
+                    background_color: 1, 0.5, 0, 1
+
+         
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: 10
+                pos_hint: {'x': 0.1, 'y': 0.1}
+
+                Label:
+                    text: 'Food Options 1'
+
+                # Food Option 1
+                Button:
+                    text: 'Milk'
+                    on_press: root.select_food('Milk')
+                    background_color: 1, 0.5, 0, 1
+
+                # Food Option 2
+                Button:
+                    text: 'Cheese'
+                    on_press: root.select_food('Cheese')
+                    background_color: 1, 0.5, 0, 1
+
+                # Food Option 3
+                Button:
+                    text: 'Pickle'
+                    on_press: root.select_food('Yogurt')
+                    background_color: 1, 0.5, 0, 1
+                # Food Option 4
+                   
+                Button:
+                    text: 'curd'
+                    on_press: root.select_food('Yogurt')
+                    background_color: 1, 0.5, 0, 1
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, 0.1
+            pos_hint: {'bottom': 0}
+            spacing: 10
+            canvas:
+                Color:
+                    rgb:135/255, 206/255, 235/255
+                Rectangle:
+                    size: self.size
+       
+            MDIconButton
+                size_hint: 0.3, 1
+                icon: "home"
+                on_release: app.root.current = 'home'
+            
+            MDIconButton
+                size_hint: 0.3, 1
+                icon: "images/settings.png"
+                on_release: app.root.current = 'settings'
+            
+            MDIconButton
+                size_hint: 0.3, 1
+                icon: "camera"
+                on_release: app.root.current = 'scanner'
+
+
+                   
+               
+           
+            
+    
+
+       
+   
+                    
+                
+
+       
+         
+
+
+
+    
+
+
