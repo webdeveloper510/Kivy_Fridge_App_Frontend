@@ -14,6 +14,8 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.list import ThreeLineIconListItem, IconLeftWidget
 from kivy.properties import ListProperty
+import numpy as np
+from kivy_garden.zbarcam import ZBarCam
 
 # from kivy.core.window import Window
 # Window.size = (450, 500)
@@ -125,6 +127,6 @@ class FridgeApp(MDApp):
     
     def callback(self, instance_action_top_appbar_button):
         print(instance_action_top_appbar_button)
-
+    
 if __name__ == '__main__':
     FridgeApp().run()
