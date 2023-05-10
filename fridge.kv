@@ -5,6 +5,7 @@
 #:import MDScreen kivymd.uix.screen.MDScreen
 #:import MDProgressBar kivymd.uix.progressbar.MDProgressBar
 #:import ZBarCam kivy_garden.zbarcam.ZBarCam
+#:import hex kivy.utils.get_color_from_hex
 
 
 <SplashScreen>:
@@ -42,8 +43,6 @@
                 pos_hint: {'center_x': .5, 'center_y': .3}
 
 
-
-
 <LoginScreen>:
     MDTopAppBar:
         id: toolbar
@@ -55,22 +54,31 @@
         size_hint: 1, 1
         pos_hint: {'top':0.9}
 
+
+        MDIcon:
+            icon: "account"
+            halign: "center"
+            valign: "center"
+            font_size: "48sp"
+            theme_text_color: "Primary"
+            pos_hint: {'center_x': 0.5, 'top': 0.90}
+            
         MDTextField:
             id: email_field
             hint_text: "Email"
             helper_text_mode: "on_focus"
             size_hint_x: None
-            width: 300
-            pos_hint: {'center_x': 0.5, 'top': 0.85}
+            width: 400
+            pos_hint: {'center_x': 0.5, 'top': 0.75}
 
         MDTextField:
             id: password_field
             hint_text: "Password"
             helper_text_mode: "on_focus"
             size_hint_x: None
-            width: 300
+            width: 400
             height:100
-            pos_hint: {'center_x': 0.5, 'top': 0.72}
+            pos_hint: {'center_x': 0.5, 'top': 0.65}
             password: True
         
         MDTextButton:
@@ -78,7 +86,7 @@
             font_size: "18sp"
             theme_text_color: 'Custom'
             text_color:  0, 0.7, 1, 1 
-            pos_hint: {'center_x': 0.6, 'top': 0.55}
+            pos_hint: {'center_x': 0.65, 'top': 0.50}
             on_press: root.manager.current = 'forget_password'
             
         
@@ -86,14 +94,14 @@
             text: "Login"
             font_size: "18sp"
             size_hint_x: 0.3
-            pos_hint: {'center_x': 0.5, 'top': 0.45}
+            pos_hint: {'center_x': 0.5, 'top': 0.40}
             on_press: root.manager.current = 'home'
        
         MDRoundFlatButton:
             text: "Create An Account"
             font_size: "18sp"
             size_hint_x: 0.3
-            pos_hint: {'center_x': 0.5, 'top': 0.35}
+            pos_hint: {'center_x': 0.5, 'top': 0.30}
             on_press: root.manager.current = 'register'
 
 <ForgetPasswordScreen>:
@@ -133,7 +141,8 @@
     FloatLayout:
         size_hint: 1, 1
         pos_hint: {'top':0.9}
-
+        
+        
         MDTextField:
             id: password_field
             hint_text: "New Password"
@@ -266,17 +275,6 @@
             pos_hint: {'center_x': 0.5, 'top': 0.20}
             on_press: root.manager.current = 'login'
         
-<ScannerScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        ZBarCam:
-            id: qrcodecam
-        Label:
-            size_hint: None, None
-            size: self.texture_size[0], 50
-            text: ' '.join([str(symbol.data) for symbol in qrcodecam.symbols])
-    
-  
 
 
 # Food Hygiene!
@@ -588,111 +586,241 @@
                 size_hint: 0.3, 1
                 icon: "images/amber.png"
                 
-     
+
+    
           
 <HomeScreen>:
-    BoxLayout:
+
+# Define the home screen layout
+    MDBoxLayout:
         orientation: 'vertical'
-        size: (400, 200)
 
-        # Top Bar
-        BoxLayout:
-            size_hint_y: 0.1
-            padding: 10
-            spacing: 10
+        
+        MDTopAppBar:
+            title: 'Home Page'
+            md_bg_color: app.theme_cls.primary_color
+            elevation: 10
 
-            # Add Food Button
-            Button:
-                text: 'Add Food'
-                background_color:0, 0.7, 1, 1
-                on_press: root.add_food()
+        
+        MDBoxLayout:
 
-            # Remove Food Button
-            Button:
-                text: 'Remove Food'
-                background_color:0, 0.7, 1, 1
-                on_press: root.remove_food()
+            orientation:'horizontal'
+            
 
-            # Clear Fridge Button
-            Button:
-                text: 'Clear Fridge'
-                background_color:0, 0.7, 1, 1
-                on_press: root.clear_fridge()
+            MDBoxLayout:
+                orientation:'vertical'
+                spacing: 10
+                padding: 5
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+                    RoundedRectangle:
+                        radius: [20,]
+                        size: self.size
+                        pos: self.pos
+                
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: 80
+                    md_bg_color: 1, 1, 1, 1
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1
+                        RoundedRectangle:
+                            radius: [10]
+                            size: self.size
+                            pos: self.pos
+                    
+
+                MDBoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y: None
+                    height: 100
+                    spacing: 5
+                    padding: 5
+                    
+                    # md_bg_color:app.theme_cls.primary_light
+                    
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        size_hint_y: None
+                        # md_bg_color:app.theme_cls.primary_light
+                        canvas.before:
+                            Color:
+                                rgba: 1, 1, 1, 1
+                            RoundedRectangle:
+                                radius: [10]
+                                size: self.size
+                                pos: self.pos
+                        
+                    
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        size_hint_y: None
+                        # md_bg_color:app.theme_cls.accent_color
+                        canvas.before:
+                            Color:
+                                rgba: 1, 1, 1, 1
+                            RoundedRectangle:
+                                radius: [10]
+                                size: self.size
+                                pos: self.pos
+    
+                    
+
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: 30
+                    md_bg_color: hex('#009ce9')
+
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: 60
+                    md_bg_color: 1, 1, 1, 1
+
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: 50
+                    md_bg_color: 1, 1, 1, 1
+
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: 50
+                    md_bg_color: 1, 1, 1, 1
+
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: 50
+                    # md_bg_color: 1, 1, 1, 1
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1
+                        RoundedRectangle:
+                            radius: [10]
+                            size: self.size
+                            pos: self.pos
+                               
        
-       
+    
 
-        # Middle Section
-        BoxLayout:
-            size_hint_y: 0.8
-            padding: 10
-            spacing: 10
-           
-
-            # Food Options 1
-            BoxLayout:
+            MDBoxLayout:
                 orientation: 'vertical'
                 spacing: 10
-                pos_hint: {'x': 0.1, 'y': 0.1}
+                padding: 5
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20,]
+                #113        
+                MDBoxLayout:
+                    orientation:'vertical'
+                    size_hint_y: None
+                    height: 100
+                    spacing: 5
+                    padding: 5
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 1
+                        RoundedRectangle:
+                            radius:[20, 20, 0, 0]
+                            size: self.size
+                            pos: self.pos       
+                        
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: 50
+                        md_bg_color: 1, 1, 1, 1
 
-                Label:
-                    text: 'Food Options 1'
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: 140
+                        md_bg_color:1, 1, 1, 1
 
-                # Food Option 1
-                Button:
-                    text: 'Milk'
-                    on_press: root.select_food('Milk')
-                    background_color: 1, 0.5, 0, 1
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: 50
+                        md_bg_color: 1, 1, 1, 1
 
-                # Food Option 2
-                Button:
-                    text: 'Cheese'
-                    on_press: root.select_food('Cheese')
-                    background_color: 1, 0.5, 0, 1
+                MDBoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y: None
+                    height: 100
+                    spacing: 5
+                    padding: 5
+                    # md_bg_color:app.theme_cls.primary_light
+                    
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        size_hint_y: None
+                        # md_bg_color:app.theme_cls.primary_light
+                        canvas.before:
+                            Color:
+                                rgba: 1, 1, 1, 1
+                            RoundedRectangle:
+                                radius: [10]
+                                size: self.size
+                                pos: self.pos
+                        
+                    
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        size_hint_y: None
+                        # md_bg_color:app.theme_cls.accent_color
+                        canvas.before:
+                            Color:
+                                rgba: 1, 1, 1, 1
+                            RoundedRectangle:
+                                radius: [10]
+                                size: self.size
+                                pos: self.pos
+                #111
+                MDBoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y: None
+                    height: 100
+                    spacing: 5
+                    padding: 5
+                    # md_bg_color:app.theme_cls.primary_light
+                    
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        size_hint_y: None
+                        # md_bg_color:app.theme_cls.primary_light
+                        canvas.before:
+                            Color:
+                                rgba: 1, 1, 1, 1
+                            RoundedRectangle:
+                                radius: [10]
+                                size: self.size
+                                pos: self.pos
+                        
+                    
+                    MDBoxLayout:
+                        orientation:'vertical'
+                        size_hint_y: None
+                        # md_bg_color:app.theme_cls.accent_color
+                        canvas.before:
+                            Color:
+                                rgba: 1, 1, 1, 1
+                            RoundedRectangle:
+                                radius: [10]
+                                size: self.size
+                                pos: self.pos
 
-                # Food Option 3
-                Button:
-                    text: 'Vegetables'
-                    on_press: root.select_food('Yogurt')
-                    background_color: 1, 0.5, 0, 1
-                # Food Option 4
 
-                Button:
-                    text: 'Fruits'
-                    on_press: root.select_food('Yogurt')
-                    background_color: 1, 0.5, 0, 1
-
-         
-            BoxLayout:
-                orientation: 'vertical'
-                spacing: 10
-                pos_hint: {'x': 0.1, 'y': 0.1}
-
-                Label:
-                    text: 'Food Options 1'
-
-                # Food Option 1
-                Button:
-                    text: 'Milk'
-                    on_press: root.select_food('Milk')
-                    background_color: 1, 0.5, 0, 1
-
-                # Food Option 2
-                Button:
-                    text: 'Cheese'
-                    on_press: root.select_food('Cheese')
-                    background_color: 1, 0.5, 0, 1
-
-                # Food Option 3
-                Button:
-                    text: 'Pickle'
-                    on_press: root.select_food('Yogurt')
-                    background_color: 1, 0.5, 0, 1
-                # Food Option 4
-                   
-                Button:
-                    text: 'curd'
-                    on_press: root.select_food('Yogurt')
-                    background_color: 1, 0.5, 0, 1
+        # Define the bottom section with three MDIconButtons
         BoxLayout:
             orientation: 'horizontal'
             size_hint: 1, 0.1
@@ -719,6 +847,7 @@
                 icon: "camera"
                 on_release: app.root.current = 'scanner'
 
+   
 
                    
                

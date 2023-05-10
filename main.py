@@ -61,7 +61,6 @@ class SettingsScreen(Screen):
 class BottomNavigation(BoxLayout):
     pass
 
-
 class MDDialogBox(MDDialog):
     pass
 
@@ -98,7 +97,6 @@ class NotificationScreen(Screen):
 
 class HomeScreen(Screen):
   pass
-
 
 class FoodHygiene(Screen):
   pass
