@@ -16,6 +16,7 @@ from kivymd.uix.list import ThreeLineIconListItem, IconLeftWidget
 from kivy.properties import ListProperty
 import numpy as np
 from kivy_garden.zbarcam import ZBarCam
+import requests
 
 # from kivy.core.window import Window
 # Window.size = (450, 500)
@@ -39,9 +40,8 @@ class LoginScreen(Screen):
 class RegisterScreen(Screen):
     def register(self, first_name, last_name, password, confirm_password,
                  dob, phone, clubcard):
-        print(f"Registering {first_name} {last_name} with password {password}, "
-              f"DOB: {dob}, Phone: {phone}, Clubcard: {clubcard}")
-        # self.manager.current = 'login'
+    
+      pass
 
 class EditProfileScreen(Screen):
     pass
