@@ -17,45 +17,63 @@ from kivy.properties import ListProperty
 import numpy as np
 from kivy_garden.zbarcam import ZBarCam
 import requests
+from kivymd.uix.pickers import MDDatePicker
+from kivy.app import App
+from kivymd.uix.screen import MDScreen
+from kivy.config import Config
+
 
 # from kivy.core.window import Window
 # Window.size = (450, 500)
 
-class SplashScreen(Screen):
+class SplashScreen(MDScreen):
     def on_enter(self):
-        anim = Animation(size_hint=(1.1, 1.1), duration=1)
-        # Start the animation on the screen
-        anim.start(self)
-        Clock.schedule_once(self.switch_to_login, 3)
+        # anim = Animation(size_hint=(1.1, 1.1), duration=1)
+        # # Start the animation on the screen
+        # anim.start(self)
+        Clock.schedule_once(self.switch_to_login, 4)
 
     def switch_to_login(self, dt):
         self.manager.current = 'login'
 
 
-class LoginScreen(Screen):
+class LoginScreen(MDScreen):
+    def toggle_password_visibility(self):
+        password_field = self.root.ids.password_field
+        password_field.password = not password_field.password
+        password_field.icon_right = "eye" if password_field.password else "eye-off"
+    
+    
     def login(self, email, password):
         pass
     
-
-class RegisterScreen(Screen):
-    def register(self, first_name, last_name, password, confirm_password,
-                 dob, phone, clubcard):
     
-      pass
 
-class EditProfileScreen(Screen):
+class RegisterScreen(MDScreen):
+    def on_save(self, instance, value, date_range):
+        print(instance, value, date_range)
+
+    def on_cancel(self, instance, value):
+        pass
+
+    def show_date_picker(self):
+        date_dialog = MDDatePicker()
+        date_dialog.bind(on_save=self.on_save, on_cancel=self.on_cancel)
+        date_dialog.open()
+
+class EditProfileScreen(MDScreen):
     pass
 
-class ForgetPasswordScreen(Screen):
+class ForgetPasswordScreen(MDScreen):
     pass
 
-class ResetPasswordScreen(Screen):
+class ResetPasswordScreen(MDScreen):
     pass
 
-class ScannerScreen(Screen):
+class ScannerScreen(MDScreen):
     pass
 
-class SettingsScreen(Screen):
+class SettingsScreen(MDScreen):
     pass
 
 class BottomNavigation(BoxLayout):
@@ -69,7 +87,7 @@ class NotificationDetails(MDBoxLayout):
     pass
 
 
-class NotificationScreen(Screen):
+class NotificationScreen(MDScreen):
     def on_pre_enter(self):
         # Add some example notifications to the list
         for i in range(10):
@@ -95,14 +113,16 @@ class NotificationScreen(Screen):
          )
         dialog.open()
 
-class HomeScreen(Screen):
+class HomeScreen(MDScreen):
   pass
 
-class FoodHygiene(Screen):
+class FoodHygiene(MDScreen):
   pass
 
 class MyScreenManager(ScreenManager):
     pass
+
+
 
 class FridgeApp(MDApp):
     def build(self):
@@ -118,8 +138,9 @@ class FridgeApp(MDApp):
         sm.add_widget(SettingsScreen(name='settings'))
         sm.add_widget(NotificationScreen(name='notifications'))
         sm.add_widget(FoodHygiene(name='fridge_hygiene'))
-        return sm
     
+        return sm
+   
     def clear_notifications(self):
         print('Clearing notifications...')
     

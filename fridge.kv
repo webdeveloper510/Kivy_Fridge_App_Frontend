@@ -16,93 +16,165 @@
             pos: self.pos
             size: self.size
             source:'images/splash.png'
+        Rectangle:
+            pos: self.width * 0.25, self.height * 0.3
+            size: self.width * 0.5, self.height * 0.5
+            source: 'images/logo1.png'
     MDScreen:
         MDFloatLayout:
-            MDLabel:
-                text: 'Fridgi'
-                halign: 'center'
-                pos_hint: {'center_x': .5, 'center_y': .7}
-                font_style: 'H3'
-                theme_text_color: 'Secondary'
-            MDSpinner:
-                size_hint: None, None
-                size: dp(48), dp(48)
-                pos_hint: {'center_x': .5, 'center_y': .5}
+            # MDLabel:
+            #     text: 'Fridgi'
+            #     halign: 'center'
+            #     pos_hint: {'center_x': .5, 'center_y': .7}
+            #     font_style: 'H3'
+            #     theme_text_color: 'Secondary'
+            # MDSpinner:
+            #     size_hint: None, None
+            #     size: dp(48), dp(48)
+            #     pos_hint: {'center_x': .5, 'center_y': .4}
+            #     theme_text_color: "Custom"
+            #     text_color: 1, 1, 1, 1  
+
             MDLabel:
                 text: 'Loading...'
                 halign: 'center'
-                pos_hint: {'center_x': .5, 'center_y': .4}
-                font_style: 'H6'
-                theme_text_color: 'Secondary'
-            MDProgressBar:
-                id: progress_bar
-                value: 0
-                max: 100
-                size_hint: 0.8, None
-                height: dp(4)
-                pos_hint: {'center_x': .5, 'center_y': .3}
+                pos_hint: {'center_x': .5, 'center_y': .2}
+                font_style: 'H5'
+                theme_text_color:"Custom"
+                text_color: 1, 1, 1, 1
+            # MDProgressBar:
+            #     id: progress_bar
+            #     value: 0
+            #     max: 100
+            #     size_hint: 0.8, None
+            #     height: dp(4)
+            #     pos_hint: {'center_x': .5, 'center_y': .2}
+            #     theme_text_color:"Custom"
+            #     text_color: 1, 1, 1, 1
 
 
 <LoginScreen>:
-    MDTopAppBar:
-        id: toolbar
-        title: "User Login"
-        pos_hint: {'top':1.0}
-        md_bg_color: 0, 0.7, 1, 1
-      
-    FloatLayout:
-        size_hint: 1, 1
-        pos_hint: {'top':0.9}
-
-
-        MDIcon:
-            icon: "account"
-            halign: "center"
-            valign: "center"
-            font_size: "48sp"
-            theme_text_color: "Primary"
-            pos_hint: {'center_x': 0.5, 'top': 0.90}
+    MDScreen:
+        name:"login"
+        MDFloatLayout:
+            md_bg_color:hex('#07CBFB')
+            Image:
+                source:"images/logo1.png"
+                pos_hint:{"center_y":0.85,"center_x":0.5}
+                size_hint_x: 0.60
+                size_hint_y: 0.40
             
-        MDTextField:
-            id: email_field
-            hint_text: "Email"
-            helper_text_mode: "on_focus"
-            size_hint_x: None
-            width: 400
-            pos_hint: {'center_x': 0.5, 'top': 0.75}
-
-        MDTextField:
-            id: password_field
-            hint_text: "Password"
-            helper_text_mode: "on_focus"
-            size_hint_x: None
-            width: 400
-            height:100
-            pos_hint: {'center_x': 0.5, 'top': 0.65}
-            password: True
-        
-        MDTextButton:
-            text: "Forget Password"
-            font_size: "18sp"
-            theme_text_color: 'Custom'
-            text_color:  0, 0.7, 1, 1 
-            pos_hint: {'center_x': 0.65, 'top': 0.50}
-            on_press: root.manager.current = 'forget_password'
+            MDLabel:
+                text: "Login Here"
+                font_style:"H1"
+                pos_hint:{"center_x":.5,"center_y":0.65}
+                halign:"center"
+                color:hex("#FFFFFF")
+                font_size:"40sp"
+                bold:True
             
-        
-        MDRoundFlatButton:
-            text: "Login"
-            font_size: "18sp"
-            size_hint_x: 0.3
-            pos_hint: {'center_x': 0.5, 'top': 0.40}
-            on_press: root.manager.current = 'home'
-       
-        MDRoundFlatButton:
-            text: "Create An Account"
-            font_size: "18sp"
-            size_hint_x: 0.3
-            pos_hint: {'center_x': 0.5, 'top': 0.30}
-            on_press: root.manager.current = 'register'
+            MDFloatLayout:
+                size_hint:0.75,.085
+                pos_hint:{"center_x":.5,"center_y":0.5}
+                canvas:
+                    Color:
+                        rgb:1,1,1,1
+                    RoundedRectangle:
+                        size:self.size
+                        pos: self.pos
+                        radius:[25]
+                TextInput:
+                    hint_text:"Email"
+                    size_hint:1,None
+                    height:self.minimum_height
+                    pos_hint:{"center_x":.5,"center_y":0.5}
+                    cursor_color:0,0,0,1
+                    multiline:False
+                    background_color:1,1,1,0
+                    foreground_color:127/255,202/255,248/255,1
+                    padding:26
+                    hint_text_color:195/255,195/255,195/255,1
+                    
+            
+            MDFloatLayout:
+                size_hint:0.75,.085
+                pos_hint:{"center_x":.5,"center_y":0.4}
+                canvas:
+                    Color:
+                        rgb:1,1,1,1
+                    RoundedRectangle:
+                        size:self.size
+                        pos: self.pos
+                        radius:[25]
+                TextInput:
+                    hint_text:"Password"
+                    size_hint:1,None
+                    height:self.minimum_height
+                    pos_hint:{"center_x":.5,"center_y":0.4}
+                    cursor_color:0,0,0,1
+                    multiline:False
+                    background_color:1,1,1,0
+                    foreground_color:127/255,202/255,248/255,1
+                    padding:26
+                    hint_text_color:195/255,195/255,195/255,1
+
+
+          
+            Button:
+                text: "Reset Password"
+                color:
+                size_hint:.4,.075
+                font_size: sp(20)
+                pos_hint:{"center_x":.5,"center_y":0.3}
+                background_color:1,1,1,0
+                color:1,1,1,1
+                on_press: root.manager.current = 'forget_password'
+                canvas.before:
+                    Color:
+                        rgb:hex('#07CBFB')
+                    RoundedRectangle:
+                        size:self.size
+                        pos:self.pos
+                        radius:[25]
+
+
+
+            Button:
+                text: "Login"
+                color:
+                size_hint:.5,.085
+                font_size: sp(25)
+                pos_hint:{"center_x":.5,"center_y":0.20}
+                background_color:1,1,1,0
+                color:127/255,202/255,248/255,1
+                on_press: root.manager.current = 'home'
+                canvas.before:
+                    Color:
+                        rgb:1,1,1,1
+                    RoundedRectangle:
+                        size:self.size
+                        pos:self.pos
+                        radius:[25]
+
+            
+
+            Button:
+                text: "Register here "
+                font_style:"H2"
+                size_hint:.4,.075
+                font_size: sp(20)
+                pos_hint:{"center_x":.5,"center_y":0.1}
+                background_color:1,1,1,0
+                color:1,1,1,1
+                on_press: root.manager.current = 'register'
+                canvas.before:
+                    Color:
+                        rgb:hex('#07CBFB')
+                    RoundedRectangle:
+                        size:self.size
+                        pos:self.pos
+                        radius:[25]
+
 
 <ForgetPasswordScreen>:
     MDTopAppBar:
@@ -185,18 +257,16 @@
             id: first_name_field
             hint_text: "Firstname"
             helper_text_mode: "on_focus"
-            size_hint_x: None
-            width: 500
-            height: 90
-            pos_hint: {'center_x': 0.5, 'top': 0.98}
+            size_hint_x: 0.65
+            size_hint_y: 0.10
+            pos_hint: {'center_x': 0.5, 'top': 0.99}
 
         MDTextField:
             id: last_name_field
             hint_text: "Lastname"
             helper_text_mode: "on_focus"
-            size_hint_x: None
-            width:500
-            height:90
+            size_hint_x: 0.65
+            size_hint_y: 0.10
             pos_hint: {'center_x': 0.5, 'top': 0.90}
             password: True
         
@@ -204,10 +274,9 @@
             id: email_field
             hint_text: "Email"
             helper_text_mode: "on_focus"
-            size_hint_x: None
-            width: 500
-            height:90
-            pos_hint: {'center_x': 0.5, 'top': 0.82}
+            size_hint_x: 0.65
+            size_hint_y: 0.10
+            pos_hint: {'center_x': 0.5, 'top': 0.81}
             password: True
 
         MDTextField:
@@ -215,50 +284,47 @@
             hint_text: "Password"
             helper_text_mode: "on_focus"
             size_hint_x: None
-            width: 500
-            height:90
-            pos_hint: {'center_x': 0.5, 'top': 0.74}
+            size_hint_x: 0.65
+            size_hint_y: 0.10
+            pos_hint: {'center_x': 0.5, 'top': 0.72}
             password: True
 
         MDTextField:
             id: confirm_password_field
             hint_text: "Confirm Password"
             helper_text_mode: "on_focus"
-            size_hint_x: None
-            width: 500
-            height:90
-            pos_hint: {'center_x': 0.5, 'top': 0.66}
+            size_hint_x: 0.65
+            size_hint_y: 0.10
+            pos_hint: {'center_x': 0.5, 'top': 0.63}
             password: True
         
-        MDTextField:
+        MDRaisedButton:
             id: dob_field
-            hint_text: "Date of birth"
-            helper_text_mode: "on_focus"
-            size_hint_x: None
-            width: 500
-            height:90
-            pos_hint: {'center_x': 0.5, 'top': 0.58}
-            password: True
+            text: "Select Date of Birth"
+            size_hint_x: 0.2
+            size_hint_y: 0.01
+            pos_hint: {'center_x': 0.5, 'top': 0.51}
+            on_release: root.show_date_picker()
+           
 
         MDTextField:
             id: phone_field
             hint_text: "Phone Number"
             helper_text_mode: "on_focus"
-            size_hint_x: None
-            width: 500
-            height:90
-            pos_hint: {'center_x': 0.5, 'top': 0.50}
+            size_hint_x: 0.65
+            size_hint_y: 0.10
+            pos_hint: {'center_x': 0.5, 'top': 0.45}
             password: True
         
-        MDTextField:
-            id: clubcard_field
-            hint_text: "Clubcard Number"
-            helper_text_mode:"on_focus"
-            size_hint_x: None
-            width: 500
-            height:90
-            pos_hint: {'center_x': 0.5, 'top': 0.41}
-            password: True
+        # MDTextField:
+        #     id: clubcard_field
+        #     hint_text: "Clubcard Number"
+        #     helper_text_mode:"on_focus"
+        #     size_hint_x: None
+        #     width: 500
+        #     height:90
+        #     pos_hint: {'center_x': 0.5, 'top': 0.41}
+        #     password: True
         
         MDRoundFlatButton:
             text: "Register "
@@ -423,73 +489,53 @@
         MDTextField:
             id: first_name_field
             hint_text: "FirstName"
-            helper_text: "Enter your firstname"
             helper_text_mode: "on_focus"
-            size_hint_x: None
-            width: 500
-            height: 90
+            size_hint_x: 0.65
+            size_hint_y: 0.10
             pos_hint: {'center_x': 0.5, 'top': 0.95}
 
         MDTextField:
             id: last_name_field
             hint_text: "Lastname"
-            helper_text: "Enter your Lastname"
             helper_text_mode: "on_focus"
-            size_hint_x: None
-            width:500
-            height:90
+            size_hint_x: 0.65
+            size_hint_y: 0.10
             pos_hint: {'center_x': 0.5, 'top': 0.86}
             password: True
         
         MDTextField:
             id: email_field
             hint_text: "Email"
-            helper_text: "Enter your Email Address"
             helper_text_mode: "on_focus"
-            size_hint_x: None
-            width: 500
-            height:90
+            size_hint_x: 0.65
+            size_hint_y: 0.10
             pos_hint: {'center_x': 0.5, 'top': 0.77}
             password: True
         
         MDTextField:
             id: dob_field
             hint_text: "date of birth"
-            helper_text: "Enter your  date your birth"
             helper_text_mode: "on_focus"
-            size_hint_x: None
-            width: 500
-            height:90
+            size_hint_x: 0.65
+            size_hint_y: 0.10
             pos_hint: {'center_x': 0.5, 'top': 0.68}
             password: True
 
         MDTextField:
             id: phone_field
             hint_text: "phone Number"
-            helper_text: "Enter your phone Number"
             helper_text_mode: "on_focus"
-            size_hint_x: None
-            width: 500
-            height:90
-            pos_hint: {'center_x': 0.5, 'top': 0.59}
+            size_hint_x: 0.65
+            size_hint_y: 0.10
+            pos_hint: {'center_x': 0.5, 'top': 0.55}
             password: True
         
-        MDTextField:
-            id: clubcard_field
-            hint_text: "clubcard Number"
-            helper_text: "Enter your clubcard number"
-            helper_text_mode: "on_focus"
-            size_hint_x: None
-            width: 500
-            height:90
-            pos_hint: {'center_x': 0.5, 'top': 0.50}
-            password: True
         
         MDRoundFlatButton:
             text: "Edit Profile"
             font_size: "20sp"
             size_hint_x: 0.4
-            pos_hint: {'center_x': 0.5, 'top': 0.35}
+            pos_hint: {'center_x': 0.5, 'top': 0.40}
             on_press: root.manager.current = 'edit_profile'
        
         
@@ -587,11 +633,19 @@
                 icon: "images/amber.png"
                 
 
-    
+<ScannerScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        ZBarCam:
+            id: qrcodecam
+        Label:
+            size_hint: None, None
+            size: self.texture_size[0], 50
+            text: ' '.join([str(symbol.data) for symbol in qrcodecam.symbols])   
           
 <HomeScreen>:
 
-# Define the home screen layout
+
     MDBoxLayout:
         orientation: 'vertical'
 
@@ -599,7 +653,8 @@
         MDTopAppBar:
             title: 'Home Page'
             md_bg_color: app.theme_cls.primary_color
-            elevation: 10
+            elevation: 5
+            right_action_items: [['plus', lambda x: app.add_item()], ['minus', lambda x: app.remove_item()]]
 
         
         MDBoxLayout:
@@ -609,21 +664,22 @@
 
             MDBoxLayout:
                 orientation:'vertical'
-                spacing: 10
-                padding: 5
+                spacing: 9
+                padding: 2
                 canvas.before:
                     Color:
                         rgba: 0, 0, 0, 1
                     RoundedRectangle:
-                        radius: [20,]
+                        radius: [30,]
                         size: self.size
                         pos: self.pos
                 
                 MDBoxLayout:
                     orientation: 'horizontal'
-                    size_hint_y: None
-                    height: 80
-                    md_bg_color: 1, 1, 1, 1
+                    size_hint_y: .03
+                    size_hint_x: .95
+                    pos_hint:{'x': 0.03,'bottom':0}
+                    # md_bg_color: 1, 1, 1, 1
                     canvas.before:
                         Color:
                             rgba: 1, 1, 1, 1
@@ -632,71 +688,83 @@
                             size: self.size
                             pos: self.pos
                     
+                    
 
                 MDBoxLayout:
                     orientation:'horizontal'
-                    size_hint_y: None
-                    height: 100
-                    spacing: 5
-                    padding: 5
-                    
-                    # md_bg_color:app.theme_cls.primary_light
-                    
+                    size_hint_y: .04
+                    size_hint_x:0.95
+                    pos_hint:{'x': 0.03}
+                    md_bg_color: 1, 1, 1, 1
+
+                MDBoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y: .04
+                    size_hint_x:0.95
+                    pos_hint:{'x': 0.03}
+                    md_bg_color: 1, 1, 1, 1
+
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: .04
+                    size_hint_x: 0.95
+                    pos_hint: {'x': 0.03}
+                    spacing: 9
+                    padding: 2
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 1
+                       
+                        
                     MDBoxLayout:
-                        orientation:'vertical'
-                        size_hint_y: None
-                        # md_bg_color:app.theme_cls.primary_light
-                        canvas.before:
-                            Color:
-                                rgba: 1, 1, 1, 1
-                            RoundedRectangle:
-                                radius: [10]
-                                size: self.size
-                                pos: self.pos
+                        size_hint_x: 0.5
+                        orientation: 'vertical'
+                        md_bg_color: 1, 1, 1, 1  
+                        size_hint_x: 0.4
+                    
                         
                     
                     MDBoxLayout:
-                        orientation:'vertical'
-                        size_hint_y: None
-                        # md_bg_color:app.theme_cls.accent_color
-                        canvas.before:
-                            Color:
-                                rgba: 1, 1, 1, 1
-                            RoundedRectangle:
-                                radius: [10]
-                                size: self.size
-                                pos: self.pos
-    
+                        size_hint_x: 0.5
+                        orientation: 'vertical'
+                        md_bg_color: 1, 1, 1, 1  
+                        size_hint_x: 0.4
+                        pos_hint: {'x': 0.09}
+                        
                     
-
                 MDBoxLayout:
                     orientation: 'horizontal'
-                    size_hint_y: None
-                    height: 30
+                    size_hint_y: .03
+                    size_hint_x:0.95
+                    pos_hint:{'x': 0.03}
                     md_bg_color: hex('#009ce9')
-
+                
                 MDBoxLayout:
                     orientation: 'horizontal'
-                    size_hint_y: None
-                    height: 60
+                    size_hint_y: .03
+                    size_hint_x:0.95
+                    pos_hint:{'x': 0.03}
                     md_bg_color: 1, 1, 1, 1
 
                 MDBoxLayout:
                     orientation: 'horizontal'
-                    size_hint_y: None
-                    height: 50
+                    size_hint_y: .03
+                    size_hint_x:0.95
+                    pos_hint:{'x': 0.03}
+                    md_bg_color: 1, 1, 1, 1
+                
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: .04
+                    size_hint_x:0.95
+                    pos_hint:{'x': 0.03}
                     md_bg_color: 1, 1, 1, 1
 
                 MDBoxLayout:
                     orientation: 'horizontal'
-                    size_hint_y: None
-                    height: 50
-                    md_bg_color: 1, 1, 1, 1
-
-                MDBoxLayout:
-                    orientation: 'horizontal'
-                    size_hint_y: None
-                    height: 50
+                    size_hint_y: .05
+                    size_hint_x:0.95
+                    pos_hint:{'x': 0.03}
                     # md_bg_color: 1, 1, 1, 1
                     canvas.before:
                         Color:
@@ -710,125 +778,113 @@
     
 
             MDBoxLayout:
-                orientation: 'vertical'
-                spacing: 10
+                orientation:'vertical'
+                spacing: 9
                 padding: 5
                 canvas.before:
                     Color:
                         rgba: 0, 0, 0, 1
                     RoundedRectangle:
-                        pos: self.pos
+                        radius: [30,]
                         size: self.size
-                        radius: [20,]
-                #113        
+                        pos: self.pos
+                
                 MDBoxLayout:
-                    orientation:'vertical'
-                    size_hint_y: None
-                    height: 100
-                    spacing: 5
-                    padding: 5
+                    orientation: 'horizontal'
+                    size_hint_y: .05
+                    size_hint_x: .95
+                    pos_hint:{'x': 0.03,'bottom':0}
+                    # md_bg_color: 1, 1, 1, 1
+                    canvas.before:
+                        Color:
+                            rgba: 1, 1, 1, 1
+                        RoundedRectangle:
+                            radius: [10]
+                            size: self.size
+                            pos: self.pos
+                    
+
+                MDBoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y: .07
+                    size_hint_x:0.95
+                    pos_hint:{'x': 0.03}
+                    md_bg_color: 1, 1, 1, 1
+               
+                MDBoxLayout:
+                    orientation:'horizontal'
+                    size_hint_y: .03
+                    size_hint_x:0.95
+                    pos_hint:{'x': 0.03}
+                    md_bg_color: 1, 1, 1, 1
+
+                MDBoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: .09
+                    size_hint_x:0.95
+                    pos_hint:{'x': 0.03}
+                    padding:2
+                    spacing:9
+                    # md_bg_color: 1, 1, 1, 1
                     canvas.before:
                         Color:
                             rgba: 0, 0, 0, 1
                         RoundedRectangle:
-                            radius:[20, 20, 0, 0]
+                            radius: [10]
                             size: self.size
-                            pos: self.pos       
-                        
+                            pos: self.pos
+                    
                     MDBoxLayout:
-                        orientation: 'vertical'
-                        size_hint_y: None
-                        height: 50
-                        md_bg_color: 1, 1, 1, 1
-
+                        orientation: 'horizontal'
+                        size_hint: (0.5, 1)
+                        md_bg_color: 1, 1, 1, 1  
+                        canvas.before:
+                           
+                   
                     MDBoxLayout:
-                        orientation: 'vertical'
-                        size_hint_y: None
-                        height: 140
-                        md_bg_color:1, 1, 1, 1
+                        orientation: 'horizontal'
+                        size_hint: (0.5, 1)
+                        md_bg_color: 1, 1, 1, 1  
 
-                    MDBoxLayout:
-                        orientation: 'vertical'
-                        size_hint_y: None
-                        height: 50
-                        md_bg_color: 1, 1, 1, 1
-
+               
                 MDBoxLayout:
-                    orientation:'horizontal'
-                    size_hint_y: None
-                    height: 100
-                    spacing: 5
-                    padding: 5
-                    # md_bg_color:app.theme_cls.primary_light
+                    orientation: 'horizontal'
+                    size_hint_y: .09
+                    size_hint_x:0.95
+                    pos_hint:{'x': 0.03}
+                    padding:2
+                    spacing:9
+                    # md_bg_color: 1, 1, 1, 1
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 1
+                        RoundedRectangle:
+                            radius: [10]
+                            size: self.size
+                            pos: self.pos
                     
                     MDBoxLayout:
-                        orientation:'vertical'
-                        size_hint_y: None
-                        # md_bg_color:app.theme_cls.primary_light
+                        orientation: 'horizontal'
+                        size_hint: (0.5, 1)
+                        md_bg_color: 1, 1, 1, 1  
                         canvas.before:
-                            Color:
-                                rgba: 1, 1, 1, 1
-                            RoundedRectangle:
-                                radius: [10]
-                                size: self.size
-                                pos: self.pos
-                        
-                    
+                           
+                   
                     MDBoxLayout:
-                        orientation:'vertical'
-                        size_hint_y: None
-                        # md_bg_color:app.theme_cls.accent_color
-                        canvas.before:
-                            Color:
-                                rgba: 1, 1, 1, 1
-                            RoundedRectangle:
-                                radius: [10]
-                                size: self.size
-                                pos: self.pos
-                #111
-                MDBoxLayout:
-                    orientation:'horizontal'
-                    size_hint_y: None
-                    height: 100
-                    spacing: 5
-                    padding: 5
-                    # md_bg_color:app.theme_cls.primary_light
-                    
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        size_hint_y: None
-                        # md_bg_color:app.theme_cls.primary_light
-                        canvas.before:
-                            Color:
-                                rgba: 1, 1, 1, 1
-                            RoundedRectangle:
-                                radius: [10]
-                                size: self.size
-                                pos: self.pos
-                        
-                    
-                    MDBoxLayout:
-                        orientation:'vertical'
-                        size_hint_y: None
-                        # md_bg_color:app.theme_cls.accent_color
-                        canvas.before:
-                            Color:
-                                rgba: 1, 1, 1, 1
-                            RoundedRectangle:
-                                radius: [10]
-                                size: self.size
-                                pos: self.pos
+                        orientation: 'horizontal'
+                        size_hint: (0.5, 1)
+                        md_bg_color: 1, 1, 1, 1  
+                               
 
 
-        # Define the bottom section with three MDIconButtons
-        BoxLayout:
+        #  bottom section with three MDIconButtons
+        MDBoxLayout:
             orientation: 'horizontal'
             size_hint: 1, 0.1
             pos_hint: {'bottom': 0}
             spacing: 10
+            md_bg_color:hex('#0990F9')
             canvas:
-                Color:
-                    rgb:135/255, 206/255, 235/255
                 Rectangle:
                     size: self.size
        
@@ -847,10 +903,90 @@
                 icon: "camera"
                 on_release: app.root.current = 'scanner'
 
-   
+  
 
                    
-               
+# <LoginScreen>:
+#     MDTopAppBar:
+#         id: toolbar
+#         title: "User Login"
+#         pos_hint: {'top':1.0}
+#         md_bg_color: 0, 0.7, 1, 1
+      
+#     FloatLayout:
+#         size_hint: 1, 1
+#         pos_hint: {'top':0.9}
+
+
+#         MDIcon:
+#             icon: "account"
+#             halign: "center"
+#             valign: "center"
+#             font_size: "48sp"
+#             theme_text_color: "Primary"
+#             pos_hint: {'center_x': 0.5, 'top': 0.90}
+            
+#         MDTextField:
+#             id: email_field
+#             hint_text: "Email"
+#             helper_text_mode: "on_focus"
+#             size_hint_x: None
+#             width: 400
+#             pos_hint: {'center_x': 0.5, 'top': 0.75}
+
+#         MDTextField:
+#             id: password_field
+#             hint_text: "Password"
+#             helper_text_mode: "on_focus"
+#             size_hint_x: None
+#             width: 400
+#             height:100
+#             icon_right: "eye-off"
+#             on_icon_right:root.toggle_password_visibility()
+#             pos_hint: {'center_x': 0.5, 'top': 0.65}
+#             password: True
+        
+#         MDTextButton:
+#             text: "Forget Password"
+#             font_size: "18sp"
+#             theme_text_color: 'Custom'
+#             text_color:  0, 0.7, 1, 1 
+#             pos_hint: {'center_x': 0.65, 'top': 0.50}
+#             on_press: root.manager.current = 'forget_password'
+            
+        
+#         MDRoundFlatButton:
+#             text: "Login"
+#             font_size: "18sp"
+#             size_hint_x: 0.3
+#             pos_hint: {'center_x': 0.5, 'top': 0.40}
+#             on_press: root.manager.current = 'home'
+       
+#         MDRoundFlatButton:
+#             text: "Create An Account"
+#             font_size: "18sp"
+#             size_hint_x: 0.3
+#             pos_hint: {'center_x': 0.5, 'top': 0.30}
+#             on_press: root.manager.current = 'register'
+
+# <ForgetPasswordScreen>:
+#     MDTopAppBar:
+#         id: toolbar
+#         title: "Forget Password"
+#         pos_hint: {'top':1.0}
+#         md_bg_color: 0, 0.7, 1, 1 
+#     FloatLayout:
+#         size_hint: 1, 1
+#         pos_hint: {'top':0.9}
+
+#         MDTextField:
+#             id: email_field
+#             hint_text: "Enter your email here"
+#             helper_text_mode: "on_focus"
+#             size_hint_x: None
+#             height: "48dp"
+#             width: 450
+#             pos_hint: {'center_x': 0.5, 'top': 0.80}              
            
             
     
