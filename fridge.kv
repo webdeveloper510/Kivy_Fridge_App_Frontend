@@ -633,21 +633,22 @@
                 icon: "images/amber.png"
                 
 
-<ScannerScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        ZBarCam:
-            id: qrcodecam
-        Label:
-            size_hint: None, None
-            size: self.texture_size[0], 50
-            text: ' '.join([str(symbol.data) for symbol in qrcodecam.symbols])   
+# <ScannerScreen>:
+#     BoxLayout:
+#         orientation: 'vertical'
+#         ZBarCam:
+#             id: qrcodecam
+#         Label:
+#             size_hint: None, None
+#             size: self.texture_size[0], 50
+#             text: ' '.join([str(symbol.data) for symbol in qrcodecam.symbols])   
           
 <HomeScreen>:
 
 
     MDBoxLayout:
         orientation: 'vertical'
+        
 
         
         MDTopAppBar:
@@ -704,6 +705,7 @@
                     pos_hint:{'x': 0.03}
                     md_bg_color: 1, 1, 1, 1
 
+
                 MDBoxLayout:
                     orientation: 'horizontal'
                     size_hint_y: .04
@@ -738,6 +740,32 @@
                     size_hint_x:0.95
                     pos_hint:{'x': 0.03}
                     md_bg_color: hex('#009ce9')
+                    size_hint: None,None
+                    size:root.size[0],"40dp"
+                    spacing:50
+                    MDIconButton:
+                        icon: "images/mango.png"
+                        user_font_size: "50sp"
+                        theme_text_color: "Custom"
+                        width: "80dp"
+                        height: "40dp"
+                        # text_color: 1, 1, 1, 1
+
+                    MDIconButton:
+                        icon: "images/mango.png"
+                        user_font_size: "50sp"
+                        theme_text_color: "Custom"
+                        width: "80dp"
+                        height: "40dp"
+                        # text_color: 1, 1, 1, 1
+
+                    MDIconButton:
+                        icon: "images/mango.png"
+                        user_font_size: "50sp"
+                        theme_text_color: "Custom"
+                        width: "80dp"
+                        height: "40dp"
+                        # text_color: 1, 1, 1, 1
                 
                 MDBoxLayout:
                     orientation: 'horizontal'
@@ -810,6 +838,9 @@
                     size_hint_x:0.95
                     pos_hint:{'x': 0.03}
                     md_bg_color: 1, 1, 1, 1
+                    spacing:80
+                    padding:100
+                   
                
                 MDBoxLayout:
                     orientation:'horizontal'
