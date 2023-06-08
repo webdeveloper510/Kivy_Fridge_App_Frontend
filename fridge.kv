@@ -70,7 +70,7 @@
                 pos_hint:{"center_x":.5,"center_y":0.65}
                 halign:"center"
                 color:hex("#FFFFFF")
-                font_size:"40sp"
+                font_size:"35sp"
                 bold:True
             
             MDFloatLayout:
@@ -122,7 +122,6 @@
           
             Button:
                 text: "Reset Password"
-                color:
                 size_hint:.4,.075
                 font_size: sp(20)
                 pos_hint:{"center_x":.5,"center_y":0.3}
@@ -429,13 +428,15 @@
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
                     BoxLayout:
                         orientation: "vertical"
+                        padding: dp(16)
+                        spacing: dp(16)
                         MDBoxLayout:
-                            orientation: "vertical"
-                            padding: "16dp"
-                            spacing: "16dp"
+                            orientation: "horizontal"
+                           
                             MDLabel:
                                 text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim."
                                 halign: "center"
+                                font_style:'Caption'
                             
 
             MDNavigationDrawer:
@@ -643,277 +644,531 @@
 #             size: self.texture_size[0], 50
 #             text: ' '.join([str(symbol.data) for symbol in qrcodecam.symbols])   
           
-<HomeScreen>:
+<HomeScreen>
+    BoxLayout:
 
-
-    MDBoxLayout:
         orientation: 'vertical'
         
+        # size_hint:None,None
 
-        
         MDTopAppBar:
             title: 'Home Page'
             md_bg_color: app.theme_cls.primary_color
             elevation: 5
             right_action_items: [['plus', lambda x: app.add_item()], ['minus', lambda x: app.remove_item()]]
-
         
-        MDBoxLayout:
-
-            orientation:'horizontal'
+        BoxLayout:
+            orientation: 'horizontal'
+            padding:10
+            # color:0,0,0,1
             
-
-            MDBoxLayout:
-                orientation:'vertical'
-                spacing: 9
-                padding: 2
-                canvas.before:
-                    Color:
-                        rgba: 0, 0, 0, 1
-                    RoundedRectangle:
-                        radius: [30,]
-                        size: self.size
-                        pos: self.pos
-                
-                MDBoxLayout:
-                    orientation: 'horizontal'
-                    size_hint_y: .03
-                    size_hint_x: .95
-                    pos_hint:{'x': 0.03,'bottom':0}
-                    # md_bg_color: 1, 1, 1, 1
+            
+            GridLayout:
+                cols:2
+                spacing:dp(5)
+                 
+                BoxLayout:# fridge right
+                    orientation:'vertical'
                     canvas.before:
+                        
                         Color:
-                            rgba: 1, 1, 1, 1
-                        RoundedRectangle:
-                            radius: [10]
-                            size: self.size
-                            pos: self.pos
+                            rgba: 0, 0, 0, 1  
+                        Line:
+                            width:  dp(5)
+                            rounded_rectangle: (self.x + 1, self.y + 1, self.width - 2, self.height - 2, 30, 30)
+                   
+                    #Child layout
+                    BoxLayout:  
+                        rgba: 0, 0, 0, 1  # Black color
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 1  
+                            Rectangle:
+                                pos: self.x, self.y
+                                size: self.width, self.height * 0.2  # give color to only bottom part 
+                    #Child layout    
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        padding: dp(10)
+                        
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 1
+                            Rectangle:
+                                pos: self.x, self.y
+                                size: self.width, self.height * 0.2
+                        #hii
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            size_hint: 1, 0.1
+                            pos_hint: {'center_y':0.5 }
+                            spacing: dp(10)
+                            canvas:
+                                Rectangle:
+                                    size: self.size
                     
-                    
-
-                MDBoxLayout:
-                    orientation:'horizontal'
-                    size_hint_y: .04
-                    size_hint_x:0.95
-                    pos_hint:{'x': 0.03}
-                    md_bg_color: 1, 1, 1, 1
-
-                MDBoxLayout:
-                    orientation:'horizontal'
-                    size_hint_y: .04
-                    size_hint_x:0.95
-                    pos_hint:{'x': 0.03}
-                    md_bg_color: 1, 1, 1, 1
-
-
-                MDBoxLayout:
-                    orientation: 'horizontal'
-                    size_hint_y: .04
-                    size_hint_x: 0.95
-                    pos_hint: {'x': 0.03}
-                    spacing: 9
-                    padding: 2
-                    canvas.before:
-                        Color:
-                            rgba: 0, 0, 0, 1
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/apple.png"
+                                
+                            
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/mango.png"
+                                
+                            
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/apple.png"
+                                
+                                
                        
                         
-                    MDBoxLayout:
-                        size_hint_x: 0.5
-                        orientation: 'vertical'
-                        md_bg_color: 1, 1, 1, 1  
-                        size_hint_x: 0.4
-                    
+                    #Child layout
+                    BoxLayout:  
+                       
+                        canvas.before:
                         
-                    
-                    MDBoxLayout:
-                        size_hint_x: 0.5
-                        orientation: 'vertical'
-                        md_bg_color: 1, 1, 1, 1  
-                        size_hint_x: 0.4
-                        pos_hint: {'x': 0.09}
+                            Color:
+                                rgba: 0, 0, 0, 1  
+                            Rectangle:
+                                pos: self.x, self.y
+                                size: self.width, self.height * 0.2  # give color to only bottom part 
                         
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            size_hint: 1, 0.1
+                            pos_hint: {'center_y':0.5 }
+                            spacing: dp(10)
+                            canvas:
+                                Rectangle:
+                                    size: self.size
                     
-                MDBoxLayout:
-                    orientation: 'horizontal'
-                    size_hint_y: .03
-                    size_hint_x:0.95
-                    pos_hint:{'x': 0.03}
-                    md_bg_color: hex('#009ce9')
-                    size_hint: None,None
-                    size:root.size[0],"40dp"
-                    spacing:50
-                    MDIconButton:
-                        icon: "images/mango.png"
-                        user_font_size: "50sp"
-                        theme_text_color: "Custom"
-                        width: "80dp"
-                        height: "40dp"
-                        # text_color: 1, 1, 1, 1
-
-                    MDIconButton:
-                        icon: "images/mango.png"
-                        user_font_size: "50sp"
-                        theme_text_color: "Custom"
-                        width: "80dp"
-                        height: "40dp"
-                        # text_color: 1, 1, 1, 1
-
-                    MDIconButton:
-                        icon: "images/mango.png"
-                        user_font_size: "50sp"
-                        theme_text_color: "Custom"
-                        width: "80dp"
-                        height: "40dp"
-                        # text_color: 1, 1, 1, 1
-                
-                MDBoxLayout:
-                    orientation: 'horizontal'
-                    size_hint_y: .03
-                    size_hint_x:0.95
-                    pos_hint:{'x': 0.03}
-                    md_bg_color: 1, 1, 1, 1
-
-                MDBoxLayout:
-                    orientation: 'horizontal'
-                    size_hint_y: .03
-                    size_hint_x:0.95
-                    pos_hint:{'x': 0.03}
-                    md_bg_color: 1, 1, 1, 1
-                
-                MDBoxLayout:
-                    orientation: 'horizontal'
-                    size_hint_y: .04
-                    size_hint_x:0.95
-                    pos_hint:{'x': 0.03}
-                    md_bg_color: 1, 1, 1, 1
-
-                MDBoxLayout:
-                    orientation: 'horizontal'
-                    size_hint_y: .05
-                    size_hint_x:0.95
-                    pos_hint:{'x': 0.03}
-                    # md_bg_color: 1, 1, 1, 1
-                    canvas.before:
-                        Color:
-                            rgba: 1, 1, 1, 1
-                        RoundedRectangle:
-                            radius: [10]
-                            size: self.size
-                            pos: self.pos
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/banana.png"
                                
-       
-    
-
-            MDBoxLayout:
-                orientation:'vertical'
-                spacing: 9
-                padding: 5
-                canvas.before:
-                    Color:
-                        rgba: 0, 0, 0, 1
-                    RoundedRectangle:
-                        radius: [30,]
-                        size: self.size
-                        pos: self.pos
-                
-                MDBoxLayout:
-                    orientation: 'horizontal'
-                    size_hint_y: .05
-                    size_hint_x: .95
-                    pos_hint:{'x': 0.03,'bottom':0}
-                    # md_bg_color: 1, 1, 1, 1
-                    canvas.before:
-                        Color:
-                            rgba: 1, 1, 1, 1
-                        RoundedRectangle:
-                            radius: [10]
-                            size: self.size
-                            pos: self.pos
-                    
-
-                MDBoxLayout:
-                    orientation:'horizontal'
-                    size_hint_y: .07
-                    size_hint_x:0.95
-                    pos_hint:{'x': 0.03}
-                    md_bg_color: 1, 1, 1, 1
-                    spacing:80
-                    padding:100
-                   
-               
-                MDBoxLayout:
-                    orientation:'horizontal'
-                    size_hint_y: .03
-                    size_hint_x:0.95
-                    pos_hint:{'x': 0.03}
-                    md_bg_color: 1, 1, 1, 1
-
-                MDBoxLayout:
-                    orientation: 'horizontal'
-                    size_hint_y: .09
-                    size_hint_x:0.95
-                    pos_hint:{'x': 0.03}
-                    padding:2
-                    spacing:9
-                    # md_bg_color: 1, 1, 1, 1
-                    canvas.before:
-                        Color:
-                            rgba: 0, 0, 0, 1
-                        RoundedRectangle:
-                            radius: [10]
-                            size: self.size
-                            pos: self.pos
-                    
-                    MDBoxLayout:
-                        orientation: 'horizontal'
-                        size_hint: (0.5, 1)
-                        md_bg_color: 1, 1, 1, 1  
+                            
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/egg.png"
+                               
+                            
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/butter.png"
+                              
+                    #Child layout
+                    BoxLayout:  
+                        
                         canvas.before:
-                           
-                   
-                    MDBoxLayout:
-                        orientation: 'horizontal'
-                        size_hint: (0.5, 1)
-                        md_bg_color: 1, 1, 1, 1  
-
-               
-                MDBoxLayout:
-                    orientation: 'horizontal'
-                    size_hint_y: .09
-                    size_hint_x:0.95
-                    pos_hint:{'x': 0.03}
-                    padding:2
-                    spacing:9
-                    # md_bg_color: 1, 1, 1, 1
-                    canvas.before:
-                        Color:
-                            rgba: 0, 0, 0, 1
-                        RoundedRectangle:
-                            radius: [10]
-                            size: self.size
-                            pos: self.pos
+                        
+                            Color:
+                                rgba: 0, 0, 0, 1  
+                            Rectangle:
+                                pos: self.x, self.y
+                                size: self.width, self.height * 0.2  # give color to only bottom part   
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            size_hint: 1, 0.1
+                            pos_hint: {'center_y':0.5 }
+                            spacing: dp(10)
+                            canvas:
+                                Rectangle:
+                                    size: self.size
                     
-                    MDBoxLayout:
-                        orientation: 'horizontal'
-                        size_hint: (0.5, 1)
-                        md_bg_color: 1, 1, 1, 1  
-                        canvas.before:
-                           
-                   
-                    MDBoxLayout:
-                        orientation: 'horizontal'
-                        size_hint: (0.5, 1)
-                        md_bg_color: 1, 1, 1, 1  
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/capsicums.png"
+                                
+                            
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/capsicum.png"
+                               
+                            
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/carrot.png"
                                
 
+                     #Child layout
+                    BoxLayout:  
+                        
+                        canvas.before:
+                        
+                            Color:
+                                rgba: 0, 0, 0, 1  
+                            Rectangle:
+                                pos: self.x, self.y
+                                size: self.width, self.height * 0.2  # give color to only bottom part 
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            size_hint: 1, 0.1
+                            pos_hint: {'center_y':0.5 }
+                            spacing: dp(10)
+                            canvas:
+                                Rectangle:
+                                    size: self.size
+                    
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/carrot.png"
+                               
+                            
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/pea.png"
+                               
+                            
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/spinach.png"
+                                
+                     #Child layout
+                    BoxLayout:  
+                        
+                        canvas.before:
+                        
+                            Color:
+                                rgba: 0, 0, 0, 1  
+                            Rectangle:
+                                pos: self.x, self.y
+                                size: self.width, self.height * 0.2  # give color to only bottom part 
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            size_hint: 1, 0.1
+                            pos_hint: {'center_y':0.5 }
+                            spacing: dp(10)
+                            canvas:
+                                Rectangle:
+                                    size: self.size
+                    
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/watermelon.png"
+                                
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/watermelon.png"
+                                
+                            
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/watermelon.png"
+                               
+                    BoxLayout:  
+                        
+                        canvas.before:
+                        
+                            Color:
+                                rgba: 0, 0, 0, 1  
+                            Rectangle:
+                                pos: self.x, self.y
+                                size: self.width, self.height * 0.2  # give color to only bottom part   
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            size_hint: 1, 0.1
+                            pos_hint: {'center_y':0.5 }
+                            spacing: dp(10)
+                            canvas:
+                                Rectangle:
+                                    size: self.size
+                    
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/brinjle.png"
+                             
+                            
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/lemons.png"
+                               
+                            
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/potato.png"
+                               
+                    
+                     #Child layout
+                    BoxLayout:  
+                        
+                        canvas.before:
+                        
+                            Color:
+                                rgba: 0, 0, 0, 1  
+                            Rectangle:
+                                pos: self.x, self.y
+                                size: self.width, self.height * 0.2  # give color to only bottom part  
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            size_hint: 1, 0.1
+                            pos_hint: {'center_y':0.5 }
+                            spacing: dp(10)
+                            canvas:
+                                Rectangle:
+                                    size: self.size
+                    
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/cucumber.png"
+                              
+                            
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/broccoli.png"
+                               
+                            
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/cheese.png"
+                               
+                     #Child layout
+                    BoxLayout:  
+                        
+                        canvas.before:
+                        
+                            Color:
+                                rgba: 0, 0, 0, 1  
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            size_hint: 1, 0.1
+                            pos_hint: {'center_y':0.5 }
+                            spacing: dp(10)
+                            canvas:
+                                Rectangle:
+                                    size: self.size
+                    
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/grape.png"
+                                
+                            
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/grapes.png"
+                               
+                            
+                            MDIconButton
+                                size_hint: 0.2, 1
+                                icon: "Fridge_Images/papaya.png"
+                              
 
-        #  bottom section with three MDIconButtons
+                BoxLayout:#fridge left
+                    orientation:'vertical'
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 1  
+                        Line:
+                            width: dp(5)
+                            rounded_rectangle: (self.x + 1, self.y + 1, self.width - 2, self.height - 2, 30, 30)
+                   
+                    
+                    #Child layout   
+                    BoxLayout:  
+                        
+                        canvas.before:
+                        
+                            
+                            Color:
+                                rgba: 0, 0, 0, 1 
+                            Line:
+                                width: dp(5)
+                                rounded_rectangle: (self.x + 1, self.y + 1, self.width - 2, self.height - 2, 30, 30)
+                        
+                    
+
+                    BoxLayout:  
+                        
+                        canvas.before:
+                        
+                            Color:
+                                rgba: 0, 0, 0, 1  
+                            Rectangle:
+                                pos: self.x, self.y
+                                size: self.width, self.height * 0.2  # give color to only bottom part
+                        
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            size_hint: 1, 0.1
+                            pos_hint: {'center_y':0.5 }
+                            spacing: dp(10)
+                            padding:dp(10)
+                            canvas:
+                                Rectangle:
+                                    size: self.size
+                    
+                            MDIconButton
+                                size_hint: 0.5, 0.5
+                                icon: "Fridge_Images/lamb.png"
+                                icon_size: dp(40)
+                            
+                            MDIconButton
+                                size_hint: 0.5, 0.5
+                                icon: "Fridge_Images/meat.png"
+                                icon_size: dp(40)
+                               
+                            
+                            MDIconButton
+                                size_hint: 0.5, 0.5
+                                icon: "Fridge_Images/lamb.png"
+                                icon_size: dp(40)
+                              
+                    BoxLayout:  
+                        
+                        canvas.before:
+                        
+                            Color:
+                                rgba: 0, 0, 0, 1  
+                            Rectangle:
+                                pos: self.x, self.y
+                                size: self.width, self.height * 0.2  # give color to only bottom part
+                        MDBoxLayout:
+                            orientation: 'horizontal'
+                            size_hint: 1, 0.1
+                            pos_hint: {'center_y':0.5 }
+                            spacing: dp(10)
+                            padding:dp(10)
+                            canvas:
+                                Rectangle:
+                                    size: self.size
+                    
+                            MDIconButton
+                                size_hint: 0.5, 0.5
+                                icon: "Fridge_Images/chicken-leg.png"
+                                icon_size: dp(40)
+                            
+                            MDIconButton
+                                size_hint: 0.5, 0.5
+                                icon: "Fridge_Images/roasted-chicken.png"
+                                icon_size: dp(40)
+                               
+                            
+                            MDIconButton
+                                size_hint: 0.5, 0.5
+                                icon: "Fridge_Images/chicken-leg.png"
+                                icon_size: dp(40)
+                    
+                    BoxLayout:  
+                        
+                       
+
+                        GridLayout:  #111 
+                            cols:2
+                            
+                            BoxLayout:  
+
+                                canvas.before:
+                        
+                            
+                                    Color:
+                                        rgba: 0, 0, 0, 1 
+                                    Line:
+                                        width: dp(5)
+                                        rounded_rectangle: (self.x + 1, self.y + 1, self.width - 2, self.height - 2, 30, 30)
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint: 1, 0.1
+                                    pos_hint: {'center_y':0.5 }
+                                    spacing: dp(10)
+                                    padding:dp(10)
+                                    canvas:
+                                        Rectangle:
+                                            size: self.size
+                            
+                                    MDIconButton
+                                        size_hint: 0.5, 0.5
+                                        icon: "Fridge_Images/ice-cream.png"
+                                        icon_size: dp(0)
+                            
+
+                            BoxLayout:  
+
+                                canvas.before:
+                        
+                            
+                                    Color:
+                                        rgba: 0, 0, 0, 1 
+                                    Line:
+                                        width: dp(5)
+                                        rounded_rectangle: (self.x + 1, self.y + 1, self.width - 2, self.height - 2, 30, 30)    
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint: 1, 0.1
+                                    pos_hint: {'center_y':0.5 }
+                                    spacing: dp(10)
+                                    padding:dp(10)
+                                    canvas:
+                                        Rectangle:
+                                            size: self.size
+                            
+                                    MDIconButton
+                                        size_hint: 0.5, 0.5
+                                        icon: "Fridge_Images/milk-bottle.png"
+                                        icon_size: dp(50)
+                    
+                    #Child layout
+                    BoxLayout:  
+                       
+
+                        GridLayout:  #111 
+                            cols:2
+                            
+                            BoxLayout:  
+
+                                canvas.before:
+                        
+                            
+                                    Color:
+                                        rgba: 0, 0, 0, 1 
+                                    Line:
+                                        width: dp(5)
+                                        rounded_rectangle: (self.x + 1, self.y + 1, self.width - 2, self.height - 2, 30, 30)
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint: 1, 0.1
+                                    pos_hint: {'center_y':0.5 }
+                                    spacing: dp(10)
+                                    padding:dp(10)
+                                    canvas:
+                                        Rectangle:
+                                            size: self.size
+                            
+                                    MDIconButton
+                                        size_hint: 0.5, 0.5
+                                        icon: "Fridge_Images/sauces.png"
+                                        icon_size: dp(50)
+
+                            BoxLayout:  
+
+                                canvas.before:
+                        
+                            
+                                    Color:
+                                        rgba: 0, 0, 0, 1 
+                                    Line:
+                                        width: dp(5)
+                                        rounded_rectangle: (self.x + 1, self.y + 1, self.width - 2, self.height - 2, 30, 30)  
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint: 1, 0.1
+                                    pos_hint: {'center_y':0.5 }
+                                    spacing: dp(10)
+                                    padding:dp(10)
+                                    canvas:
+                                        Rectangle:
+                                            size: self.size
+                            
+                                    MDIconButton
+                                        size_hint: 0.5, 0.5
+                                        icon: "Fridge_Images/orange.png"
+                                        icon_size: dp(50)  
+
         MDBoxLayout:
             orientation: 'horizontal'
             size_hint: 1, 0.1
             pos_hint: {'bottom': 0}
-            spacing: 10
+            spacing: dp(10)
             md_bg_color:hex('#0990F9')
             canvas:
                 Rectangle:
@@ -926,7 +1181,7 @@
             
             MDIconButton
                 size_hint: 0.3, 1
-                icon: "images/settings.png"
+                icon: "images/sicon.png"
                 on_release: app.root.current = 'settings'
             
             MDIconButton

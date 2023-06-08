@@ -24,9 +24,8 @@ from kivy.config import Config
 from kivy.core.text import LabelBase
 from kivy.utils import get_color_from_hex
 
-
-from kivy.core.window import Window
-Window.size = (360,550)
+# from kivy.core.window import Window
+# Window.size = (300,550)
 
 class SplashScreen(MDScreen):
     def on_enter(self):
@@ -140,19 +139,14 @@ class FridgeApp(MDApp):
         sm.add_widget(SettingsScreen(name='settings'))
         sm.add_widget(NotificationScreen(name='notifications'))
         sm.add_widget(FoodHygiene(name='fridge_hygiene'))
-        # LabelBase.register(name='FontAwesome',
-        #                    fn_regular='fontawesome/fontawesome-webfont.ttf')
-
-        # # Set the default color for MDIcons to white
-        # self.theme_cls.icon_color = get_color_from_hex("#FFFFFF")
 
         return sm
    
-    def clear_notifications(self):
-        print('Clearing notifications...')
+    # def clear_notifications(self):
+    #     print('Clearing notifications...')
     
-    def callback(self, instance_action_top_appbar_button):
-        print(instance_action_top_appbar_button)
+    # def callback(self, instance_action_top_appbar_button):
+    #     print(instance_action_top_appbar_button)
     
 if __name__ == '__main__':
     FridgeApp().run()
