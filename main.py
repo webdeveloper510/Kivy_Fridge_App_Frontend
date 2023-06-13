@@ -23,16 +23,13 @@ from kivymd.uix.screen import MDScreen
 from kivy.config import Config
 from kivy.core.text import LabelBase
 from kivy.utils import get_color_from_hex
-
-# from kivy.core.window import Window
-# Window.size = (300,550)
+from kivy.core.window import Window
+Window.size = (360,650)
 
 class SplashScreen(MDScreen):
     def on_enter(self):
-        # anim = Animation(size_hint=(1.1, 1.1), duration=1)
-        # # Start the animation on the screen
-        # anim.start(self)
-        Clock.schedule_once(self.switch_to_login, 4)
+        
+        Clock.schedule_once(self.switch_to_login, 20)
 
     def switch_to_login(self, dt):
         self.manager.current = 'login'
@@ -51,16 +48,7 @@ class LoginScreen(MDScreen):
     
 
 class RegisterScreen(MDScreen):
-    def on_save(self, instance, value, date_range):
-        print(instance, value, date_range)
-
-    def on_cancel(self, instance, value):
-        pass
-
-    def show_date_picker(self):
-        date_dialog = MDDatePicker()
-        date_dialog.bind(on_save=self.on_save, on_cancel=self.on_cancel)
-        date_dialog.open()
+    pass
 
 class EditProfileScreen(MDScreen):
     pass
@@ -114,8 +102,44 @@ class NotificationScreen(MDScreen):
          )
         dialog.open()
 
+
+class CustomListItem(OneLineListItem):
+    pass
+
+
+class ListDialog(MDDialog):
+    pass
+
+
+class FoodTrack(Screen):
+    def show_dialog(self, button_text):
+        if button_text == "Green Button Clicked":
+            items = ["Green Item 1", "Green Item 2", "Green Item 3"]# create custom items later get data from source 
+            dialog = ListDialog()
+
+            for item in items:
+                dialog.ids.list_content.add_widget(CustomListItem(text=item))
+
+            dialog.open()
+        elif button_text == "Amber Button Clicked":
+            items = ["Amber Item 1", "Amber Item 2", "Amber Item 3"]# create  static data  later get data from source
+            dialog = ListDialog()
+
+            for item in items:
+                dialog.ids.list_content.add_widget(CustomListItem(text=item))
+
+            dialog.open()
+        elif button_text == "Red Button Clicked":
+            items = ["Red Item 1", "Red Item 2", "Red Item 3"]
+            dialog = ListDialog()
+
+            for item in items:
+                dialog.ids.list_content.add_widget(CustomListItem(text=item))
+
+            dialog.open()
+
 class HomeScreen(MDScreen):
-  pass
+ pass
 
 class FoodHygiene(MDScreen):
   pass
@@ -139,14 +163,11 @@ class FridgeApp(MDApp):
         sm.add_widget(SettingsScreen(name='settings'))
         sm.add_widget(NotificationScreen(name='notifications'))
         sm.add_widget(FoodHygiene(name='fridge_hygiene'))
+        sm.add_widget(FoodTrack(name="FoodTrack"))
 
         return sm
    
-    # def clear_notifications(self):
-    #     print('Clearing notifications...')
     
-    # def callback(self, instance_action_top_appbar_button):
-    #     print(instance_action_top_appbar_button)
     
 if __name__ == '__main__':
     FridgeApp().run()

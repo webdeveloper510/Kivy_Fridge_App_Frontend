@@ -25,9 +25,11 @@
             # MDLabel:
             #     text: 'Fridgi'
             #     halign: 'center'
+            #     font_name: 'ItalianFont'
             #     pos_hint: {'center_x': .5, 'center_y': .7}
             #     font_style: 'H3'
-            #     theme_text_color: 'Secondary'
+            #     theme_text_color: 'Custom'
+            #     text_color:1,1,1,1
             # MDSpinner:
             #     size_hint: None, None
             #     size: dp(48), dp(48)
@@ -51,7 +53,134 @@
             #     pos_hint: {'center_x': .5, 'center_y': .2}
             #     theme_text_color:"Custom"
             #     text_color: 1, 1, 1, 1
-
+<RegisterScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        spacing:10
+        padding:10
+        canvas.before:
+            Color:
+                rgba:hex('#07CBFB') 
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        BoxLayout:
+            # padding: dp(20)
+            # spacing: dp(20)
+            size_hint_y: None
+            height: dp(200)
+            
+            Image:
+                source: 'images/logo.png'  
+            
+        BoxLayout:
+            padding: dp(10)
+            spacing: dp(10)
+            orientation:'vertical'
+            size_hint_y: None
+            height:dp(5)
+            
+            MDLabel:
+                text: 'User Registration'
+                theme_text_color:'Custom'
+                text_color:1,1,1,1
+                halign: 'center'
+                valign: 'center'
+                font_style: 'H5'
+                bold:True
+        
+        BoxLayout:
+            padding: dp(10)
+            spacing: dp(10)
+            orientation: 'vertical'
+            size_hint_y: None
+            height: self.minimum_height
+            
+            MDTextField:
+                hint_text: 'First Name'
+                line_color_normal:1,1,1,1
+                mode: "fill"
+                fill_color: 1, 1, 1, 1
+                size_hint_y: None
+                height: dp(50)
+                multiline: False
+            
+            MDTextField:
+                hint_text: 'Last Name'
+                mode: "fill"
+                fill_color: 1, 1, 1, 1
+                line_color_normal:1,1,1,1
+                size_hint_y: None
+                height: dp(50)
+                multiline: False
+                
+            MDTextField:
+                hint_text: 'Mobile'
+                mode: "fill"
+                fill_color: 1, 1, 1, 1
+                line_color_normal:1,1,1,1
+                size_hint_y: None
+                height: dp(50)
+                multiline: False
+                
+            MDTextField:
+                hint_text: 'Email'
+                mode: "fill"
+                fill_color: 1, 1, 1, 1
+                line_color_normal:1,1,1,1
+                size_hint_y: None
+                height: dp(50)
+                multiline: False
+                
+            # MDTextField:
+            #     hint_text: 'Date of Birth'
+            #     mode: "fill"
+            #     fill_color: 1, 1, 1, 1
+            #     line_color_normal:1,1,1,1
+            #     size_hint_y: None
+            #     height: dp(50)
+            #     multiline: False
+            
+            MDTextField:
+                hint_text: 'Password'
+                mode: "fill"
+                fill_color: 1, 1, 1, 1
+                line_color_normal:1,1,1,1
+                password: True
+                size_hint_y: None
+                height: dp(50)
+                multiline: False
+            
+            MDTextField:
+                hint_text: 'Confirm Password'
+                mode: "fill"
+                fill_color: 1, 1, 1, 1
+                line_color_normal:1,1,1,1
+                password: True
+                size_hint_y: None
+                height: dp(50)
+                multiline: False
+        
+        BoxLayout:
+            size_hint_y: None
+            height: dp(50)
+            padding: dp(10)
+            spacing: dp(10)
+            
+            MDRoundFlatButton:
+                text: 'Register'
+                text_color:hex('#07CBFB') 
+                size_hint_x: 0.5
+                md_bg_color: 1, 1, 1, 1
+                on_press: root.manager.current = 'home'
+            
+            MDRoundFlatButton:
+                text: 'Login'
+                text_color:hex('#07CBFB') 
+                size_hint_x: 0.5
+                md_bg_color: 1, 1, 1, 1
+                on_press: root.manager.current = 'login'
 
 <LoginScreen>:
     MDScreen:
@@ -61,7 +190,7 @@
             Image:
                 source:"images/logo1.png"
                 pos_hint:{"center_y":0.85,"center_x":0.5}
-                size_hint_x: 0.60
+                size_hint_x: 0.90
                 size_hint_y: 0.40
             
             MDLabel:
@@ -123,7 +252,7 @@
             Button:
                 text: "Reset Password"
                 size_hint:.4,.075
-                font_size: sp(20)
+                font_size: sp(18)
                 pos_hint:{"center_x":.5,"center_y":0.3}
                 background_color:1,1,1,0
                 color:1,1,1,1
@@ -161,7 +290,7 @@
                 text: "Register here "
                 font_style:"H2"
                 size_hint:.4,.075
-                font_size: sp(20)
+                font_size: sp(18)
                 pos_hint:{"center_x":.5,"center_y":0.1}
                 background_color:1,1,1,0
                 color:1,1,1,1
@@ -176,31 +305,35 @@
 
 
 <ForgetPasswordScreen>:
-    MDTopAppBar:
-        id: toolbar
-        title: "Forget Password"
-        pos_hint: {'top':1.0}
-        md_bg_color: 0, 0.7, 1, 1 
-    FloatLayout:
-        size_hint: 1, 1
-        pos_hint: {'top':0.9}
+    ScreenManager:
+        Screen:
+            name: "forget_password_screen"
 
-        MDTextField:
-            id: email_field
-            hint_text: "Enter your email here"
-            helper_text_mode: "on_focus"
-            size_hint_x: None
-            height: "48dp"
-            width: 450
-            pos_hint: {'center_x': 0.5, 'top': 0.80}
+            MDRelativeLayout:
+                MDTopAppBar:
+                    id: toolbar
+                    title: "Forget Password"
+                    pos_hint: {'top':1.0}
+                    md_bg_color: 0, 0.7, 1, 1 
+                    left_action_items: [["arrow-left", lambda *args : setattr(root.manager, "current", "login")]]
 
-        
-        MDRoundFlatButton:
-            text: "Send Email"
-            font_size: "18sp"
-            size_hint_x: 0.3
-            pos_hint: {'center_x': 0.5, 'top': 0.65}
-            on_press: root.manager.current ='reset_password'
+
+                MDTextField:
+                    id: email_field
+                    hint_text: "Email"
+                    helper_text: "Enter your registered email address"
+                    helper_text_mode: "on_focus"
+                    size_hint: None, None
+                    size: dp(270), dp(40)
+                    pos_hint: {"center_x": 0.5, "top": 0.8}
+                    on_text_validate: app.on_email_entered(self.text)
+
+                MDRoundFlatButton:
+                    text: "Submit"
+                    size_hint: None, None
+                    size: dp(200), dp(40)
+                    pos_hint: {"center_x": 0.5, "top": 0.6}
+                    on_press: root.manager.current ='reset_password'
 
 
 <ResetPasswordScreen>:
@@ -238,108 +371,6 @@
             size_hint_x: 0.3
             pos_hint: {'center_x': 0.5, 'top': 0.55}
             on_press: root.manager.current = 'home'        
-
-<RegisterScreen>:
-    MDTopAppBar:
-        id: toolbar
-        title: "User Registration"
-        anchor_title:"center"
-        pos_hint: {'top':1.0}
-        md_bg_color: 0, 0.7, 1, 1
-        
-    
-    FloatLayout:
-        size_hint: 1, 1
-        pos_hint: {'top':0.9}
-
-        MDTextField:
-            id: first_name_field
-            hint_text: "Firstname"
-            helper_text_mode: "on_focus"
-            size_hint_x: 0.65
-            size_hint_y: 0.10
-            pos_hint: {'center_x': 0.5, 'top': 0.99}
-
-        MDTextField:
-            id: last_name_field
-            hint_text: "Lastname"
-            helper_text_mode: "on_focus"
-            size_hint_x: 0.65
-            size_hint_y: 0.10
-            pos_hint: {'center_x': 0.5, 'top': 0.90}
-            password: True
-        
-        MDTextField:
-            id: email_field
-            hint_text: "Email"
-            helper_text_mode: "on_focus"
-            size_hint_x: 0.65
-            size_hint_y: 0.10
-            pos_hint: {'center_x': 0.5, 'top': 0.81}
-            password: True
-
-        MDTextField:
-            id: password_field
-            hint_text: "Password"
-            helper_text_mode: "on_focus"
-            size_hint_x: None
-            size_hint_x: 0.65
-            size_hint_y: 0.10
-            pos_hint: {'center_x': 0.5, 'top': 0.72}
-            password: True
-
-        MDTextField:
-            id: confirm_password_field
-            hint_text: "Confirm Password"
-            helper_text_mode: "on_focus"
-            size_hint_x: 0.65
-            size_hint_y: 0.10
-            pos_hint: {'center_x': 0.5, 'top': 0.63}
-            password: True
-        
-        MDRaisedButton:
-            id: dob_field
-            text: "Select Date of Birth"
-            size_hint_x: 0.2
-            size_hint_y: 0.01
-            pos_hint: {'center_x': 0.5, 'top': 0.51}
-            on_release: root.show_date_picker()
-           
-
-        MDTextField:
-            id: phone_field
-            hint_text: "Phone Number"
-            helper_text_mode: "on_focus"
-            size_hint_x: 0.65
-            size_hint_y: 0.10
-            pos_hint: {'center_x': 0.5, 'top': 0.45}
-            password: True
-        
-        # MDTextField:
-        #     id: clubcard_field
-        #     hint_text: "Clubcard Number"
-        #     helper_text_mode:"on_focus"
-        #     size_hint_x: None
-        #     width: 500
-        #     height:90
-        #     pos_hint: {'center_x': 0.5, 'top': 0.41}
-        #     password: True
-        
-        MDRoundFlatButton:
-            text: "Register "
-            size_hint_x: None
-            width: root.width*0.4
-            pos_hint: {'center_x': 0.5, 'top': 0.30}
-            on_press: root.manager.current = 'home'
-       
-        MDRoundFlatButton:
-            text: " Login here"
-            size_hint_x: None
-            width: root.width*0.4
-            size_hint_y: None
-            pos_hint: {'center_x': 0.5, 'top': 0.20}
-            on_press: root.manager.current = 'login'
-        
 
 
 # Food Hygiene!
@@ -422,7 +453,7 @@
 
                     MDTopAppBar:
                         id: toolbar
-                        title: "About App"
+                        title: "App Settings"
                         elevation: 4
                         pos_hint: {"top": 1}
                         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
@@ -442,37 +473,64 @@
             MDNavigationDrawer:
                 id: nav_drawer
                 radius: (0, 10, 10, 0)
-
+                md_bg_color:app.theme_cls.primary_color
+                   
                 MDNavigationDrawerMenu:
 
                     MDNavigationDrawerHeader:
                         title: ""
                         title_color: "#87CEEB"
                         text: "Settings"
+                        theme_text_color: 'Custom'
+                        text_color:1,1,1,1
+                        bold: True
                         spacing: "4dp"
-                        padding: "12dp", 0, 0, "56dp"
+                        padding: 0, 0, 0, "56dp"
+                       
                     
                     MDTextButton:
                         text: "Home"
+                        theme_text_color: 'Custom'
+                        text_color:1,1,1,1
+                        bold: True
                         on_press: root.manager.current = 'home'
                        
                     MDNavigationDrawerDivider:
 
                     MDTextButton:
                         text: "Edit Profile"
+                        theme_text_color: 'Custom'
+                        text_color:1,1,1,1
+                        bold: True
                         on_press: root.manager.current = 'edit_profile'
 
                     MDNavigationDrawerDivider:
 
                     MDTextButton:
                         text: "Notifications"
+                        theme_text_color: 'Custom'
+                        text_color:1,1,1,1
+                        bold: True
                         on_press: root.manager.current = 'notifications'
                     
                     MDNavigationDrawerDivider:
 
                     MDTextButton:
                         text: "Food Hygiene"
+                        theme_text_color: 'Custom'
+                        text_color:1,1,1,1
+                        bold: True
                         on_press: root.manager.current = 'fridge_hygiene'
+                   
+                    MDNavigationDrawerDivider:
+
+                    MDTextButton:
+                        text: "Logout"
+                        theme_text_color: 'Custom'
+                        text_color:1,1,1,1
+                        bold: True
+                        on_press: root.manager.current = 'login'
+                    MDNavigationDrawerDivider:
 
                     
 <EditProfileScreen>: 
@@ -589,49 +647,7 @@
         pos_hint: {'top':1.0}
         left_action_items: [["arrow-left", lambda *args : setattr(root.manager, "current", "settings")]]
     
-    FloatLayout:
-        size_hint: 1, 1
-        pos_hint: {'top':0.9}
-
-        MDLabel:
-            text: 'Welcome to the Food Hygiene section of the app!'
-            font_size: '20sp'
-            halign: 'center'
-            pos_hint: {'center_x': 0.3, 'center_y': 0.95}
-        
-        MDLabel:
-            text: 'Here you can find information about food safety, storage and more.'
-            font_size: '16sp'
-            halign: 'center'
-            pos_hint: {'center_x': 0.3, 'center_y': 0.85}
-            
-        
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint: 1, 0.1
-            pos_hint: {'bottom': 0}
-            spacing: 10
-            canvas.before:
-                Color:
-                    rgba:0.1176, 0.5647, 1, 1
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-                
-            
-            MDIconButton
-                size_hint: 0.3, 1
-                icon: "images/red.jpeg"
-               
-            
-            MDIconButton
-                size_hint: 0.3, 1
-                icon: "images/green.png"
-                
-            
-            MDIconButton
-                size_hint: 0.3, 1
-                icon: "images/amber.png"
+   
                 
 
 # <ScannerScreen>:
@@ -649,13 +665,22 @@
 
         orientation: 'vertical'
         
-        # size_hint:None,None
-
         MDTopAppBar:
             title: 'Home Page'
             md_bg_color: app.theme_cls.primary_color
             elevation: 5
-            right_action_items: [['plus', lambda x: app.add_item()], ['minus', lambda x: app.remove_item()]]
+            right_action_items: [['dots-vertical', lambda *args :setattr(root.manager, "current", "FoodTrack")]]
+
+
+
+
+        # size_hint:None,None
+
+        # MDTopAppBar:
+        #     title: 'Home Page'
+        #     md_bg_color: app.theme_cls.primary_color
+        #     elevation: 5
+        #     right_action_items: [['plus', lambda x: app.add_item()], ['minus', lambda x: app.remove_item()]]
         
         BoxLayout:
             orientation: 'horizontal'
@@ -1191,6 +1216,68 @@
 
   
 
+<CustomListItem>:
+    OneLineListItem:
+        text: root.text
+
+
+<ListDialog>:
+    size_hint: None, None
+    size: "250dp", "250dp"
+
+    ScrollView:
+        MDList:
+            id: list_content
+
+
+<FoodTrack>:
+    name: 'FoodTrack'
+    MDTopAppBar:
+        id: toolbar
+        title: 'Food Tracker'
+        pos_hint: {'top':1.0}
+        left_action_items: [["arrow-left", lambda *args : setattr(root.manager, "current", "home")]]
+    
+    GridLayout:
+        cols:1
+        pos_hint: {'top':0.8}
+        spacing:20
+        padding:5
+
+
+        MDRectangleFlatButton:
+            font_size: "16sp"
+            on_release: root.show_dialog("Red Button Clicked")
+            size_hint_x: None
+            md_bg_color: 255, 0, 0, 1
+
+        MDRectangleFlatButton:
+            font_size: "16sp"
+            on_release: root.show_dialog("Amber Button Clicked")
+            size_hint_x: None
+            md_bg_color:255, 191, 0, 1
+
+        MDRectangleFlatButton:
+            font_size: "16sp"
+            on_release: root.show_dialog("Green Button Clicked")
+            size_hint_x: None
+            pos_hint: {'center_x': 0.5}
+            md_bg_color: 0, 100, 0, 1
+               
+          
+               
+
+        
+
+
+
+
+
+
+
+
+
+
                    
 # <LoginScreen>:
 #     MDTopAppBar:
@@ -1274,11 +1361,108 @@
 #             width: 450
 #             pos_hint: {'center_x': 0.5, 'top': 0.80}              
            
-            
+# <RegisterScreen>:
+#     MDTopAppBar:
+#         id: toolbar
+#         title: "User Registration"
+#         anchor_title:"center"
+#         pos_hint: {'top':1.0}
+#         md_bg_color: 0, 0.7, 1, 1
+        
     
+#     FloatLayout:
+#         size_hint: 1, 1
+#         pos_hint: {'top':0.9}
 
+#         MDTextField:
+#             id: first_name_field
+#             hint_text: "Firstname"
+#             helper_text_mode: "on_focus"
+#             size_hint_x: 0.65
+#             size_hint_y: 0.10
+#             pos_hint: {'center_x': 0.5, 'top': 0.99}
+
+#         MDTextField:
+#             id: last_name_field
+#             hint_text: "Lastname"
+#             helper_text_mode: "on_focus"
+#             size_hint_x: 0.65
+#             size_hint_y: 0.10
+#             pos_hint: {'center_x': 0.5, 'top': 0.90}
+#             password: True
+        
+#         MDTextField:
+#             id: email_field
+#             hint_text: "Email"
+#             helper_text_mode: "on_focus"
+#             size_hint_x: 0.65
+#             size_hint_y: 0.10
+#             pos_hint: {'center_x': 0.5, 'top': 0.81}
+#             password: True
+
+#         MDTextField:
+#             id: password_field
+#             hint_text: "Password"
+#             helper_text_mode: "on_focus"
+#             size_hint_x: None
+#             size_hint_x: 0.65
+#             size_hint_y: 0.10
+#             pos_hint: {'center_x': 0.5, 'top': 0.72}
+#             password: True
+
+#         MDTextField:
+#             id: confirm_password_field
+#             hint_text: "Confirm Password"
+#             helper_text_mode: "on_focus"
+#             size_hint_x: 0.65
+#             size_hint_y: 0.10
+#             pos_hint: {'center_x': 0.5, 'top': 0.63}
+#             password: True
+        
+#         MDRaisedButton:
+#             id: dob_field
+#             text: "Select Date of Birth"
+#             size_hint_x: 0.2
+#             size_hint_y: 0.01
+#             pos_hint: {'center_x': 0.5, 'top': 0.51}
+#             on_release: root.show_date_picker()
+           
+
+#         MDTextField:
+#             id: phone_field
+#             hint_text: "Phone Number"
+#             helper_text_mode: "on_focus"
+#             size_hint_x: 0.65
+#             size_hint_y: 0.10
+#             pos_hint: {'center_x': 0.5, 'top': 0.45}
+#             password: True
+        
+#         # MDTextField:
+#         #     id: clubcard_field
+#         #     hint_text: "Clubcard Number"
+#         #     helper_text_mode:"on_focus"
+#         #     size_hint_x: None
+#         #     width: 500
+#         #     height:90
+#         #     pos_hint: {'center_x': 0.5, 'top': 0.41}
+#         #     password: True
+        
+#         MDRoundFlatButton:
+#             text: "Register "
+#             size_hint_x: None
+#             width: root.width*0.4
+#             pos_hint: {'center_x': 0.5, 'top': 0.30}
+#             on_press: root.manager.current = 'home'
        
-   
+#         MDRoundFlatButton:
+#             text: " Login here"
+#             size_hint_x: None
+#             width: root.width*0.4
+#             size_hint_y: None
+#             pos_hint: {'center_x': 0.5, 'top': 0.20}
+#             on_press: root.manager.current = 'login'
+         
+
                     
                 
 
