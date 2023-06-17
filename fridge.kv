@@ -22,20 +22,7 @@
             source: 'images/logo1.png'
     MDScreen:
         MDFloatLayout:
-            # MDLabel:
-            #     text: 'Fridgi'
-            #     halign: 'center'
-            #     font_name: 'ItalianFont'
-            #     pos_hint: {'center_x': .5, 'center_y': .7}
-            #     font_style: 'H3'
-            #     theme_text_color: 'Custom'
-            #     text_color:1,1,1,1
-            # MDSpinner:
-            #     size_hint: None, None
-            #     size: dp(48), dp(48)
-            #     pos_hint: {'center_x': .5, 'center_y': .4}
-            #     theme_text_color: "Custom"
-            #     text_color: 1, 1, 1, 1  
+            
 
             MDLabel:
                 text: 'Loading...'
@@ -44,19 +31,12 @@
                 font_style: 'H5'
                 theme_text_color:"Custom"
                 text_color: 1, 1, 1, 1
-            # MDProgressBar:
-            #     id: progress_bar
-            #     value: 0
-            #     max: 100
-            #     size_hint: 0.8, None
-            #     height: dp(4)
-            #     pos_hint: {'center_x': .5, 'center_y': .2}
-            #     theme_text_color:"Custom"
-            #     text_color: 1, 1, 1, 1
+            
 <RegisterScreen>:
+   
     BoxLayout:
         orientation: 'vertical'
-        spacing:10
+        spacing:12
         padding:10
         canvas.before:
             Color:
@@ -92,22 +72,44 @@
         
         BoxLayout:
             padding: dp(10)
-            spacing: dp(10)
+            spacing: dp(18)
             orientation: 'vertical'
             size_hint_y: None
             height: self.minimum_height
             
             MDTextField:
+                id: first_name
                 hint_text: 'First Name'
+                # helper_text: " firstname could not be blank"
+                # helper_text_mode: "on_error"
+                # required: True
                 line_color_normal:1,1,1,1
                 mode: "fill"
                 fill_color: 1, 1, 1, 1
                 size_hint_y: None
-                height: dp(50)
+                height: dp(40)
                 multiline: False
+           
             
             MDTextField:
+                id: last_name
                 hint_text: 'Last Name'
+                # helper_text: " lastname could not be blank"
+                # helper_text_mode: "on_error"
+                # required: True
+                mode: "fill"
+                fill_color: 1, 1, 1, 1
+                line_color_normal:1,1,1,1
+                size_hint_y: None
+                height: dp(40)
+                multiline: False
+                
+            MDTextField:
+                id: mobile
+                hint_text: 'Phone Number'
+                # helper_text: " Phone Number could not be blank"
+                # helper_text_mode: "on_error"
+                # required: True
                 mode: "fill"
                 fill_color: 1, 1, 1, 1
                 line_color_normal:1,1,1,1
@@ -116,16 +118,11 @@
                 multiline: False
                 
             MDTextField:
-                hint_text: 'Mobile'
-                mode: "fill"
-                fill_color: 1, 1, 1, 1
-                line_color_normal:1,1,1,1
-                size_hint_y: None
-                height: dp(50)
-                multiline: False
-                
-            MDTextField:
+                id: email
                 hint_text: 'Email'
+                # helper_text: " Email could not be blank"
+                # helper_text_mode: "on_error"
+                # required: True
                 mode: "fill"
                 fill_color: 1, 1, 1, 1
                 line_color_normal:1,1,1,1
@@ -133,17 +130,13 @@
                 height: dp(50)
                 multiline: False
                 
-            # MDTextField:
-            #     hint_text: 'Date of Birth'
-            #     mode: "fill"
-            #     fill_color: 1, 1, 1, 1
-            #     line_color_normal:1,1,1,1
-            #     size_hint_y: None
-            #     height: dp(50)
-            #     multiline: False
             
             MDTextField:
+                id: password
                 hint_text: 'Password'
+                # helper_text: " Password could not be blank"
+                # helper_text_mode: "on_error"
+                # required: True
                 mode: "fill"
                 fill_color: 1, 1, 1, 1
                 line_color_normal:1,1,1,1
@@ -152,16 +145,6 @@
                 height: dp(50)
                 multiline: False
             
-            MDTextField:
-                hint_text: 'Confirm Password'
-                mode: "fill"
-                fill_color: 1, 1, 1, 1
-                line_color_normal:1,1,1,1
-                password: True
-                size_hint_y: None
-                height: dp(50)
-                multiline: False
-        
         BoxLayout:
             size_hint_y: None
             height: dp(50)
@@ -173,7 +156,7 @@
                 text_color:hex('#07CBFB') 
                 size_hint_x: 0.5
                 md_bg_color: 1, 1, 1, 1
-                on_press: root.manager.current = 'home'
+                on_press:root.register_user()
             
             MDRoundFlatButton:
                 text: 'Login'
@@ -213,6 +196,7 @@
                         pos: self.pos
                         radius:[25]
                 TextInput:
+                    id: email
                     hint_text:"Email"
                     size_hint:1,None
                     height:self.minimum_height
@@ -236,6 +220,7 @@
                         pos: self.pos
                         radius:[25]
                 TextInput:
+                    id: password
                     hint_text:"Password"
                     size_hint:1,None
                     height:self.minimum_height
@@ -246,6 +231,7 @@
                     foreground_color:127/255,202/255,248/255,1
                     padding:26
                     hint_text_color:195/255,195/255,195/255,1
+                    password: True
 
 
           
@@ -275,7 +261,7 @@
                 pos_hint:{"center_x":.5,"center_y":0.20}
                 background_color:1,1,1,0
                 color:127/255,202/255,248/255,1
-                on_press: root.manager.current = 'home'
+                on_press:root.login()
                 canvas.before:
                     Color:
                         rgb:1,1,1,1
@@ -560,7 +546,7 @@
             size_hint_x: 0.65
             size_hint_y: 0.10
             pos_hint: {'center_x': 0.5, 'top': 0.86}
-            password: True
+           
         
         MDTextField:
             id: email_field
@@ -569,16 +555,7 @@
             size_hint_x: 0.65
             size_hint_y: 0.10
             pos_hint: {'center_x': 0.5, 'top': 0.77}
-            password: True
-        
-        MDTextField:
-            id: dob_field
-            hint_text: "date of birth"
-            helper_text_mode: "on_focus"
-            size_hint_x: 0.65
-            size_hint_y: 0.10
-            pos_hint: {'center_x': 0.5, 'top': 0.68}
-            password: True
+           
 
         MDTextField:
             id: phone_field
@@ -586,16 +563,17 @@
             helper_text_mode: "on_focus"
             size_hint_x: 0.65
             size_hint_y: 0.10
-            pos_hint: {'center_x': 0.5, 'top': 0.55}
-            password: True
+            pos_hint: {'center_x': 0.5, 'top': 0.66}
+            
         
         
         MDRoundFlatButton:
             text: "Edit Profile"
             font_size: "20sp"
             size_hint_x: 0.4
-            pos_hint: {'center_x': 0.5, 'top': 0.40}
-            on_press: root.manager.current = 'edit_profile'
+            pos_hint: {'center_x': 0.5, 'top': 0.50}
+            on_press: root.edit_profile()
+            
        
         
 <NotificationScreen>:
@@ -649,7 +627,6 @@
     
    
                 
-
 # <ScannerScreen>:
 #     BoxLayout:
 #         orientation: 'vertical'
@@ -658,7 +635,7 @@
 #         Label:
 #             size_hint: None, None
 #             size: self.texture_size[0], 50
-#             text: ' '.join([str(symbol.data) for symbol in qrcodecam.symbols])   
+            # text: ' '.join([str(symbol.data) for symbol in qrcodecam.symbols])   
           
 <HomeScreen>
     BoxLayout:
@@ -1263,22 +1240,13 @@
             size_hint_x: None
             pos_hint: {'center_x': 0.5}
             md_bg_color: 0, 100, 0, 1
-               
-          
-               
-
-        
 
 
 
 
+# previous Login and Register code
 
 
-
-
-
-
-                   
 # <LoginScreen>:
 #     MDTopAppBar:
 #         id: toolbar
@@ -1460,17 +1428,16 @@
 #             width: root.width*0.4
 #             size_hint_y: None
 #             pos_hint: {'center_x': 0.5, 'top': 0.20}
-#             on_press: root.manager.current = 'login'
-         
+#             on_press: root.manager.current = 'login'          
+               
 
-                    
-                
-
-       
-         
+        
 
 
 
-    
+
+
+
+
 
 

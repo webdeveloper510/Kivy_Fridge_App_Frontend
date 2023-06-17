@@ -16,7 +16,6 @@ kivy-garden.xcamera==2020.613
 kivy-garden.zbarcam==2020.524
 kivymd==1.1.1
 MarkupSafe==2.1.2
-mysql-connector-python==8.0.33
 numpy==1.24.3
 opencv-python==4.7.0.72
 packaging==23.1
