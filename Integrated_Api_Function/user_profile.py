@@ -36,7 +36,6 @@ class EditProfileScreen(Screen):
     def get_profile_success(self, req, result):
         profile_data = result
 
-        # Set the UI elements on the Edit Profile screen with the profile data
         self.ids.first_name_field.text = profile_data.get('Firstname', '')
         self.ids.last_name_field.text = profile_data.get('Lastname', '')
         self.ids.email_field.text = profile_data.get('email', '')

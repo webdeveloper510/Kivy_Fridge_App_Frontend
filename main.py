@@ -18,6 +18,10 @@ Window.size = (360,650)
 from Integrated_Api_Function.register import RegisterScreen
 from Integrated_Api_Function.login import LoginScreen
 from Integrated_Api_Function.user_profile import EditProfileScreen
+from Integrated_Api_Function.forgetpassword import ForgetPasswordScreen
+from Integrated_Api_Function.validateotp import OTPScreen
+from Integrated_Api_Function.reset_password import ResetPasswordScreen
+
 
 class SplashScreen(MDScreen):
     def on_enter(self):
@@ -27,12 +31,6 @@ class SplashScreen(MDScreen):
     def switch_to_login(self, dt):
         self.manager.current = 'login'
 
-
-class ForgetPasswordScreen(MDScreen):
-    pass
-
-class ResetPasswordScreen(MDScreen):
-    pass
 
 class ScannerScreen(MDScreen):
     pass
@@ -123,7 +121,6 @@ class MyScreenManager(ScreenManager):
     pass
 
 
-
 class FridgeApp(MDApp):
     def build(self):
         sm = ScreenManager()
@@ -132,6 +129,7 @@ class FridgeApp(MDApp):
         sm.add_widget(RegisterScreen(name='register'))
         sm.add_widget(EditProfileScreen(name='edit_profile'))
         sm.add_widget(ResetPasswordScreen(name='reset_password'))
+        sm.add_widget(OTPScreen(name='OTP_Screen'))
         sm.add_widget(ForgetPasswordScreen(name='forget_password'))
         sm.add_widget(HomeScreen(name='home'))
         sm.add_widget(ScannerScreen(name='scanner'))

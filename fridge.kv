@@ -319,7 +319,36 @@
                     size_hint: None, None
                     size: dp(200), dp(40)
                     pos_hint: {"center_x": 0.5, "top": 0.6}
-                    on_press: root.manager.current ='reset_password'
+                    on_press: root.send_reset_password_request()
+
+<OTPScreen>:
+    ScreenManager:
+        Screen:
+            name: "OTP_Screen"
+            MDRelativeLayout:
+                
+                MDTopAppBar:
+                    id: toolbar
+                    title: "Enter 6 digit otp"
+                    pos_hint: {'top':1.0}
+                    md_bg_color: 0, 0.7, 1, 1 
+                    left_action_items: [["arrow-left", lambda *args : setattr(root.manager, "current", "forget_password")]]
+                MDTextField:
+                    id: otp_field
+                    hint_text: "OTP"
+                    helper_text_mode: "on_focus"
+                    size_hint: None, None
+                    size: dp(270), dp(40)
+                    pos_hint: {"center_x": 0.5, "top": 0.8}
+                    
+                
+                MDRoundFlatButton:
+                    text: "Submit"
+                    size_hint: None, None
+                    size: dp(200), dp(40)
+                    pos_hint: {"center_x": 0.5, "top": 0.6}
+                    on_press: root.send_otp_request()
+
 
 
 <ResetPasswordScreen>:
@@ -356,7 +385,7 @@
             font_size: "20sp"
             size_hint_x: 0.3
             pos_hint: {'center_x': 0.5, 'top': 0.55}
-            on_press: root.manager.current = 'home'        
+            on_press: root.send_passwordset_request()        
 
 
 # Food Hygiene!

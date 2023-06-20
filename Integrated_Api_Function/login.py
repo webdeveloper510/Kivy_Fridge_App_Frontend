@@ -3,8 +3,6 @@ from kivy.network.urlrequest import UrlRequest
 import json
 from kivymd.uix.label import MDLabel
 from kivymd.uix.snackbar import Snackbar
-from kivy.storage.jsonstore import JsonStore
-store=JsonStore('login_data.json')
 
 class LoginScreen(Screen):
 
@@ -46,6 +44,7 @@ class LoginScreen(Screen):
         self.manager.get_screen('edit_profile').set_id(id)# set id 
 
     def on_login_error(self, request, result):
+
         error_message=result['message']
         snackbar = Snackbar(
                 text="[color=#ddbb34]          "+str(error_message)+"[/color]",
