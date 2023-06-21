@@ -4,6 +4,8 @@ import json
 from kivy.network.urlrequest import UrlRequest
 from kivy.properties import ObjectProperty
 from kivymd.uix.snackbar import Snackbar
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.button import MDRaisedButton
 
 class RegisterScreen(Screen):
     def __init__(self, **kwargs):
@@ -35,13 +37,19 @@ class RegisterScreen(Screen):
         )
 
     def on_success(self, request, result):
-        print('User registered successfully!')
-        snackbar = Snackbar(
-                text="[color=#ddbb34]         You have Register Successfully[/color]",
-                snackbar_y="10dp",
-                snackbar_x="30dp",
-                size_hint_x=.9
-            ).open()
+        dialog = MDDialog(
+            title="Success",
+            text=result['message'],
+            buttons=[
+                MDRaisedButton(
+                    text="OK",
+                    on_release=self.dismiss_success_dialog
+                )
+            ]
+        )
+        dialog.open()
+   
+    def dismiss_success_dialog(self, *args):
         self.manager.current = 'home'
 
     def on_failure(self, request, result):
@@ -53,7 +61,8 @@ class RegisterScreen(Screen):
                 snackbar_x="25dp",
                 size_hint_x=.9
             ).open()
-        self.manager.current = 'register'
+        
+        self.manager.current ='register'
 
     
    

@@ -6,23 +6,22 @@ from kivymd.uix.button import MDRaisedButton
 from kivy.properties import StringProperty
 
 class ResetPasswordScreen(Screen):
-    email = StringProperty('')
-    print(email)
     def __init__(self, **kwargs):
         super(ResetPasswordScreen, self).__init__(**kwargs)
         self.url ='http://127.0.0.1:8000/resetpassword/'
-        self.request = None  
+        self.request = None 
+        self.email = None 
     
-   
+    def set_email(self, email):
+        self.email = email
+    
     def send_passwordset_request(self):
         password = self.ids.password_field.text
         confirm_password=self.ids.confirm_password_field.text
-        email=self.email
-        print(email)
-        
+       
     
         payload = {
-            'email': email,
+            'email': self.email,
             'password': password,
             'confirm_password':confirm_password,
         }
@@ -37,8 +36,8 @@ class ResetPasswordScreen(Screen):
     def on_password_reset_success(self, request, result):
         print("result success------>",result)
         dialog = MDDialog(
-            title="Success",
-            text=result['message'],
+            title=result['message'],
+            text="Please login again to continue",
             buttons=[
                 MDRaisedButton(
                     text="OK",
@@ -49,7 +48,7 @@ class ResetPasswordScreen(Screen):
         dialog.open()
     
     def dismiss_success_dialog(self, *args):
-        self.manager.current = 'home'
+        self.manager.current = 'login'
 
     def on_password_reset_failure(self, request, result):
         print("resultfailure------>",result)

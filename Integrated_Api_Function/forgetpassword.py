@@ -10,6 +10,7 @@ class ForgetPasswordScreen(Screen):
         super(ForgetPasswordScreen, self).__init__(**kwargs)
         self.url ='http://127.0.0.1:8000/resetpasswordemail/'
         self.request = None  
+        
     
     def send_reset_password_request(self):
         email = self.ids.email_field.text
@@ -28,7 +29,7 @@ class ForgetPasswordScreen(Screen):
     def on_reset_password_success(self, request, result):
         print("result success------>",result)
         email=result['email']
-        print(email)
+        print("email---->",email)
         dialog = MDDialog(
             title="Success",
             text=result['message'],
@@ -42,10 +43,10 @@ class ForgetPasswordScreen(Screen):
         dialog.open()
         
         
-    def dismiss_success_dialog(self,email, *args):
-        reset_password_screen = self.manager.get_screen('reset_password')
-        reset_password_screen.email = str(email)
+    def dismiss_success_dialog(self, *args):
+        email = self.ids.email_field.text
         self.manager.current = 'OTP_Screen'
+        self.manager.get_screen('reset_password').set_email(email)
 
 
     def on_reset_password_failure(self, request, result):
