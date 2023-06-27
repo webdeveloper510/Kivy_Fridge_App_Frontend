@@ -11,7 +11,7 @@ class EditProfileScreen(Screen):
         self.profile_url = 'http://127.0.0.1:8000/userprofile/'
         self.request = None
         self.access_token = None
-        self.id = None
+        self.id = None 
 
     def set_access_token(self, access_token):
         self.access_token = access_token
@@ -105,3 +105,7 @@ class EditProfileScreen(Screen):
 
     def on_enter(self):
         self.get_user_profile()
+
+    
+    
+    

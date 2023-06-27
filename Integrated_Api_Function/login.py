@@ -40,7 +40,8 @@ class LoginScreen(Screen):
             ).open()
         
         self.manager.current = 'home'
-        self.manager.get_screen('edit_profile').set_access_token(access_token) #set access token for edit profile  
+        self.manager.get_screen('edit_profile').set_access_token(access_token)
+        # self.manager.get_screen('settings').set_access_token(access_token)
         self.manager.get_screen('edit_profile').set_id(id)# set id 
 
     def on_login_error(self, request, result):

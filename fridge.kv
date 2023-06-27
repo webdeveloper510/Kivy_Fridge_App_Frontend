@@ -648,14 +648,153 @@
 
 <FoodHygiene>
     name: 'food_hygiene'
-    MDTopAppBar:
-        id: toolbar
-        title: 'Food Hygiene'
-        pos_hint: {'top':1.0}
-        left_action_items: [["arrow-left", lambda *args : setattr(root.manager, "current", "settings")]]
-    
-   
-                
+    BoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            id: toolbar
+            title: 'Food Hygiene'
+            pos_hint: {'top':1.0}
+            left_action_items: [["arrow-left", lambda *args : setattr(root.manager, "current", "settings")]]
+        
+        GridLayout:
+            cols: 1
+            padding:10
+            spacing:30
+            
+
+            MDTextButton:
+                text:'Food Standards Agency Information'
+                font_style: 'H6'
+            
+            MDTextButton:
+                text:'click  below link for more Information'
+                font_style: 'Subtitle1'
+              
+
+            MDTextButton:
+                text: '[u]Avoiding crosscontamination[/u]'
+                markup: True
+                theme_text_color: 'Custom'
+                text_color: hex('#298FE3')
+                on_press:root.manager.current ='screen1'
+
+
+            MDTextButton:
+                text: '[u]Chilling[/u]'
+                markup: True
+                theme_text_color: 'Custom'
+                text_color:hex('#298FE3')
+
+            MDTextButton:
+                text: '[u]Cleaning[/u]'
+                markup: True
+                theme_text_color: 'Custom'
+                text_color:hex('#298FE3')
+
+            MDTextButton:
+                text: '[u]Cooking your food[/u]'
+                markup: True
+                theme_text_color: 'Custom'
+                text_color:hex('#298FE3')
+            
+            MDTextButton:
+                text: '[u]Home food fact checker[/u]'
+                markup: True
+                theme_text_color: 'Custom'
+                text_color: hex('#298FE3')
+
+<Screen1>: 
+    BoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            id: toolbar
+            title:"Back to previous Page"
+            pos_hint: {'top':1.0}
+            left_action_items: [["arrow-left", lambda *args : setattr(root.manager, "current", "fridge_hygiene")]]
+      
+        GridLayout:
+            cols: 1
+            # padding:2
+            # spacing:2 
+        
+            MDLabel:
+                text:" Avoiding cross-contamination"
+                font_style: 'Subtitle1'
+                bold:True
+            
+            MDLabel:
+                text:" How to avoid cross-contamination by following simple practices in the preparation and handling of food products.Bacterial cross-contamination is most likely to happen when raw food touches or drips onto ready-to-eat food, utensils or surfaces."
+                font_size: '12sp'
+            MDLabel:
+                text:"You can avoid it by:"
+                font_style: 'Subtitle2'
+                bold:True
+            
+            MDLabel:
+                text:" Preparing food hygienically"
+                font_style: 'Subtitle1'
+                bold:True
+            
+            MDLabel:
+                text:"use different utensils, plates and chopping boards for raw and cooked food. Wash utensils, plates and chopping boards for raw and cooked food thoroughly between tasks.Make sure you do not wash raw meat.Wash your hands after touching raw food and before you handle ready-to-eat food"
+                font_size: '12sp'
+
+            MDLabel:
+                text:" Storing food effectively"
+                font_style: 'Subtitle1'
+                bold:True
+
+            MDLabel:
+                text:"cover raw food, including meat, and keeping it separate from ready-to-eat food use any dish that has a lip to prevent spillages.store covered raw meat, poultry, fish and shellfish on the bottom shelf of your fridge use different utensils, plates and chopping boards for raw and cooked food"
+                font_size: '12sp'
+            
+            MDTextButton:
+                text:"click here for next page"
+                font_size: '14sp'
+                theme_text_color: 'Custom'
+                text_color: 0, 0.7, 1, 1  # Sky blue color (R, G, B, A)
+                on_press:root.manager.current ='screen2'
+
+
+<Screen2>: 
+    BoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            id: toolbar
+            title:"Back to previous Page"
+            pos_hint: {'top':1.0}
+            left_action_items: [["arrow-left", lambda *args : setattr(root.manager, "current", "screen1")]]
+      
+        GridLayout:
+            cols: 1  
+            
+            MDLabel:
+                text:"Using shopping bags safely"
+                font_style: 'Subtitle1'
+                bold:True
+            
+            MDLabel:
+                text:"make sure you take enough shopping bags to pack raw and ready-to-eat food separately take extra bags to pack cleaning products and other household items separately from food label or colour code your bags to show what you intend to use them forcheck your bags for spillages after every use. If there has been visible spillage, soiling or damage, plastic bags for life should ideally be used for another purpose (where no safety risk will occur) or replacedconsider using cotton/fabric bags for life as they can be put in the washing machine and cleanedreplace old plastic bagskeep raw and ready to eat foods separate in your shopping"
+                font_size: '12sp'
+
+            MDLabel:
+                text:"trolley or basket FSA Explains"
+                font_style: 'Subtitle1'
+                bold:True
+
+            MDLabel:
+                text:"Cross-contamination is what happens when bacteria or other microorganisms are unintentionally transferred from one object to another. The most common example is the transfer of bacteria between raw and cooked food.This is thought to be the cause of most foodborne infections. For example, when you’re preparing raw chicken, bacteria can spread to your chopping board, knife and hands and could cause food poisoning.Cross-contamination can also happen when bacteria is transferred in ways that are harder to see. For example, via reusable shopping bags, or in the drips and splashes produced when meat is washed which can contaminate other surfaces."
+                font_size: '12sp'
+
+
+
+
+
+
+
+
+
+
 # <ScannerScreen>:
 #     BoxLayout:
 #         orientation: 'vertical'
@@ -1269,6 +1408,7 @@
             size_hint_x: None
             pos_hint: {'center_x': 0.5}
             md_bg_color: 0, 100, 0, 1
+
 
 
 
