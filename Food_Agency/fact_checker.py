@@ -1,5 +1,4 @@
 from kivy.uix.screenmanager import Screen
 
-class Chilling(Screen):
+class Fact_Checker(Screen):
     pass
-

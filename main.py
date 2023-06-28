@@ -22,11 +22,10 @@ from Integrated_Api_Function.forgetpassword import ForgetPasswordScreen
 from Integrated_Api_Function.validateotp import OTPScreen
 from Integrated_Api_Function.reset_password import ResetPasswordScreen
 from Food_Agency.Avoiding_crosscontamination import Screen1,Screen2
-from Food_Agency.Chilling import Chilling1,Chilling2
-
-
-
-
+from Food_Agency.Chilling import Chilling
+from Food_Agency.cleaning import Cleaning
+from Food_Agency.cooking_food import Cooking_Food
+from Food_Agency.fact_checker import Fact_Checker
 
 
 class SplashScreen(MDScreen):
@@ -144,9 +143,11 @@ class FridgeApp(MDApp):
         sm.add_widget(FoodHygiene(name='fridge_hygiene'))
         sm.add_widget(FoodTrack(name="FoodTrack"))
         sm.add_widget(Screen1(name="screen1"))
-        sm.add_widget(Screen2(name="screen2"))
-        sm.add_widget(Chilling1(name="chilling1"))
-        sm.add_widget(Chilling2(name="chilling2"))
+        sm.add_widget(Chilling(name="chilling"))
+        sm.add_widget(Cleaning(name="cleaning"))
+        sm.add_widget(Cooking_Food(name="cooking_food"))
+        sm.add_widget(Fact_Checker(name="fact_checker"))
+       
 
         return sm
    

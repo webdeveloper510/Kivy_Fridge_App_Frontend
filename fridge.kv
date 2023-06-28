@@ -684,113 +684,168 @@
                 markup: True
                 theme_text_color: 'Custom'
                 text_color:hex('#298FE3')
+                on_press:root.manager.current ='chilling'
 
             MDTextButton:
                 text: '[u]Cleaning[/u]'
                 markup: True
                 theme_text_color: 'Custom'
                 text_color:hex('#298FE3')
+                on_press:root.manager.current ='cleaning'
 
             MDTextButton:
                 text: '[u]Cooking your food[/u]'
                 markup: True
                 theme_text_color: 'Custom'
                 text_color:hex('#298FE3')
+                on_press:root.manager.current ='cooking_food'
             
             MDTextButton:
                 text: '[u]Home food fact checker[/u]'
                 markup: True
                 theme_text_color: 'Custom'
                 text_color: hex('#298FE3')
+                on_press:root.manager.current ='fact_checker'
 
 <Screen1>: 
     BoxLayout:
         orientation: 'vertical'
+        size_hint: 1, 1  
+        padding: dp(5)  
+
         MDTopAppBar:
             id: toolbar
-            title:"Back to previous Page"
-            pos_hint: {'top':1.0}
-            left_action_items: [["arrow-left", lambda *args : setattr(root.manager, "current", "fridge_hygiene")]]
-      
-        GridLayout:
-            cols: 1
-            # padding:2
-            # spacing:2 
-        
-            MDLabel:
-                text:" Avoiding cross-contamination"
-                font_style: 'Subtitle1'
-                bold:True
-            
-            MDLabel:
-                text:" How to avoid cross-contamination by following simple practices in the preparation and handling of food products.Bacterial cross-contamination is most likely to happen when raw food touches or drips onto ready-to-eat food, utensils or surfaces."
-                font_size: '12sp'
-            MDLabel:
-                text:"You can avoid it by:"
-                font_style: 'Subtitle2'
-                bold:True
-            
-            MDLabel:
-                text:" Preparing food hygienically"
-                font_style: 'Subtitle1'
-                bold:True
-            
-            MDLabel:
-                text:"use different utensils, plates and chopping boards for raw and cooked food. Wash utensils, plates and chopping boards for raw and cooked food thoroughly between tasks.Make sure you do not wash raw meat.Wash your hands after touching raw food and before you handle ready-to-eat food"
-                font_size: '12sp'
+            title: "Back to previous Page"
+            pos_hint: {'top': 1.0}
+            left_action_items: [["arrow-left", lambda *args: setattr(root.manager, "current", "fridge_hygiene")]]
+       
+        ScrollView:  
+            size_hint: 1, None
+            height: self.parent.height - toolbar.height  
 
-            MDLabel:
-                text:" Storing food effectively"
-                font_style: 'Subtitle1'
-                bold:True
+            GridLayout:
+                cols: 1
+                size_hint_y: None   
+                height: self.minimum_height  
+                MDLabel:
+                    text:"[b]Avoiding cross-contamination[/b]\n\nHow to avoid cross-contamination by following simple practices in the preparation and handling of food products.\n\nBacterial cross-contamination is most likely to happen when raw food touches or drips onto ready-to-eat food, utensils or surfaces.\n\nYou can avoid it by:\n\n[b]Preparing food hygienically[/b]\n\nuse different utensils, plates and chopping boards for raw and cooked food\nwash utensils, plates and chopping boards for raw and cooked food thoroughly between tasks \nmake sure you do not wash raw meat\nwash your hands after touching raw food and before you handle ready-to-eat food\n\n[b]Storing food effectively[/b]\n\ncover raw food, including meat, and keeping it separate from \nready-to-eat food use any dish that has a lip to prevent spillages\nstore covered raw meat, poultry, fish and shellfish on the bottom shelf of your fridge use different utensils, plates and chopping boards for raw and cooked food\n\n[b]Using shopping bags safely[/b]\n\nmake sure you take enough shopping bags to pack raw and ready-to-eat food\nseparately take extra bags to pack cleaning products and other household \nitems separately from food label or colour code your bags to show what you intend to use them for\ncheck your bags for spillages after every use. If there has been visible spillage, soiling or damage, plastic bags for life should ideally be used for another purpose (where no safety risk will occur) or replaced\nconsider using cotton/fabric bags for life as they can be put in the washing machine and cleaned\nreplace old plastic bags\nkeep raw and ready to eat foods separate in your shopping\n\ntrolley or basket FSA Explains\n\nCross-contamination is what happens when bacteria or other microorganisms are unintentionally transferred from one object to another. The most common example is the transfer of bacteria between raw and cooked food.\n\nThis is thought to be the cause of most foodborne infections. For example, when you’re preparing raw chicken, bacteria can spread to your chopping board, knife and hands and could cause food poisoning.\n\nCross-contamination can also happen when bacteria is transferred in ways that are harder to see. For example, via reusable shopping bags, or in the drips and splashes produced when meat is washed which can contaminate other surfaces."
+                    font_size: '12sp'
+                    markup: True
+                    size_hint_y: None  
+                    height: self.texture_size[1]   
+    
 
-            MDLabel:
-                text:"cover raw food, including meat, and keeping it separate from ready-to-eat food use any dish that has a lip to prevent spillages.store covered raw meat, poultry, fish and shellfish on the bottom shelf of your fridge use different utensils, plates and chopping boards for raw and cooked food"
-                font_size: '12sp'
-            
-            MDTextButton:
-                text:"click here for next page"
-                font_size: '14sp'
-                theme_text_color: 'Custom'
-                text_color: 0, 0.7, 1, 1  # Sky blue color (R, G, B, A)
-                on_press:root.manager.current ='screen2'
-
-
-<Screen2>: 
+<Chilling>
     BoxLayout:
         orientation: 'vertical'
+        size_hint: 1, 1   # Set the size hint to occupy the entire window
+        padding: dp(5)   # Add padding to the layout
+
         MDTopAppBar:
             id: toolbar
-            title:"Back to previous Page"
-            pos_hint: {'top':1.0}
-            left_action_items: [["arrow-left", lambda *args : setattr(root.manager, "current", "screen1")]]
-      
-        GridLayout:
-            cols: 1  
-            
-            MDLabel:
-                text:"Using shopping bags safely"
-                font_style: 'Subtitle1'
-                bold:True
-            
-            MDLabel:
-                text:"make sure you take enough shopping bags to pack raw and ready-to-eat food separately take extra bags to pack cleaning products and other household items separately from food label or colour code your bags to show what you intend to use them forcheck your bags for spillages after every use. If there has been visible spillage, soiling or damage, plastic bags for life should ideally be used for another purpose (where no safety risk will occur) or replacedconsider using cotton/fabric bags for life as they can be put in the washing machine and cleanedreplace old plastic bagskeep raw and ready to eat foods separate in your shopping"
-                font_size: '12sp'
+            title: "Back to previous Page"
+            pos_hint: {'top': 1.0}
+            left_action_items: [["arrow-left", lambda *args: setattr(root.manager, "current", "fridge_hygiene")]]
 
-            MDLabel:
-                text:"trolley or basket FSA Explains"
-                font_style: 'Subtitle1'
-                bold:True
+        ScrollView:   # Add a ScrollView to handle scrolling when content overflows
+            size_hint: 1, None
+            height: self.parent.height - toolbar.height   # Set the height of the ScrollView based on the available space
 
-            MDLabel:
-                text:"Cross-contamination is what happens when bacteria or other microorganisms are unintentionally transferred from one object to another. The most common example is the transfer of bacteria between raw and cooked food.This is thought to be the cause of most foodborne infections. For example, when you’re preparing raw chicken, bacteria can spread to your chopping board, knife and hands and could cause food poisoning.Cross-contamination can also happen when bacteria is transferred in ways that are harder to see. For example, via reusable shopping bags, or in the drips and splashes produced when meat is washed which can contaminate other surfaces."
-                font_size: '12sp'
+            GridLayout:
+                cols: 1
+                size_hint_y: None   # Disable automatic height calculation
+                height: self.minimum_height   # Set the height to accommodate the content
+
+                MDLabel:
+                    text: "[b]Chilling[/b]\n\nHow to chill, freeze and defrost food safely. Chilling food properly helps stop harmful bacteria from growing. \n\nTo keep your food safe: \nstore any food with a 'use by' date, as well as cooked dishes, salads and dairy products, in your fridge \nkeep chilled food out of the fridge for the shortest time possible during \npreparation cool cooked food quickly at room temperature and place in the fridge within one to two hours \nfollow storage instructions on packaging, including the best before and use-by dates \n\nCheck your fridge is cold enough using a fridge thermometer. The dials on fridges don't always show you the right temperature. Your fridge should be 5°C or below.\n\nDon't overfill your fridge. Leaving space allows air to circulate and maintains the set temperature.\n\nIf your fridge is looking full, take out items that don't need to be chilled, such as unopened soft drinks or bread. This will make room for the items that do need to be chilled for safety reasons, such as raw, ready-to-eat and cooked food.\n\n[b]Freezing your food[/b]\n\nA freezer acts as a pause button - food in a freezer won't deteriorate and most bacteria cannot grow in it. You can freeze pre-packaged food until midnight on the 'use by' date. Leftovers and homemade goods should be frozen as soon as possible. Cool any warm dishes before putting them in your freezer.\n\nTo stop the cold air in your freezer from drying out\nyour food: place food in an air-tight container\nwrap it well in freezer bags or freezer wrap\n\nIt doesn't matter if you cook your meat from frozen, once defrosted, or fresh, you can use your leftovers to make a new meal. This new meal can then be frozen, but make sure you only reheat it once (freezing in smaller portions will help). Love Food Hate Waste have more information on freezing leftovers, including recipe ideas.\n\nCheck packet instructions to ensure that foods are suitable for freezing, especially for ready-to- eat foods.\n\nFSA Explains\n\n[b]The Danger Zone[/b]\n\nThe cold temperatures of a domestic freezer (-18°C) delay chemical reactions within foods and put any bacteria that may be present on pause. The bacteria are still alive, but they stop growing or producing toxins.\n\nThe bacteria haven't been killed, and they may be revived as the food defrosts. Defrost food in the fridge to prevent it sitting in between 8 - 63 degrees centigrade, which is the Danger Zone. Between these temperatures the bacteria may grow and make you ill.\n\nIt is also the reason why we advise foods can't be refrozen if they are accidentally defrosted, unless they are cooked first. If the food has been defrosted it must be cooked before being eaten to be safe. Once defrosted, foods should be consumed within 24 hours.\n\n[b]Defrosting your food[/b]\n\nWhen you take your food out of the freezer, it's important to defrost it safely before cooking or eating it.\n\nDon't defrost food at room temperature. Ideally, food should be defrosted in the fridge in a container big enough to catch any drips. If this isn't possible, use a microwave on the defrost setting directly before cooking. Check the guidance on food packaging and allow enough time for your food to defrost properly. Large items, such as a 6-7kg Christmas turkey, can take up to 4 days to defrost fully in the fridge.\n\nWhen defrosting your food, make sure it has been fully defrosted, as partially defrosted food may not cook evenly. This means that harmful bacteria could survive the cooking process. Once food has been defrosted, cook it within 24 hours.\n\nFSA Explains\n\n[b]Why is it important to chill and defrost your food properly?[/b]\n\nSome foods need to be kept in the fridge to help slow down bacterial growth and keep them fresh and safe for longer. Generally, the colder the temperature, the slower bacteria will grow - but cold temperatures don't stop bacteria growing altogether (for example, listeria monocytogenes)."
+                    font_size: '12sp'
+                    markup: True
+                    size_hint_y: None   # Disable automatic height calculation
+                    height: self.texture_size[1]   # Set the height based on the content
 
 
+<Cleaning>
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 1, 1  
+        padding: dp(5)  
+
+        MDTopAppBar:
+            id: toolbar
+            title: "Back to previous Page"
+            pos_hint: {'top': 1.0}
+            left_action_items: [["arrow-left", lambda *args: setattr(root.manager, "current", "fridge_hygiene")]]
+       
+        ScrollView:  
+            size_hint: 1, None
+            height: self.parent.height - toolbar.height  
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None   
+                height: self.minimum_height  
+                MDLabel:
+                    text:"[b]Cleaning[/b]\n\nAdvice on how to clean effectively in the kitchen and prevent harmful bacteria from spreading onto food.\n\n[b]Hand washing[/b]\n\nYou should wash your hands before you prepare, cook or eat food. Where possible you should wash your hands with warm soapy water. If you're in a situation where it's not possible to wash your hands, for example at a picnic, you can use hand-sanitising wipes or gels to disinfect them before handling food.\n\n[b]Bacteria and viruses[/b]\n\nYou are removing harmful bacteria by cleaning with warm, soapy water or by using disinfectant cleaning products. You should regularly clean your:\n\nhands\nwork surfaces\nchopping boards\nknives\n\nYou are not actually killing the bacteria when you wash in this way. To kill the bacteria you need to wash the surfaces at temperatures above 70°C and maintain that temperature for some time. This temperature is too hot for your hands without the risk of serious scalding.\n\nHowever, by washing with warm, soapy water, the lather and physical motion will detach the bacteria from the surface. The bacteria will be washed down the drain and will be removed from the waste water by the water treatment system.\n\nWhile it is possible to clean with cold water, warm water will ensure that the soap or detergent lathers up properly. It is important that the soap lathers so it can be more effective at removing the bacteria.\n\n[b]Cleaning kitchen items[/b]\n\n[b]Dish cloths[/b]\n\nWash or change dish cloths, tea towels, sponges and oven gloves regularly. It's important to let them dry before you use them again. This is because dirty, damp cloths allow bacteria to breed.\n\n[b]Utensils and serving dishes[/b]\n\nTake care to keep all utensils and dishes clean before preparing food. This is to avoid cross- contamination. You should use different utensils, plates and chopping boards when preparing ready-to-eat foods and raw foods that require cooking. Remember to wash them thoroughly between tasks to avoid the spread of harmful bacteria.\n\n[b]Cleaning food[/b]\n\n[b]Raw meat[/b]\n\nYou should not wash raw meat. Washing meat under a tap can splash bacteria onto your hands, clothes, utensils and worktops.\n\nWashing raw meat, such as chicken, can spread harmful bacteria like campylobacter. Thorough cooking will kill any bacteria present.\n\n[b]Fruit and vegetables[/b]\n\nRemember to wash fruit and vegetables with water before you eat them. This is to make sure that they are clean and harmful bacteria can be removed from the outside. You should wash them under a running tap, or in a bowl of fresh water, making sure to rub their skin under the water.You can start with the least soiled items first and give each of them a final rinse.\n\nPeeling vegetables can also remove more bacteria, so this is an additional precaution you can take when intending to eat root vegetables raw.\n\n[b]Cleaning products[/b]\n\nA wide range of products are available for cleaning and disinfection. You should read the manufacturer's instructions carefully to ensure that the product is suitable for food surfaces and that you are using it correctly.\n\nTo effectively kill any harmful bacteria properly, you should make sure you:\n\nleave the cleaning product on the surface for the time specified in the instructions read the manufacturer's guidance to check if it needs to be diluted before use\n\nCleaning products will be classed as detergents, disinfectants or sanitizers.\n\n[b]Detergents[/b]\n\nDetergents clean the surface and remove grease, but they do not kill bacteria.\n\n[b]Disinfectants[/b]\n\nDisinfectants kill bacteria. They should be used on a visibly clean surface. They do not work effectively if the surface is covered in grease or visible dirt. It is important that you follow the specified contact times for the products to be effective.\n\n[b]Sanitisers[/b]\n\nSanitisers can be used to clean and disinfect as part of a two-stage approach. First use the sanitiser to clean the surface. This will remove any:\n\ndirt\nfood \ngrease\n\nYou should then re-apply the sanitiser to the visibly clean surface and leave for the required time. This will disinfect the surface."
+                    font_size: '12sp'
+                    markup: True
+                    size_hint_y: None  
+                    height: self.texture_size[1]   
+
+<Cooking_Food>
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 1, 1  
+        padding: dp(5)  
+
+        MDTopAppBar:
+            id: toolbar
+            title: "Back to previous Page"
+            pos_hint: {'top': 1.0}
+            left_action_items: [["arrow-left", lambda *args: setattr(root.manager, "current", "fridge_hygiene")]]
+       
+        ScrollView:  
+            size_hint: 1, None
+            height: self.parent.height - toolbar.height  
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None   
+                height: self.minimum_height  
+                MDLabel:
+                    text:"[b]Cooking your food[/b]\n\nHow to cook your food to prevent food poisoning.\n\nCooking food at the right temperature and for the correct length of time will ensure that any harmful bacteria are killed. Always check the advice on food packaging and follow the cooking instructions provided.\n\n[b]Meat[/b]\n\nBefore you serve pork, poultry and minced meat, make sure it is steaming hot and cooked all the way through. When you cut into the thickest part of the meat, check that none of the meat is pink and that any juices run clear. In a whole bird this is the area between the leg and the breast.\n\nFollow this advice when\n\ncooking: turkey\nchicken\nduck \ngoose\npork\nminced meat products such as kebabs, sausages and burgers\n\nWhen roasting a whole bird such as chicken or turkey, we advise that birds are cooked unstuffed, with any stuffing cooked in a separate tray or dish. This is because stuffed birds will take longer to cook and may not cook thoroughly.\n\n[b]Northern Ireland[/b]\n\nFor Northern Ireland specific advice on Avian Influenza please refer to the Department of Agriculture, Environment and Rural Affairs (DAERA).\n\n[b]Frozen vegetables[/b]\n\nMost frozen vegetables, including sweetcorn, will need to be cooked before you can eat them.\n\nIf you intend to use frozen sweetcorn or other vegetables as part of a cold salad, check the instructions on the packaging first. If the advice is that the sweetcorn or other frozen vegetables should be cooked, you must ensure that this is done before they are eaten cold.\n\nAfter cooking, the food should be:\n\ncooled down as quickly as possible (ideally within two hours) stored in a fridge\neaten within two days\nfrozen to eat later, if you think you won’t be able to eat it within two days\n\nFor more information on safely cooling and storing foods, including freezing advice, read our guidance on chilling food.\n\n[b]Cooking methods[/b]\n\nWhen food is cooked in an oven, it is through a combination of three different heat transfer methods.\n\n[b]Radiant or direct heat[/b]\n\nThis is where the flames at the back of a gas oven or the element in an electric oven cook the food.\n\n[b]Conduction[/b]\n\nThis is where the heat travels through the shelf, into the baking tray/dish and then on into the food.\n\n[b]Convection[/b]\n\nThis is where the air within the oven is heated and travels over and through the food. It is particularly important in a fan assisted oven and is the reason these cook foods faster.\n\n[b]Alternative cooking methods[/b]\n\nMeals can also be prepared using appliances such as a microwave, crock pot or air fryer. Depending on the cooking method and appliance efficiency, foods will require different times and temperatures to be properly cooked. Also, while different foods can be cooked together, they may require different times and temperatures.\n\nPlease refer to the instructions for your appliance for cooking advice on specific foods. In some appliances, you should leave some space around the food so that it can cook properly e.g. chicken legs in an air fryer.\n\nWhen cooking pork, poultry or minced meat (including burgers and sausages), make sure they are steaming hot and cooked all the way through before serving. Cut through the thickest part of the meat to ensure none of the meat is pink and the juices run clear.\n\nIf you are heating food in a microwave, it’s important to stir the food halfway through heating and to make sure that it is steaming hot before eating. Microwaves can heat in ‘pockets’ so stirring ensures that there are no pockets of cold food in your meal.\n\n[b]Why you shouldn't serve burgers rare or pink[/b]\n\nWhole cuts of meat, such as steaks and joints, only ever have bacteria on the outside surface of the meat.\n\nWhen meat is minced to make a burger, any harmful bacteria from the surface of the meat can get spread throughout the burger. As a result, rare and undercooked burgers can have harmful bacteria on the inside and may cause food poisoning if not fully cooked.\n\nMore about burgers \n\nFSA Explains\n\n[b]Avian Influenza (bird flu)[/b]\n\nAvian Influenza (also known as bird flu) poses a very low food safety risk for consumers. Properly cooked poultry meat and poultry meat products are safe to eat. This means that our advice on consumption of poultry meat and poultry meat products, including eggs, does not change during outbreaks of Avian Influenza.\n\nThe Department for Environment, Food and Rural Affairs (DEFRA) has further advice on Avian Influenza."
+                    font_size: '12sp'
+                    markup: True
+                    size_hint_y: None  
+                    height: self.texture_size[1]   
 
 
 
+<Fact_Checker>
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 1, 1  
+        padding: dp(5)  
 
+        MDTopAppBar:
+            id: toolbar
+            title: "Back to previous Page"
+            pos_hint: {'top': 1.0}
+            left_action_items: [["arrow-left", lambda *args: setattr(root.manager, "current", "fridge_hygiene")]]
+       
+        ScrollView:  
+            size_hint: 1, None
+            height: self.parent.height - toolbar.height  
+
+            GridLayout:
+                cols: 1
+                size_hint_y: None   
+                height: self.minimum_height  
+                MDLabel:
+                    text:"[b]Home food fact checker[/b]\n\nKnowing how to store, cook and reheat food at home helps improve food safety and reduce food waste.\n\nThis page has advice on some common household food safety questions like the sniff test and the egg float test.\n\nHere we answer some of the most common food safety questions we get asked about different types of food.\n\nFSA Explains\\n\nThere are a number of myths and misconceptions about how long you can store food, when you know it’s gone off, and how to keep your food safe at home. By fact-checking the most common questions, we hope this will help you to stay safe and avoid throwing away good food unnecessarily.\n\n[b]Milk[/b]\n\n[b]Does the sniff test work for milk and dairy food?[/b]\n\nIt's not safe to use the sniff test for any food with a use-by date. The sniff test won't work as you can't smell the bugs that cause food poisoning.\n\nMilk and some other dairy products like yoghurt can have either a use-by date or a best before date. The manufacturer decides which date marking is the best for the food they produce.Whether these foods have a use-by or best before date is down to the manufacturer and the way the food is processed.\n\nIf a food has a best before date the sniff test can be used - the best before date is about quality, not safety. You can smell food with a best before date to see if it has spoiled. You can also use visual cues, such as whether you can see mould or if there are any changes to texture. Food with best before can be eaten after the date on the pack, however they may not taste as good as they did before.\n\nIt's always better to check the storage, use-by and best before dates when you buy food so you can help ensure it's safe and to prevent waste.\n\nFor more on the sniff test and date markings please visit our page on best before and use-by dates.\n\n[b]Rice[/b]\n\n[b]How long can you safely eat rice for after cooking?[/b]\n\nRice may be eaten cold if it is cooled down quickly. Put the rice in the fridge and consume within 24 hours.\n\nYou can get food poisoning from eating reheated rice. It's not the reheating that causes the problem, but the way the rice has been stored before it's reheated.\n\nKeep rice in the fridge for no more than one day until reheating. When you reheat any rice always check the dish is steaming hot all the way through.\n\nUncooked rice can contain spores of a bacterium called Bacillus cereus. This bacteria can cause food poisoning. The spores of Bacillus cereus can survive being cooked. The longer cooked rice is left at room temperature, the more likely it is that the bacteria or toxins will make the rice unsafe to eat.\n\n[b]Can you reheat rice?[/b]\n\nYes, but you should never reheat rice more than once. And when you do reheat rice, make sure it is steaming hot all the way through.\n\nIf you have leftover rice you should chill it as quickly as possible, ideally within one hour. Dividing it into smaller portions can help with this. Also don't leave rice in the rice cooker, steamer or pan to cool down.\n\n[b]Can you reheat takeaway rice?[/b]\n\nYou should never reheat rice more than once. Extra care should be taken with takeaway rice. Ideally, takeaway rice should be eaten shortly after purchase or shortly after it has been delivered.\n\nThis is because some food businesses may pre-cook their rice and then re-heat it before it is given to customers. Whether it is safe to reheat the cooked rice will depend on how it was stored, handled and if it was cooked outright in the first place. It’s always worth asking the takeaway business how they handle the rice.\n\n[b]Can you freeze rice?[/b]\n\nYou can freeze rice but should cool the rice quickly before putting it in the freezer, and if you portion it out into smaller containers this will help chill it faster. To do this you could place the container of rice in cold water and once cool, cover and store it in the freezer. By making sure rice goes in the freezer within an hour of cooking, you will stop bacteria multiplying and producing a toxin. Before eating, you should defrost your rice in the fridge and then reheat it until it is steaming hot before eating immediately.\n\n[b]Eggs[/b]\n\n[b]Does the egg float test work?[/b]\n\nWe do not suggest using the egg float test to show whether the eggs are safe as it assesses age, not safety. The float test can't show you which bacteria have been growing inside the egg. The egg floats because more air gets inside the older it gets, so it's an indicator of age, not safety.\n\n[b]Are eggs safe to eat after the best before date?[/b]\n\nEggs are safe to eat for a couple of days after the best before date if they are cooked well. The best before date should be stamped on the egg. You should make sure both the white and yolk of the egg are cooked thoroughly. You can use eggs a couple of days after the best before date in cooking or baking.\n\n[b]Are raw eggs safe to eat?[/b]\n\nThere have been improved food safety controls in the UK hen egg industry in recent years. So infants, children, people who are pregnant, and people aged 65 or over can now safely eat raw or lightly cooked hen eggs, or foods containing them if they have a British Lion mark or are produced under the Laid in Britain egg assurance scheme.\n\nThis advice does not apply to individuals who are severely immunocompromised and require medically supervised diets prescribed by health professionals.\n\nThis advice remains valid during outbreaks of Avian Influenza, also known as Bird flu. Bird flu poses a very low food safety risk for consumers and does not change our advice on consumption of eggs. The Department for Environment, Food and Rural Affairs (DEFRA) has further advice on Avian Influenza.\n\n[b]Should you store eggs in the fridge?[/b]\n\nEggs should be stored in a cool, dry place. Ideally, eggs should be stored in the fridge. The storage area should be cleaned regularly. Follow the manufacturer’s advice and avoid storing eggs where they would be exposed to extreme temperature changes. Temperature changes can lead to condensation on the surface, which causes increased penetration of Salmonella from the outside of the shell into the egg.\n\n[b]Can I freeze eggs?[/b]\n\nEggs can be frozen and used safely at a later date. Simply crack your eggs into a container, seal and freeze. You can separate yolks from whites first if you prefer and then put them into separate containers.\n\nLabel the containers so you can easily identify them when you wish to use them. You can also crack the egg into a sealable container and beat it before freezing. This can be easily used to make scrambled eggs or an omelette.\n\n[b]Fruit[/b]\n\n[b]Can you eat brown bananas?[/b]\n\nFruit that is a bit overripe, such as brown bananas, wrinkly apples and slightly mushy strawberries, can be eaten normally, as long as they don’t contain any mould. Overripe fruit is great for cooking, baking and made into smoothies.\n\n[b]Should you wash fruit?[/b]\n\nRemember to wash fruit and vegetables with water before you eat them. This is to make sure that they are clean and harmful bacteria can be removed from the outside. You should wash them under a running tap, or in a bowl of fresh water, making sure to rub their skin under the water.You can start with the least soiled items first and give each of them a final rinse.\n\n[b]Can you still eat food if you remove the mouldy part?[/b]\n\nFood that is obviously rotten or containing mould should not be eaten. This is due to potential risks from the mould. This advice is especially important for people in vulnerable groups. This includes children, people who are pregnant, people aged 65, and those who have a weakened immune system.\n\nWhile it is possible that removing the mould and a significant amount of the surrounding product could remove any unseen toxins that are present, there is no guarantee that doing so would remove them all.\n\n[b]Vegetables[/b]\n\n[b]Can you eat potatoes when they go green and start to sprout?[/b]\n\nIf potatoes have sprouted, simply remove the sprouts before use. Remember to cut off any green or rotten bits before using.\n\nGreen bits on potatoes can contain high levels of natural toxins called glycoalkaloids which are usually found in potatoes at low levels, but they can be higher in:\n\ngreen parts \ndamaged parts\nsprouted parts\n\nHigh levels of glycoalkaloids can upset the digestive system and cause symptoms such as abdominal pain, vomiting and diarrhoea. However, glycoalkaloid poisoning is extremely rare, even though potatoes are eaten in very large amounts in many countries.\n\nTo avoid high levels of glycoalkaloids being produced in potatoes, store them in a cool, dark and dry place.\n\n[b]Can potatoes be frozen?[/b]\n\nYou can freeze cooked or parboiled potatoes which have been boiled for 5 minutes. Leftover cooked potatoes can also be frozen. You can roast boiled potatoes straight from the freezer, make sure they are steaming hot all the way through. Put them in the oven with a little oil to crisp up.\n\n[b]Can you store potatoes in the fridge?[/b]\n\nYes, if you wish to help avoid food waste, you can choose to store potatoes either in the fridge or in a cool, dark, dry place.\n\nA recent study, which has been reviewed by the Committee on the Toxicity of Chemicals in Food, Consumer Products and the Environment (COT), has shown that home storage of potatoes in the fridge doesn’t materially increase acrylamide forming sugars, known as cold sweetening, when compared to storage in a cool, dark place.\n\n[b]How long can you eat vegetables after their best before date?[/b]\n\nVegetables past their best before date may become wrinkly or mushy, but are safe to eat as long as there is no visible sign of decay. Make sure to check for rotting or mould before eating.\n\nThe best before date is about quality, not safety. Food will be safe to eat after the best before date but may not be at its best. The length of time vegetables are acceptable to eat after a best before date can depend on the product and the storage instructions.\n\nWRAP’s food storage A to Z tool offers advice for different foods after the best before date.\n\n[b]Are raw kidney beans poisonous?[/b]\n\nCanned beans purchased in the supermarket are safe to consume as they have been pre-soaked and boiled to kill any toxins present."
+                    font_size: '12sp'
+                    markup: True
+                    size_hint_y: None  
+                    height: self.texture_size[1]  
 
 
 
