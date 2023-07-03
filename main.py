@@ -21,7 +21,8 @@ from Integrated_Api_Function.user_profile import EditProfileScreen
 from Integrated_Api_Function.forgetpassword import ForgetPasswordScreen
 from Integrated_Api_Function.validateotp import OTPScreen
 from Integrated_Api_Function.reset_password import ResetPasswordScreen
-from Food_Agency.Avoiding_crosscontamination import Screen1,Screen2
+from Integrated_Api_Function.camera import MyCamera
+from Food_Agency.Avoiding_crosscontamination import Screen1
 from Food_Agency.Chilling import Chilling
 from Food_Agency.cleaning import Cleaning
 from Food_Agency.cooking_food import Cooking_Food
@@ -137,7 +138,7 @@ class FridgeApp(MDApp):
         sm.add_widget(OTPScreen(name='OTP_Screen'))
         sm.add_widget(ForgetPasswordScreen(name='forget_password'))
         sm.add_widget(HomeScreen(name='home'))
-        sm.add_widget(ScannerScreen(name='scanner'))
+        sm.add_widget(MyCamera(name='camera'))
         sm.add_widget(SettingsScreen(name='settings'))
         sm.add_widget(NotificationScreen(name='notifications'))
         sm.add_widget(FoodHygiene(name='fridge_hygiene'))
