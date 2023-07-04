@@ -14,13 +14,17 @@ from kivymd.app import MDApp
 from kivymd.uix.button import MDRectangleFlatButton
 from kivymd.uix.toolbar import MDTopAppBar
 from kivy.graphics import Color, Rectangle
+from kivy.network.urlrequest import UrlRequest
+
 
 
 class MyCamera(Screen):
     def __init__(self, **kwargs):
         super(MyCamera, self).__init__(**kwargs)
+        self.url = "http://127.0.0.1:8000/capture_image/"
+        self.request = None  
 
-        # Create a BoxLayout with a black background
+       
         box_layout = BoxLayout(orientation='vertical')
         with box_layout.canvas.before:
             Color(0, 0, 0, 1)  # Black color
@@ -28,7 +32,7 @@ class MyCamera(Screen):
         self.bind(size=self._update_rect, pos=self._update_rect)
         self.add_widget(box_layout)
 
-        # Add the MDTopAppBar
+        
         top_bar = MDTopAppBar(title='Camera',left_action_items=[["arrow-left", lambda *args: setattr(self.manager, "current", "home")]])
         box_layout.add_widget(top_bar)
 
@@ -42,11 +46,11 @@ class MyCamera(Screen):
             on_release=self.capture_image,
             theme_text_color="Custom",
             md_bg_color=(0, 0.7, 1, 1),
-            text_color=(1, 1, 1, 1),  # White color
+            text_color=(1, 1, 1, 1),  
             pos_hint={'center_x': 0.5},
             size_hint=(None, None),
-            width=Window.width * 0.3,  # Adjust the button width based on screen width
-            height=Window.width * 0.1  # Adjust the button height based on screen width
+            width=Window.width * 0.3,  
+            height=Window.width * 0.1  
         )
 
         # Create a BoxLayout for the capture button at the bottom center
@@ -81,6 +85,9 @@ class MyCamera(Screen):
         self.capture_frame_event = Clock.schedule_once(
             self.capture_frame, 1 / 30
         )  # Update frame every 1/30 second
+    
+    def set_id(self, id):
+        self.id = id
 
     def capture_image(self, *args):
         image_path = "captured_image.png"  # Path to save the captured image
@@ -96,16 +103,29 @@ class MyCamera(Screen):
             pil_image.save(png_image_stream, format='PNG')
             png_image_stream.seek(0)
 
-            api_url = "http://127.0.0.1:8000/capture_image/"
+            url = self.url
+            payload = {
+                'user_id': str(self.id),
+            }
 
-            files = {"image": png_image_stream}
+            files = {
+                'image': ('image.png', png_image_stream, 'image/png')
+            }
 
-            try:
-                response = requests.post(api_url, files=files)
-                if response.status_code == 201:
-                    print("Image uploaded successfully.")
-                else:
-                    print(f"Failed to upload image. Error: {response.content.decode()}")
+            response = requests.post(url, data=payload, files=files)
+            print(response.json())
 
-            except requests.RequestException as e:
-                print(f"Failed to send request. Error: {e}")
+            if response.status_code == 200:
+                print("Image uploaded successfully.")
+            else:
+                print("Failed to send request.")
+            
+    # def on_success(self, req, result):
+    #  print(result)
+            
+    # print("Image uploaded successfully.")
+    
+    # def on_failure(self, req, result):      
+    #  print(result)  
+
+    #  print("Failed to send request.")

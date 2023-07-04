@@ -37,7 +37,6 @@ class SplashScreen(MDScreen):
     def switch_to_login(self, dt):
         self.manager.current = 'login'
 
-
 class ScannerScreen(MDScreen):
     pass
 
@@ -148,8 +147,6 @@ class FridgeApp(MDApp):
         sm.add_widget(Cleaning(name="cleaning"))
         sm.add_widget(Cooking_Food(name="cooking_food"))
         sm.add_widget(Fact_Checker(name="fact_checker"))
-       
-
         return sm
    
     

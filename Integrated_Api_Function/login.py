@@ -43,6 +43,8 @@ class LoginScreen(Screen):
         self.manager.get_screen('edit_profile').set_access_token(access_token)
         # self.manager.get_screen('settings').set_access_token(access_token)
         self.manager.get_screen('edit_profile').set_id(id)# set id 
+        self.manager.get_screen('camera').set_id(id)# set id 
+
 
     def on_login_error(self, request, result):
 
