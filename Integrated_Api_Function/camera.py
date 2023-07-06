@@ -15,6 +15,10 @@ from kivymd.uix.button import MDRectangleFlatButton
 from kivymd.uix.toolbar import MDTopAppBar
 from kivy.graphics import Color, Rectangle
 from kivy.network.urlrequest import UrlRequest
+from kivy.uix.modalview import ModalView
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.button import MDFlatButton
+from kivy.utils import get_color_from_hex
 
 
 
@@ -90,14 +94,13 @@ class MyCamera(Screen):
         self.id = id
 
     def capture_image(self, *args):
-        image_path = "captured_image.png"  # Path to save the captured image
+        image_path = "captured_image.png"  
 
         ret, frame = self.camera.read()
         if ret:
             cv2.imwrite(image_path, frame)
             print(f"Image captured and saved to: {image_path}")
 
-            # Convert the image to PNG format
             pil_image = PILImage.open(image_path)
             png_image_stream = io.BytesIO()
             pil_image.save(png_image_stream, format='PNG')
@@ -113,19 +116,58 @@ class MyCamera(Screen):
             }
 
             response = requests.post(url, data=payload, files=files)
-            print(response.json())
+            response_data=(response.json())
+            # print("response_data------>",response_data)
+            
+            item_name_array=[]
+            item_id_array=[]
+            for item_data in response_data['data']:
+                item_id = item_data['id']
+                item_name = item_data['item']
+                created_at = item_data['created_at']
+                last_updated = item_data['last_updated']
+                item_id_array.append(item_id)
+                print(item_id_array)
+                item_name_array.append(item_name)
 
             if response.status_code == 200:
                 print("Image uploaded successfully.")
+                self.show_dialog(response_data)
+                # self.manager.get_screen('expiry_screen').set_itemlist(item_name_array)
+                # self.manager.get_screen('expiry_screen').set_itemid(item_id_array)
+                # print(self.manager.get_screen('expiry_screen').set_itemid(item_id_array))
             else:
                 print("Failed to send request.")
-            
-    # def on_success(self, req, result):
-    #  print(result)
-            
-    # print("Image uploaded successfully.")
     
-    # def on_failure(self, req, result):      
-    #  print(result)  
+    def show_dialog(self, data):
+        items = data['data']
+        item_names = [item['item'] for item in items]
+        item_text = '\n'.join(item_names)
 
-    #  print("Failed to send request.")
+        self.dialog = MDDialog(
+            title="Would you like to add these items in fridge",
+            text=item_text,
+            radius=[20, 7, 20, 7],
+            buttons=[
+                MDFlatButton(
+                    text="No",
+                    on_release=self.dismiss_dialog
+                ),
+                MDFlatButton(
+                    text="Yes",
+                    on_release=self.proceed_to_screen1
+                )
+            ]
+        )
+        self.dialog.open()
+
+    def dismiss_dialog(self, *args):
+        if self.dialog:
+            self.dialog.dismiss()
+
+    def proceed_to_screen1(self, *args):
+        self.dismiss_dialog()
+        self.manager.current = 'expiry_screen'
+
+            
+   
