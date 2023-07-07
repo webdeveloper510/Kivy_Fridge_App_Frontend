@@ -34,7 +34,6 @@ class ResetPasswordScreen(Screen):
         )
 
     def on_password_reset_success(self, request, result):
-        print("result success------>",result)
         dialog = MDDialog(
             title=result['message'],
             text="Please login again to continue",
@@ -51,7 +50,6 @@ class ResetPasswordScreen(Screen):
         self.manager.current = 'login'
 
     def on_password_reset_failure(self, request, result):
-        print("resultfailure------>",result)
         dialog = MDDialog(
             title="Error",
             text=result['message'],

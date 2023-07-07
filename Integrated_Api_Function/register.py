@@ -50,7 +50,7 @@ class RegisterScreen(Screen):
         dialog.open()
    
     def dismiss_success_dialog(self, *args):
-        self.manager.current = 'home'
+        self.manager.current = 'login'
 
     def on_failure(self, request, result):
         error_message = next(iter(result.values()))[0]

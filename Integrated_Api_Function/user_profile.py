@@ -40,6 +40,7 @@ class EditProfileScreen(Screen):
         self.ids.last_name_field.text = profile_data.get('Lastname', '')
         self.ids.email_field.text = profile_data.get('email', '')
         self.ids.phone_field.text = profile_data.get('phone_number', '')
+        self.ids.dob_field.text = profile_data.get('dob', '')
 
     def get_profile_failure(self, req, result):
         print("Failed to fetch user profile:", result)
@@ -49,13 +50,15 @@ class EditProfileScreen(Screen):
         last_name = self.ids.last_name_field.text
         email = self.ids.email_field.text
         phone_number = self.ids.phone_field.text
+        dob = self.ids.dob_field.text
 
         payload = {
             'Firstname': first_name,
             'Lastname': last_name,
             'email': email,
             'phone_number': phone_number,
-            'id': self.id
+            'id': self.id,
+            'dob':dob
         }
 
         headers = {

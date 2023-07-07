@@ -22,7 +22,7 @@ from Integrated_Api_Function.forgetpassword import ForgetPasswordScreen
 from Integrated_Api_Function.validateotp import OTPScreen
 from Integrated_Api_Function.reset_password import ResetPasswordScreen
 from Integrated_Api_Function.camera import MyCamera
-# from Integrated_Api_Function.expirydate_screen import ExpiryDateScreen
+from Integrated_Api_Function.expirydate_screen import ExpiryDateScreen
 from Food_Agency.Avoiding_crosscontamination import Screen1
 from Food_Agency.Chilling import Chilling
 from Food_Agency.cleaning import Cleaning
@@ -124,6 +124,7 @@ class HomeScreen(MDScreen):
 class FoodHygiene(MDScreen):
   pass
 
+
 class MyScreenManager(ScreenManager):
     pass
 
@@ -149,10 +150,9 @@ class FridgeApp(MDApp):
         sm.add_widget(Cleaning(name="cleaning"))
         sm.add_widget(Cooking_Food(name="cooking_food"))
         sm.add_widget(Fact_Checker(name="fact_checker"))
-        # sm.add_widget(ExpiryDateScreen(name="expiry_screen"))
+        sm.add_widget(ExpiryDateScreen(name="expiry_screen"))
         return sm
    
-    
-    
+        
 if __name__ == '__main__':
     FridgeApp().run()

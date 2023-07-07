@@ -133,9 +133,9 @@ class MyCamera(Screen):
             if response.status_code == 200:
                 print("Image uploaded successfully.")
                 self.show_dialog(response_data)
-                # self.manager.get_screen('expiry_screen').set_itemlist(item_name_array)
-                # self.manager.get_screen('expiry_screen').set_itemid(item_id_array)
-                # print(self.manager.get_screen('expiry_screen').set_itemid(item_id_array))
+                self.manager.get_screen('expiry_screen').set_itemlist(item_name_array)
+                self.manager.get_screen('expiry_screen').set_itemid(item_id_array)
+                print(self.manager.get_screen('expiry_screen').set_itemid(item_id_array))
             else:
                 print("Failed to send request.")
     
