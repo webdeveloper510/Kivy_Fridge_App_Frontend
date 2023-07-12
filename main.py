@@ -8,8 +8,6 @@ from kivymd.uix.dialog import MDDialog
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.button import MDFlatButton
 from kivy.properties import ListProperty
-from kivy_garden.zbarcam import ZBarCam
-from kivymd.uix.pickers import MDDatePicker
 from kivy.app import App
 from kivymd.uix.screen import MDScreen
 from kivy.utils import get_color_from_hex
@@ -23,6 +21,7 @@ from Integrated_Api_Function.validateotp import OTPScreen
 from Integrated_Api_Function.reset_password import ResetPasswordScreen
 from Integrated_Api_Function.camera import MyCamera
 from Integrated_Api_Function.expirydate_screen import ExpiryDateScreen
+from Integrated_Api_Function.home import HomeScreen
 from Food_Agency.Avoiding_crosscontamination import Screen1
 from Food_Agency.Chilling import Chilling
 from Food_Agency.cleaning import Cleaning
@@ -118,8 +117,6 @@ class FoodTrack(Screen):
 
             dialog.open()
 
-class HomeScreen(MDScreen):
- pass
 
 class FoodHygiene(MDScreen):
   pass
