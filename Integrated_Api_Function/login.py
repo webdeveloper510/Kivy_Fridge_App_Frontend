@@ -42,8 +42,12 @@ class LoginScreen(Screen):
         self.manager.current = 'home'
         self.manager.get_screen('edit_profile').set_access_token(access_token)
         # self.manager.get_screen('settings').set_access_token(access_token)
-        self.manager.get_screen('edit_profile').set_id(id)# set id 
+        self.manager.get_screen('edit_profile').set_id(id)# set user_id 
         self.manager.get_screen('camera').set_id(id)# set id 
+        self.manager.get_screen('home').set_id(id)# set user_id  for home screen 
+        self.manager.get_screen('expiry_item_screen').set_id(id)# set user_id  for expiry_item_screen
+        self.manager.get_screen('green_item_screen').set_id(id)# set user_id  for green_item_screen
+        self.manager.get_screen('useby_item_screen').set_id(id)# set user_id  for useby_item_screen
 
 
     def on_login_error(self, request, result):

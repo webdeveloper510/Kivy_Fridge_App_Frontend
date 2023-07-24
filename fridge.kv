@@ -876,7 +876,7 @@
             title: 'Home Page'
             md_bg_color: app.theme_cls.primary_color
             elevation: 5
-            right_action_items: [['dots-vertical', lambda *args :setattr(root.manager, "current", "FoodTrack")]]
+            right_action_items: [['delete-forever', lambda *args :setattr(root.manager, "current", "FoodTrack")],['dots-vertical', lambda *args :setattr(root.manager, "current", "FoodTrack")]]
         BoxLayout:
             orientation: 'horizontal'
             padding: 10
@@ -1155,22 +1155,28 @@
 
         MDRectangleFlatButton:
             font_size: "16sp"
-            on_release: root.show_dialog("Red Button Clicked")
+            # on_release: root.show_dialog("Red Button Clicked")
             size_hint_x: None
             md_bg_color: 255, 0, 0, 1
+            on_release: app.root.current = 'expiry_item_screen'
 
         MDRectangleFlatButton:
             font_size: "16sp"
-            on_release: root.show_dialog("Amber Button Clicked")
+            # on_release: root.show_dialog("Amber Button Clicked")
             size_hint_x: None
             md_bg_color:255, 191, 0, 1
+            on_release: app.root.current = 'useby_item_screen'
 
         MDRectangleFlatButton:
             font_size: "16sp"
-            on_release: root.show_dialog("Green Button Clicked")
+            # on_release: root.show_dialog("Green Button Clicked")
             size_hint_x: None
             pos_hint: {'center_x': 0.5}
             md_bg_color: 0, 100, 0, 1
+            on_release: app.root.current = 'green_item_screen'
+
+
+
 
 
 <ExpiryDateScreen>:
@@ -1202,6 +1208,75 @@
             pos_hint: {"center_x": 0.5}
             md_bg_color: get_color_from_hex("#258fff")
             on_release: root.update_data()
+
+
+
+<ExpiryItemScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 1, 1  
+        padding: dp(5) 
+
+        MDTopAppBar:
+            id: toolbar
+            title:"Expiry Items"
+            pos_hint: {'top': 1.0}
+            left_action_items:[["arrow-left", lambda *args : setattr(root.manager, "current", "FoodTrack")]]
+        
+        MDScrollView:
+
+            MDList:
+                id: container
+
+
+<GreenItemScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 1, 1  
+        padding: dp(5) 
+
+        MDTopAppBar:
+            id: toolbar
+            title:"Green Items"
+            pos_hint: {'top': 1.0}
+            left_action_items:[["arrow-left", lambda *args : setattr(root.manager, "current", "FoodTrack")]]
+        
+        MDScrollView:
+
+            MDList:
+                id: container
+
+
+<UseByDateItemScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 1, 1  
+        padding: dp(5) 
+
+        MDTopAppBar:
+            id: toolbar
+            title:"UseBy Date Item"
+            pos_hint: {'top': 1.0}
+            left_action_items:[["arrow-left", lambda *args : setattr(root.manager, "current", "FoodTrack")]]
+        
+        MDScrollView:
+
+            MDList:
+                id: container
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

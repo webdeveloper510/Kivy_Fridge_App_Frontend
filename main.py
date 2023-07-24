@@ -27,7 +27,11 @@ from Food_Agency.Chilling import Chilling
 from Food_Agency.cleaning import Cleaning
 from Food_Agency.cooking_food import Cooking_Food
 from Food_Agency.fact_checker import Fact_Checker
+from Integrated_Api_Function.expiry_item import ExpiryItemScreen
+from Integrated_Api_Function.greenInDateItem import GreenItemScreen
+from Integrated_Api_Function.usebydate import UseByDateItemScreen
 
+Base_url='http://127.0.0.1:8000'
 
 
 class SplashScreen(MDScreen):
@@ -90,32 +94,39 @@ class ListDialog(MDDialog):
     pass
 
 
+
+
 class FoodTrack(Screen):
-    def show_dialog(self, button_text):
-        if button_text == "Green Button Clicked":
-            items = ["Green Item 1", "Green Item 2", "Green Item 3"]# create  static data  later get data from source
-            dialog = ListDialog()
+    pass
 
-            for item in items:
-                dialog.ids.list_content.add_widget(CustomListItem(text=item))
 
-            dialog.open()
-        elif button_text == "Amber Button Clicked":
-            items = ["Amber Item 1", "Amber Item 2", "Amber Item 3"]# create  static data  later get data from source
-            dialog = ListDialog()
 
-            for item in items:
-                dialog.ids.list_content.add_widget(CustomListItem(text=item))
+# class FoodTrack(Screen):
+#     def show_dialog(self, button_text):
+#         if button_text == "Green Button Clicked":
+#             items = ["Green Item 1", "Green Item 2", "Green Item 3"]# create  static data  later get data from source
+#             dialog = ListDialog()
 
-            dialog.open()
-        elif button_text == "Red Button Clicked":
-            items = ["Red Item 1", "Red Item 2", "Red Item 3"]# create  static data  later get data from source
-            dialog = ListDialog()
+#             for item in items:
+#                 dialog.ids.list_content.add_widget(CustomListItem(text=item))
 
-            for item in items:
-                dialog.ids.list_content.add_widget(CustomListItem(text=item))
+#             dialog.open()
+#         elif button_text == "Amber Button Clicked":
+#             items = ["Amber Item 1", "Amber Item 2", "Amber Item 3"]# create  static data  later get data from source
+#             dialog = ListDialog()
 
-            dialog.open()
+#             for item in items:
+#                 dialog.ids.list_content.add_widget(CustomListItem(text=item))
+
+#             dialog.open()
+#         elif button_text == "Red Button Clicked":
+#             items = ["Red Item 1", "Red Item 2", "Red Item 3"]# create  static data  later get data from source
+#             dialog = ListDialog()
+
+#             for item in items:
+#                 dialog.ids.list_content.add_widget(CustomListItem(text=item))
+
+#             dialog.open()
 
 
 class FoodHygiene(MDScreen):
@@ -148,6 +159,10 @@ class FridgeApp(MDApp):
         sm.add_widget(Cooking_Food(name="cooking_food"))
         sm.add_widget(Fact_Checker(name="fact_checker"))
         sm.add_widget(ExpiryDateScreen(name="expiry_screen"))
+        sm.add_widget(ExpiryItemScreen(name="expiry_item_screen"))
+        sm.add_widget(GreenItemScreen(name="green_item_screen"))
+        sm.add_widget(UseByDateItemScreen (name="useby_item_screen"))
+
         return sm
    
         
