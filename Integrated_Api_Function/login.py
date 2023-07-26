@@ -3,12 +3,13 @@ from kivy.network.urlrequest import UrlRequest
 import json
 from kivymd.uix.label import MDLabel
 from kivymd.uix.snackbar import Snackbar
+from Integrated_Api_Function.url import Base_Url
 
 class LoginScreen(Screen):
 
     def __init__(self, **kwargs):
         super(LoginScreen, self).__init__(**kwargs)
-        self.url = 'http://127.0.0.1:8000/login/'
+        self.url = '{}/login/'.format(Base_Url)
         self.request = None  
     
     def login(self):
@@ -28,7 +29,7 @@ class LoginScreen(Screen):
         )
 
     def on_login_success(self, request, result):
-        print(result['message'])
+        # print(result['message'])
         access_token = result['token']['access']
         id=result['id']
     
@@ -41,7 +42,7 @@ class LoginScreen(Screen):
         
         self.manager.current = 'home'
         self.manager.get_screen('edit_profile').set_access_token(access_token)
-        # self.manager.get_screen('settings').set_access_token(access_token)
+        self.manager.get_screen('settings').set_access_token(access_token)
         self.manager.get_screen('edit_profile').set_id(id)# set user_id 
         self.manager.get_screen('camera').set_id(id)# set id 
         self.manager.get_screen('home').set_id(id)# set user_id  for home screen 

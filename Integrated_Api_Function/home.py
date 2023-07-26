@@ -8,24 +8,31 @@ from kivy.uix.image import AsyncImage
 from kivy.uix.behaviors import ButtonBehavior
 from kivymd.uix.button import MDFlatButton
 import requests
+from Integrated_Api_Function.url import Base_Url
+import json
+from kivy.app import App
 
-
+        
 class AsyncImageButton(ButtonBehavior, AsyncImage):
-    def __init__(self, image_url, **kwargs):
+    def __init__(self, image_url, food_item_id,user_id, **kwargs):
         super(AsyncImageButton, self).__init__(**kwargs)
         self.source = image_url
-        self.size_hint = (0.8, 0.8)  
+        self.size_hint = (0.8, 0.8)
+        self.food_item_id = food_item_id
+        self.user_id=user_id
+        self.id = None
         self.bind(on_release=self.on_image_click)
 
+
+
     def on_image_click(self, *args):
-       
         dialog = MDDialog(
-            title="Would you like to remove these items in fridge",
+            title="Would you like to remove this item from the fridge?",
             radius=[20, 7, 20, 7],
             buttons=[
                 MDFlatButton(
                     text="Yes",
-                    on_release=self.on_remove_item
+                    on_release=self.remove_item_from_fridge
                 ),
                 MDFlatButton(
                     text="No",
@@ -33,27 +40,45 @@ class AsyncImageButton(ButtonBehavior, AsyncImage):
                 )
             ]
         )
+       
         dialog.open()
+        dialog.bind(on_dismiss=self.on_dialog_dismiss)
 
-    def on_remove_item(self, *args):
-        
-        url = 'http://127.0.0.1:8000/delete_fridge_item/'
-        
-        # print("req:", self.req)
-        print("result:", self.result)
+    def on_dialog_dismiss(self, *args):
+        app = App.get_running_app()
+        if args[0].text == 'Yes':
+            app.root.current = 'home' 
 
-        data = {
-            'user_id': 1,
-            'food_item_id': 18
+    def remove_item_from_fridge(self, *args):
+     
+       
+        payload = {
+            "user_id":self.user_id,
+            "food_item_id": self.food_item_id
         }
-        response = requests.post(url, data=data)
-        if response.status_code == 200:
-            print("Food item removed!")
-        else:
-            print("Failed to remove food item.")
-        
     
+        headers = {
+            'Content-Type': 'application/json'
+        }
+        url = f'{Base_Url}/delete_fridge_item/'
+        UrlRequest(
+            url,
+            req_headers=headers,
+            req_body=json.dumps(payload),
+            on_success=self.on_remove_success,
+            on_failure=self.on_remove_failure,
+            method='POST'
+        )
 
+    def on_remove_success(self, req, result):
+        print("success result--->",result)
+        # pass
+
+    def on_remove_failure(self, req, result):
+        print("failure result--->",result)
+       
+        # pass
+   
 
 class HomeScreen(Screen):
     def __init__(self, **kwargs):
@@ -64,7 +89,7 @@ class HomeScreen(Screen):
 
     def set_id(self, id):
         self.id = id
-        self.url = 'http://127.0.0.1:8000/food_itemslist/{}/'.format(self.id)
+        self.url = '{}/food_itemslist/{}/'.format(Base_Url, self.id)
 
     def get_user_items(self):
         headers = {
@@ -79,6 +104,7 @@ class HomeScreen(Screen):
         )
 
     def on_success(self, req, result):
+        # print("home result", result)
         box_2 = self.ids.box_2
         box_3 = self.ids.box_3
         box_4 = self.ids.box_4
@@ -110,30 +136,44 @@ class HomeScreen(Screen):
         for items in result['data']:
             image_url = items['image_url']
             category = items['category']
-            async_image = AsyncImageButton(image_url)
-            # async_image.req = req
-            async_image.result = result
-            async_image.on_remove_item()
+            food_item_id = items['id']
+            user_id=items['user_id']
+            async_image = AsyncImageButton(image_url,food_item_id,user_id)
+            
             if category == 'Dairy':
                 box_2.add_widget(async_image)
+
             elif category == 'Meat':
                 box_3.add_widget(async_image)
+
+            elif category == 'Veg': 
+                box_4.add_widget(async_image)
+            
+            elif category == 'Fruit': 
+                box_5.add_widget(async_image)
+
             elif category == 'Sauces': 
                 box_9.add_widget(async_image)
+
             elif category == 'Grain Group': 
                 box_10.add_widget(async_image)
+
             elif category == 'Cooked Foods':
                 box_11.add_widget(async_image)
+
             elif category == 'Egg':
                 box_13_child_layout1.add_widget(async_image)
+
             elif category == 'Frozen Dessert': 
                 box_13_child_layout2.add_widget(async_image)
+            
 
     def on_enter(self):
         self.get_user_items()
 
     def on_failure(self, req, result):
-        print("failure", result)
+        # print("failure", result)
+        pass
 
 
 

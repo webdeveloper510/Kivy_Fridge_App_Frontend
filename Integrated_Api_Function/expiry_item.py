@@ -1,6 +1,8 @@
 from kivy.uix.screenmanager import Screen
 from kivy.network.urlrequest import UrlRequest
 from kivymd.uix.list import TwoLineListItem
+from Integrated_Api_Function.url import Base_Url
+
 
 class ExpiryItemScreen(Screen):
       def __init__(self, **kwargs):
@@ -10,7 +12,7 @@ class ExpiryItemScreen(Screen):
       
       def set_id(self, id):
          self.id = id
-         self.url ='http://127.0.0.1:8000/expirydateitems/{}/'.format(self.id)
+         self.url ='{}/expirydateitems/{}/'.format(Base_Url,self.id)
 
       def get_expiry_item(self):
          headers = {
@@ -30,7 +32,7 @@ class ExpiryItemScreen(Screen):
           for expiry_item_data in expirydata:
              
               self.ids.container.add_widget(
-                            TwoLineListItem(text=expiry_item_data['food_name'],secondary_text="Expiry item")
+                            TwoLineListItem(text=expiry_item_data['food_name'],secondary_text=expiry_item_data['expiry_date'])
                         )
       
       def on_failure(self, req, result):

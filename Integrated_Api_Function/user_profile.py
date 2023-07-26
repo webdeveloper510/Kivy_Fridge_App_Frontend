@@ -3,12 +3,13 @@ from kivy.network.urlrequest import UrlRequest
 from kivy.uix.screenmanager import Screen
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRaisedButton
+from Integrated_Api_Function.url import Base_Url
 
 class EditProfileScreen(Screen):
     def __init__(self, **kwargs):
         super(EditProfileScreen, self).__init__(**kwargs)
-        self.edit_url = 'http://127.0.0.1:8000/editprofile/'
-        self.profile_url = 'http://127.0.0.1:8000/userprofile/'
+        self.edit_url = '{}/editprofile/'.format(Base_Url)
+        self.profile_url = '{}/userprofile/'.format(Base_Url)
         self.request = None
         self.access_token = None
         self.id = None 
@@ -43,7 +44,7 @@ class EditProfileScreen(Screen):
         self.ids.dob_field.text = profile_data.get('dob', '')
 
     def get_profile_failure(self, req, result):
-        print("Failed to fetch user profile:", result)
+        pass
 
     def edit_profile(self):
         first_name = self.ids.first_name_field.text
@@ -75,7 +76,6 @@ class EditProfileScreen(Screen):
         )
 
     def edit_profile_success(self, req, result):
-        print("edit success--->", result['message'])
         dialog = MDDialog(
             title="Success",
             text=result['message'],
@@ -93,7 +93,6 @@ class EditProfileScreen(Screen):
         self.manager.current = 'edit_profile'
 
     def edit_profile_failure(self, req, result):
-        print("error--------->", result['message'])
         dialog = MDDialog(
             title="Error",
             text=result['message'],

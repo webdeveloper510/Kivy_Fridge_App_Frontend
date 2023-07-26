@@ -74,96 +74,118 @@
             padding: dp(10)
             spacing: dp(18)
             orientation: 'vertical'
-            size_hint_y: None
-            height: self.minimum_height
+            # size_hint_y: None
+            # height: self.minimum_height
+
+            GridLayout:
+                cols: 2
+                padding:10
+                spacing:30
             
-            MDTextField:
-                id: first_name
-                hint_text: 'First Name'
-                # helper_text: " firstname could not be blank"
-                # helper_text_mode: "on_error"
-                # required: True
-                line_color_normal:1,1,1,1
-                mode: "fill"
-                fill_color: 1, 1, 1, 1
-                size_hint_y: None
-                height: dp(40)
-                multiline: False
-           
+                MDTextField:
+                    id: first_name
+                    hint_text: 'First Name'
+                    helper_text: "Enter your firstname"
+                    line_color_normal:1,1,1,1
+                    mode: "fill"
+                    fill_color: 1, 1, 1, 1
+                    size_hint_y: None
+                    height: dp(40)
+                    multiline: False
             
-            MDTextField:
-                id: last_name
-                hint_text: 'Last Name'
-                # helper_text: " lastname could not be blank"
-                # helper_text_mode: "on_error"
-                # required: True
-                mode: "fill"
-                fill_color: 1, 1, 1, 1
-                line_color_normal:1,1,1,1
-                size_hint_y: None
-                height: dp(40)
-                multiline: False
                 
-            MDTextField:
-                id: mobile
-                hint_text: 'Phone Number'
-                # helper_text: " Phone Number could not be blank"
-                # helper_text_mode: "on_error"
-                # required: True
-                mode: "fill"
-                fill_color: 1, 1, 1, 1
-                line_color_normal:1,1,1,1
-                size_hint_y: None
-                height: dp(50)
-                multiline: False
+                MDTextField:
+                    id: last_name
+                    hint_text: 'Last Name'
+                    helper_text: "Enter your lastname"
+                    mode: "fill"
+                    fill_color: 1, 1, 1, 1
+                    line_color_normal:1,1,1,1
+                    size_hint_y: None
+                    height: dp(40)
+                    multiline: False
+                    
+                MDTextField:
+                    id: mobile
+                    hint_text: 'Phone Number'
+                    helper_text: "Enter Phone Number"
+                    mode: "fill"
+                    fill_color: 1, 1, 1, 1
+                    line_color_normal:1,1,1,1
+                    size_hint_y: None
+                    height: dp(50)
+                    multiline: False
                 
-            MDTextField:
-                id: email
-                hint_text: 'Email'
-                # helper_text: " Email could not be blank"
-                # helper_text_mode: "on_error"
-                # required: True
-                mode: "fill"
-                fill_color: 1, 1, 1, 1
-                line_color_normal:1,1,1,1
-                size_hint_y: None
-                height: dp(50)
-                multiline: False
+                MDTextField:
+                    id: dob
+                    hint_text: 'YYYY-MM-DD'
+                    helper_text: "Enter your date of birth"
+                    mode: "fill"
+                    fill_color: 1, 1, 1, 1
+                    line_color_normal:1,1,1,1
+                    size_hint_y: None
+                    height: dp(50)
+                    multiline: False
+                    
+                MDTextField:
+                    id: email
+                    hint_text: 'Email'
+                    helper_text: "Enter your  email"
+                    mode: "fill"
+                    fill_color: 1, 1, 1, 1
+                    line_color_normal:1,1,1,1
+                    size_hint_y: None
+                    height: dp(50)
+                    multiline: False
+                    
                 
+                MDTextField:
+                    id: password
+                    hint_text: 'Password'
+                    helper_text:"Enter your password"
+                    mode: "fill"
+                    fill_color: 1, 1, 1, 1
+                    line_color_normal:1,1,1,1
+                    password: True
+                    size_hint_y: None
+                    height: dp(50)
+                    multiline: False
+
+                MDRoundFlatButton:
+                    text: 'Register'
+                    text_color:hex('#07CBFB') 
+                    size_hint_x: 0.5
+                    md_bg_color: 1, 1, 1, 1
+                    on_press:root.register_user()
+                
+                MDRoundFlatButton:
+                    text: 'Login'
+                    text_color:hex('#07CBFB') 
+                    size_hint_x: 0.5
+                    md_bg_color: 1, 1, 1, 1
+                    on_press: root.manager.current = 'login'
             
-            MDTextField:
-                id: password
-                hint_text: 'Password'
-                # helper_text: " Password could not be blank"
-                # helper_text_mode: "on_error"
-                # required: True
-                mode: "fill"
-                fill_color: 1, 1, 1, 1
-                line_color_normal:1,1,1,1
-                password: True
-                size_hint_y: None
-                height: dp(50)
-                multiline: False
+        # BoxLayout:
+        #     size_hint_y: None
+        #     height: dp(50)
+        #     padding: dp(10)
+        #     spacing: dp(10)
             
-        BoxLayout:
-            size_hint_y: None
-            height: dp(50)
-            padding: dp(10)
-            spacing: dp(10)
+        #     MDRoundFlatButton:
+        #         text: 'Register'
+        #         text_color:hex('#07CBFB') 
+        #         size_hint_x: 0.5
+        #         md_bg_color: 1, 1, 1, 1
+        #         on_press:root.register_user()
             
-            MDRoundFlatButton:
-                text: 'Register'
-                text_color:hex('#07CBFB') 
-                size_hint_x: 0.5
-                md_bg_color: 1, 1, 1, 1
-                on_press:root.register_user()
+        #     MDRoundFlatButton:
+        #         text: 'Login'
+        #         text_color:hex('#07CBFB') 
+        #         size_hint_x: 0.5
+        #         md_bg_color: 1, 1, 1, 1
+        #         on_press: root.manager.current = 'login'
             
-            MDRoundFlatButton:
-                text: 'Login'
-                text_color:hex('#07CBFB') 
-                size_hint_x: 0.5
-                md_bg_color: 1, 1, 1, 1
-                on_press: root.manager.current = 'login'
+            
 
 <LoginScreen>:
     MDScreen:
@@ -541,11 +563,12 @@
                     MDNavigationDrawerDivider:
 
                     MDTextButton:
+                        id:logout
                         text: "Logout"
                         theme_text_color: 'Custom'
                         text_color:1,1,1,1
                         bold: True
-                        on_press: root.manager.current = 'login'
+                        on_press: root.logout_user()
                     MDNavigationDrawerDivider:
 
                     

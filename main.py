@@ -22,16 +22,18 @@ from Integrated_Api_Function.reset_password import ResetPasswordScreen
 from Integrated_Api_Function.camera import MyCamera
 from Integrated_Api_Function.expirydate_screen import ExpiryDateScreen
 from Integrated_Api_Function.home import HomeScreen
+from Integrated_Api_Function.logout import SettingsScreen
+from Integrated_Api_Function.expiry_item import ExpiryItemScreen
+from Integrated_Api_Function.greenInDateItem import GreenItemScreen
+from Integrated_Api_Function.usebydate import UseByDateItemScreen
 from Food_Agency.Avoiding_crosscontamination import Screen1
 from Food_Agency.Chilling import Chilling
 from Food_Agency.cleaning import Cleaning
 from Food_Agency.cooking_food import Cooking_Food
 from Food_Agency.fact_checker import Fact_Checker
-from Integrated_Api_Function.expiry_item import ExpiryItemScreen
-from Integrated_Api_Function.greenInDateItem import GreenItemScreen
-from Integrated_Api_Function.usebydate import UseByDateItemScreen
 
-Base_url='http://127.0.0.1:8000'
+
+
 
 
 class SplashScreen(MDScreen):
@@ -45,8 +47,8 @@ class SplashScreen(MDScreen):
 class ScannerScreen(MDScreen):
     pass
 
-class SettingsScreen(MDScreen):
-    pass
+# class SettingsScreen(MDScreen):
+#     pass
 
 class BottomNavigation(BoxLayout):
     pass
@@ -61,7 +63,6 @@ class NotificationDetails(MDBoxLayout):
 
 class NotificationScreen(MDScreen):
     def on_pre_enter(self):
-        #  some example notifications to the list
         for i in range(10):
             item = OneLineListItem(text=f'Notification {i}')
             item.notification_title = f'Title {i}'
@@ -94,44 +95,11 @@ class ListDialog(MDDialog):
     pass
 
 
-
-
 class FoodTrack(Screen):
     pass
 
-
-
-# class FoodTrack(Screen):
-#     def show_dialog(self, button_text):
-#         if button_text == "Green Button Clicked":
-#             items = ["Green Item 1", "Green Item 2", "Green Item 3"]# create  static data  later get data from source
-#             dialog = ListDialog()
-
-#             for item in items:
-#                 dialog.ids.list_content.add_widget(CustomListItem(text=item))
-
-#             dialog.open()
-#         elif button_text == "Amber Button Clicked":
-#             items = ["Amber Item 1", "Amber Item 2", "Amber Item 3"]# create  static data  later get data from source
-#             dialog = ListDialog()
-
-#             for item in items:
-#                 dialog.ids.list_content.add_widget(CustomListItem(text=item))
-
-#             dialog.open()
-#         elif button_text == "Red Button Clicked":
-#             items = ["Red Item 1", "Red Item 2", "Red Item 3"]# create  static data  later get data from source
-#             dialog = ListDialog()
-
-#             for item in items:
-#                 dialog.ids.list_content.add_widget(CustomListItem(text=item))
-
-#             dialog.open()
-
-
 class FoodHygiene(MDScreen):
   pass
-
 
 class MyScreenManager(ScreenManager):
     pass
@@ -168,3 +136,4 @@ class FridgeApp(MDApp):
         
 if __name__ == '__main__':
     FridgeApp().run()
+

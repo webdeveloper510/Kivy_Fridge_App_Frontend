@@ -4,11 +4,12 @@ import json
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRaisedButton
 from kivy.properties import StringProperty
+from Integrated_Api_Function.url import Base_Url
 
 class ResetPasswordScreen(Screen):
     def __init__(self, **kwargs):
         super(ResetPasswordScreen, self).__init__(**kwargs)
-        self.url ='http://127.0.0.1:8000/resetpassword/'
+        self.url ='{}/resetpassword/'.format(Base_Url)
         self.request = None 
         self.email = None 
     

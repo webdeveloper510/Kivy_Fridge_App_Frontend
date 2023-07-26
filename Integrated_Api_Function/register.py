@@ -6,17 +6,19 @@ from kivy.properties import ObjectProperty
 from kivymd.uix.snackbar import Snackbar
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRaisedButton
+from Integrated_Api_Function.url import Base_Url
 
 class RegisterScreen(Screen):
     def __init__(self, **kwargs):
         super(RegisterScreen, self).__init__(**kwargs)
-        self.url = 'http://127.0.0.1:8000/register/'
+        self.url = '{}/register/'.format(Base_Url)
         self.request = None  
 
     def register_user(self):
         Firstname = self.ids.first_name.text
         Lastname = self.ids.last_name.text
         phone_number = self.ids.mobile.text
+        dob = self.ids.dob.text
         email = self.ids.email.text
         password = self.ids.password.text
 
@@ -25,6 +27,7 @@ class RegisterScreen(Screen):
             'Lastname': Lastname,
             'phone_number':phone_number,
             'email': email,
+            'dob':dob,
             'password': password,
         }
 
@@ -54,7 +57,7 @@ class RegisterScreen(Screen):
 
     def on_failure(self, request, result):
         error_message = next(iter(result.values()))[0]
-        print(error_message)
+        # print(error_message)
         snackbar = Snackbar(
                 text="[color=#ddbb34]          "+str(error_message)+"[/color]",
                 snackbar_y="10dp",

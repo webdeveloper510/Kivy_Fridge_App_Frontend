@@ -3,12 +3,13 @@ from kivy.network.urlrequest import UrlRequest
 import json
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRaisedButton
+from Integrated_Api_Function.url import Base_Url
 
 class OTPScreen(Screen):
 
     def __init__(self, **kwargs):
         super(OTPScreen, self).__init__(**kwargs)
-        self.url ='http://127.0.0.1:8000/email_otp/'
+        self.url ='{}/email_otp/'.format(Base_Url)
         self.request = None  
     
     def send_otp_request(self):

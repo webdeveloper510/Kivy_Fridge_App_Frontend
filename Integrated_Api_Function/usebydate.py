@@ -1,6 +1,7 @@
 from kivy.uix.screenmanager import Screen
 from kivy.network.urlrequest import UrlRequest
-from kivymd.uix.list import OneLineListItem
+from kivymd.uix.list import TwoLineListItem
+from Integrated_Api_Function.url import Base_Url
 
 class UseByDateItemScreen(Screen):
       def __init__(self, **kwargs):
@@ -10,7 +11,7 @@ class UseByDateItemScreen(Screen):
 
       def set_id(self, id):
          self.id = id
-         self.url ='http://127.0.0.1:8000/usebydate/{}/'.format(self.id)
+         self.url ='{}/usebydate/{}/'.format(Base_Url,self.id)
       
       def get_UseBy_item(self):
          headers = {
@@ -28,7 +29,7 @@ class UseByDateItemScreen(Screen):
           self.ids.container.clear_widgets()
           for Use_item_data in itemdata:
               self.ids.container.add_widget(
-                            OneLineListItem(text=Use_item_data['food_name'])
+                            TwoLineListItem(text=Use_item_data['food_name'],secondary_text=str(Use_item_data['days_until_expiry']))
                         )
       
       def on_failure(self, req, result):

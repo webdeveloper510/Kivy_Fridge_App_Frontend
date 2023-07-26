@@ -19,13 +19,14 @@ from kivy.uix.modalview import ModalView
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
 from kivy.utils import get_color_from_hex
+from Integrated_Api_Function.url import Base_Url
 
 
 
 class MyCamera(Screen):
     def __init__(self, **kwargs):
         super(MyCamera, self).__init__(**kwargs)
-        self.url = "http://127.0.0.1:8000/capture_image/"
+        self.url = "{}/capture_image/".format(Base_Url)
         self.request = None  
 
        
@@ -99,7 +100,7 @@ class MyCamera(Screen):
         ret, frame = self.camera.read()
         if ret:
             cv2.imwrite(image_path, frame)
-            print(f"Image captured and saved to: {image_path}")
+            # print(f"Image captured and saved to: {image_path}")
 
             pil_image = PILImage.open(image_path)
             png_image_stream = io.BytesIO()
@@ -117,7 +118,7 @@ class MyCamera(Screen):
 
             response = requests.post(url, data=payload, files=files)
             response_data=(response.json())
-            # print("response_data------>",response_data)
+            
             
             item_name_array=[]
             item_id_array=[]
@@ -127,15 +128,13 @@ class MyCamera(Screen):
                 created_at = item_data['created_at']
                 last_updated = item_data['last_updated']
                 item_id_array.append(item_id)
-                print(item_id_array)
                 item_name_array.append(item_name)
 
             if response.status_code == 200:
-                print("Image uploaded successfully.")
                 self.show_dialog(response_data)
                 self.manager.get_screen('expiry_screen').set_itemlist(item_name_array)
                 self.manager.get_screen('expiry_screen').set_itemid(item_id_array)
-                print(self.manager.get_screen('expiry_screen').set_itemid(item_id_array))
+                
             else:
                 print("Failed to send request.")
     

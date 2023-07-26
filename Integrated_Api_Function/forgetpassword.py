@@ -3,12 +3,15 @@ from kivy.network.urlrequest import UrlRequest
 import json
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRaisedButton
+from Integrated_Api_Function.url import Base_Url
+
+'{}/update_food_item/'.format(Base_Url),
 
 class ForgetPasswordScreen(Screen):
 
     def __init__(self, **kwargs):
         super(ForgetPasswordScreen, self).__init__(**kwargs)
-        self.url ='http://127.0.0.1:8000/resetpasswordemail/'
+        self.url ='{}/resetpasswordemail/'.format(Base_Url)
         self.request = None  
         
     

@@ -12,7 +12,7 @@ import json
 from kivy.properties import ListProperty
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDRaisedButton
-
+from Integrated_Api_Function.url import Base_Url
 
 class ExpiryDateScreen(Screen):
     def __init__(self, **kwargs):
@@ -65,7 +65,7 @@ class ExpiryDateScreen(Screen):
         headers = {"Content-Type": "application/json"}
 
         req = UrlRequest(
-            url='http://127.0.0.1:8000/update_food_item/',
+            url='{}/update_food_item/'.format(Base_Url),
             req_body=json_data,
             req_headers=headers,
             on_success=self.handle_success,

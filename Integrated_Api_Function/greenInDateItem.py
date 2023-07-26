@@ -1,6 +1,8 @@
 from kivy.uix.screenmanager import Screen
 from kivy.network.urlrequest import UrlRequest
-from kivymd.uix.list import OneLineListItem
+from kivymd.uix.list import TwoLineListItem
+from Integrated_Api_Function.url import Base_Url
+
 
 class GreenItemScreen(Screen):
     def __init__(self, **kwargs):
@@ -11,7 +13,7 @@ class GreenItemScreen(Screen):
 
     def set_id(self, id):
          self.id = id
-         self.url = 'http://127.0.0.1:8000/greenIndateitems/{}/'.format(self.id)
+         self.url ='{}/greenIndateitems/{}/'.format(Base_Url,self.id)
      
     def get_green_item(self):
          headers = {
@@ -30,11 +32,11 @@ class GreenItemScreen(Screen):
           self.ids.container.clear_widgets()
           for green_item_data in itemdata:
               self.ids.container.add_widget(
-                            OneLineListItem(text=green_item_data['food_name'])
+                            TwoLineListItem(text=green_item_data['food_name'],secondary_text=green_item_data['date'])
                         )
       
     def on_failure(self, req, result):
-          print(result)
+         pass
 
     def on_enter(self):
         self.get_green_item()
