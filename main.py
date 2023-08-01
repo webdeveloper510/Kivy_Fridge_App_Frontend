@@ -33,9 +33,6 @@ from Food_Agency.cooking_food import Cooking_Food
 from Food_Agency.fact_checker import Fact_Checker
 
 
-
-
-
 class SplashScreen(MDScreen):
     def on_enter(self):
         

@@ -46,8 +46,7 @@
                 size: self.size
         
         BoxLayout:
-            # padding: dp(20)
-            # spacing: dp(20)
+           
             size_hint_y: None
             height: dp(200)
             
@@ -72,118 +71,111 @@
         
         BoxLayout:
             padding: dp(10)
-            spacing: dp(18)
+            spacing: dp(10)
             orientation: 'vertical'
             # size_hint_y: None
-            # height: self.minimum_height
+            height: self.minimum_height
 
             GridLayout:
-                cols: 2
+                cols: 1
                 padding:10
-                spacing:30
+                spacing:10
             
-                MDTextField:
+                MDTextFieldRect:
                     id: first_name
                     hint_text: 'First Name'
-                    helper_text: "Enter your firstname"
                     line_color_normal:1,1,1,1
                     mode: "fill"
                     fill_color: 1, 1, 1, 1
                     size_hint_y: None
-                    height: dp(40)
+                    size_hint_x:4.5
+                    height: dp(35)
                     multiline: False
             
                 
-                MDTextField:
+                MDTextFieldRect:
                     id: last_name
                     hint_text: 'Last Name'
-                    helper_text: "Enter your lastname"
                     mode: "fill"
                     fill_color: 1, 1, 1, 1
                     line_color_normal:1,1,1,1
                     size_hint_y: None
-                    height: dp(40)
+                    size_hint_x:4.5
+                    height: dp(35)
                     multiline: False
                     
-                MDTextField:
+                MDTextFieldRect:
                     id: mobile
                     hint_text: 'Phone Number'
-                    helper_text: "Enter Phone Number"
                     mode: "fill"
                     fill_color: 1, 1, 1, 1
                     line_color_normal:1,1,1,1
                     size_hint_y: None
-                    height: dp(50)
+                    size_hint_x:4.5
+                    height: dp(35)
                     multiline: False
                 
-                MDTextField:
+                MDTextFieldRect:
                     id: dob
-                    hint_text: 'YYYY-MM-DD'
-                    helper_text: "Enter your date of birth"
+                    hint_text: 'YYYY-MM-DD(Date of Birth)'
                     mode: "fill"
                     fill_color: 1, 1, 1, 1
                     line_color_normal:1,1,1,1
                     size_hint_y: None
-                    height: dp(50)
+                    size_hint_x:4.5
+                    height: dp(35)
                     multiline: False
                     
-                MDTextField:
+                MDTextFieldRect:
                     id: email
                     hint_text: 'Email'
-                    helper_text: "Enter your  email"
                     mode: "fill"
                     fill_color: 1, 1, 1, 1
                     line_color_normal:1,1,1,1
                     size_hint_y: None
-                    height: dp(50)
+                    size_hint_x:4.5
+                    height: dp(35)
                     multiline: False
                     
                 
-                MDTextField:
+                MDTextFieldRect:
                     id: password
                     hint_text: 'Password'
-                    helper_text:"Enter your password"
                     mode: "fill"
                     fill_color: 1, 1, 1, 1
                     line_color_normal:1,1,1,1
                     password: True
                     size_hint_y: None
-                    height: dp(50)
+                    size_hint_x:4.5
+                    height: dp(35)
                     multiline: False
 
-                MDRoundFlatButton:
-                    text: 'Register'
-                    text_color:hex('#07CBFB') 
-                    size_hint_x: 0.5
-                    md_bg_color: 1, 1, 1, 1
-                    on_press:root.register_user()
-                
-                MDRoundFlatButton:
-                    text: 'Login'
-                    text_color:hex('#07CBFB') 
-                    size_hint_x: 0.5
-                    md_bg_color: 1, 1, 1, 1
-                    on_press: root.manager.current = 'login'
+               
             
-        # BoxLayout:
-        #     size_hint_y: None
-        #     height: dp(50)
-        #     padding: dp(10)
-        #     spacing: dp(10)
+        BoxLayout:
+            padding: dp(10)
+            spacing: dp(10)
+            orientation: 'vertical'
+            # size_hint_y: None
+            height: self.minimum_height
             
-        #     MDRoundFlatButton:
-        #         text: 'Register'
-        #         text_color:hex('#07CBFB') 
-        #         size_hint_x: 0.5
-        #         md_bg_color: 1, 1, 1, 1
-        #         on_press:root.register_user()
+            MDRoundFlatButton:
+                text: 'Register'
+                text_color:hex('#07CBFB') 
+                font_size: sp(18)
+                size_hint_x: 0.4
+                md_bg_color: 1, 1, 1, 1
+                pos_hint:{"center_y":.30,"center_x":0.5}
+                on_press:root.register_user()
             
-        #     MDRoundFlatButton:
-        #         text: 'Login'
-        #         text_color:hex('#07CBFB') 
-        #         size_hint_x: 0.5
-        #         md_bg_color: 1, 1, 1, 1
-        #         on_press: root.manager.current = 'login'
+            MDRoundFlatButton:
+                text: 'Login'
+                text_color:hex('#07CBFB') 
+                font_size: sp(18)
+                size_hint_x: 0.4
+                md_bg_color: 1, 1, 1, 1
+                pos_hint:{"center_y":.15,"center_x":0.5}
+                on_press: root.manager.current = 'login'
             
             
 
@@ -499,13 +491,13 @@
                         orientation: "vertical"
                         padding: dp(16)
                         spacing: dp(16)
-                        MDBoxLayout:
-                            orientation: "horizontal"
                         
-                            MDLabel:
-                                text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim."
-                                halign: "center"
-                                font_style:'Caption'
+                        MDLabel:
+                            text: root.format_text("[size=35][b]About App[/b][/size]\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim.")
+                            halign: "center"
+                            font_style:'Body2'
+                            markup: True
+                            height: self.texture_size[1]
                             
 
             MDNavigationDrawer:
@@ -542,14 +534,14 @@
                         bold: True
                         on_press: root.manager.current = 'edit_profile'
 
-                    MDNavigationDrawerDivider:
+                    # MDNavigationDrawerDivider:
 
-                    MDTextButton:
-                        text: "Notifications"
-                        theme_text_color: 'Custom'
-                        text_color:1,1,1,1
-                        bold: True
-                        on_press: root.manager.current = 'notifications'
+                    # MDTextButton:
+                    #     text: "Notifications"
+                    #     theme_text_color: 'Custom'
+                    #     text_color:1,1,1,1
+                    #     bold: True
+                    #     on_press: root.manager.current = 'notifications'
                     
                     MDNavigationDrawerDivider:
 
@@ -899,7 +891,7 @@
             title: 'Home Page'
             md_bg_color: app.theme_cls.primary_color
             elevation: 5
-            right_action_items: [['delete-forever', lambda *args :setattr(root.manager, "current", "FoodTrack")],['dots-vertical', lambda *args :setattr(root.manager, "current", "FoodTrack")]]
+            right_action_items: [['dots-vertical', lambda *args :setattr(root.manager, "current", "FoodTrack")]]
         BoxLayout:
             orientation: 'horizontal'
             padding: 10

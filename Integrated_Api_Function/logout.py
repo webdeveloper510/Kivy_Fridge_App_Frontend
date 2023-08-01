@@ -54,4 +54,8 @@ class SettingsScreen(Screen):
         dialog.open()
 
         self.manager.current = 'settings'
-       
+   
+    @staticmethod
+    def format_text(text):
+        # Replace spaces with non-breaking spaces to maintain equal alignment
+        return text.replace(' ', '\u00A0')
